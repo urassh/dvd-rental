@@ -6,6 +6,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+//そんなバナナ！！！
+//こんにちは
+
 public class RentalApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
