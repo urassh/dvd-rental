@@ -12,3 +12,5 @@ public class HomeController {
         welcomeText.setText("Welcome to JavaFX Application!");
     }
 }
+
+//ここだよ～～～
