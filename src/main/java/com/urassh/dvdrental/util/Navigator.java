@@ -5,7 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.Map;
+
 public class Navigator {
+    private static final Map<String, Integer> WINDOW_SIZE = Map.of(
+            "width", 1440,
+            "height", 1024
+    );
     private static final String[] FXML_PATHS = {
             "home/view.fxml",
             "goods/view.fxml",
@@ -27,7 +33,7 @@ public class Navigator {
             }
 
             FXMLLoader fxmlLoader = new FXMLLoader(RentalApp.class.getResource(fxmlPath));
-            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+            Scene scene = new Scene(fxmlLoader.load(), WINDOW_SIZE.get("width"), WINDOW_SIZE.get("height"));
             Stage stage = new Stage();
 
             stage.setScene(scene);
