@@ -12,6 +12,6 @@
     </left>
 
     <center>
-        <Label text="Goods View" />
+        <Label text="商品情報画面" />
     </center>
 </BorderPane>

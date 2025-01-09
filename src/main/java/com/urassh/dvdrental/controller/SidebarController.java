@@ -2,33 +2,62 @@ package com.urassh.dvdrental.controller;
 
 import com.urassh.dvdrental.util.Navigator;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class SidebarController {
     @FXML
     private Label title;
 
     @FXML
-    protected void navigateToRentalButton() {
-        Navigator navigator = new Navigator(title.getScene());
-        navigator.navigateToRental();
-    }
+    private Button rentalButton;
 
     @FXML
-    protected void navigateToMembersButton() {
-        Navigator navigator = new Navigator(title.getScene());
-        navigator.navigateToMembers();
-    }
+    private Button returnButton;
 
     @FXML
-    protected void navigateToGoodsButton() {
-        Navigator navigator = new Navigator(title.getScene());
-        navigator.navigateToGoods();
-    }
+    private Button goodsButton;
 
     @FXML
-    protected void navigateToReturnButton() {
+    private Button membersButton;
+
+    @FXML
+    private List<Button> menuItems;
+
+    @FXML
+    protected void initialize() {
+        menuItems = Arrays.asList(rentalButton, returnButton, goodsButton, membersButton);
+        menuItems.forEach(button -> button.setOnAction(event -> handleButtonClick(button)));
+    }
+
+    private void handleButtonClick(Button clickedButton) {
+        menuItems.forEach(button -> button.getStyleClass().remove("active"));
+
+        clickedButton.getStyleClass().add("active");
+
+        String buttonId = clickedButton.getId();
+
+        navigateTo(buttonId);
+    }
+
+    private void navigateTo(String buttonId) {
         Navigator navigator = new Navigator(title.getScene());
-        navigator.navigateToReturn();
+        switch (buttonId) {
+            case "rentalButton":
+                navigator.navigateToRental();
+                break;
+            case "returnButton":
+                navigator.navigateToReturn();
+                break;
+            case "goodsButton":
+                navigator.navigateToGoods();
+                break;
+            case "membersButton":
+                navigator.navigateToMembers();
+                break;
+        }
     }
 }

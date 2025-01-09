@@ -12,6 +12,6 @@
     </left>
 
     <center>
-        <Label text="Members View" />
+        <Label text="会員情報画面" />
     </center>
 </BorderPane>

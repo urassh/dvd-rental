@@ -4,16 +4,16 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<VBox alignment="CENTER"
-      xmlns:fx="http://javafx.com/fxml"
+<VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.urassh.dvdrental.controller.SidebarController"
       fx:id="sidebar"
+      prefWidth="300"
       stylesheets="@style.css">
 
-    <Label fx:id="title" text="Menu" />
+    <Label fx:id="title" text="Menus" />
 
-    <Button onAction="#navigateToRentalButton"  text="貸し出し" />
-    <Button onAction="#navigateToReturnButton"  text="返却" />
-    <Button onAction="#navigateToGoodsButton"   text="商品情報" />
-    <Button onAction="#navigateToMembersButton" text="会員情報" />
+    <Button fx:id="rentalButton" styleClass="menu-item" text="貸し出し" />
+    <Button fx:id="returnButton" styleClass="menu-item" text="返却" />
+    <Button fx:id="goodsButton" styleClass="menu-item" text="商品情報" />
+    <Button fx:id="membersButton" styleClass="menu-item" text="会員情報" />
 </VBox>

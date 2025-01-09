@@ -49,19 +49,19 @@ public class Navigator {
     }
 
     public void navigateToGoods() {
-        navigateFxml(FXML_PATHS[1], "Goods");
+        navigateFxml(FXML_PATHS[1], "商品情報");
     }
 
     public void navigateToMembers() {
-        navigateFxml(FXML_PATHS[2], "Members");
+        navigateFxml(FXML_PATHS[2], "会員情報");
     }
 
     public void navigateToRental() {
-        navigateFxml(FXML_PATHS[3], "Rental");
+        navigateFxml(FXML_PATHS[3], "貸し出し");
     }
 
     public void navigateToReturn() {
-        navigateFxml(FXML_PATHS[4], "Return");
+        navigateFxml(FXML_PATHS[4], "返却");
     }
 
     private String appTitle(String title) {

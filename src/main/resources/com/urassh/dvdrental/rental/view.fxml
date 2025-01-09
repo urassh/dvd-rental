@@ -12,6 +12,6 @@
     </left>
 
     <center>
-        <Label text="Rental View" />
+        <Label text="貸し出し画面" />
     </center>
 </BorderPane>

@@ -12,6 +12,6 @@
     </left>
 
     <center>
-        <Label text="Return View" />
+        <Label text="返却画面" />
     </center>
 </BorderPane>
