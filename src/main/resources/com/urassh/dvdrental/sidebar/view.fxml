@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<VBox alignment="CENTER"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.urassh.dvdrental.controller.SidebarController"
+      fx:id="sidebar"
+      stylesheets="@style.css">
 
-</AnchorPane>
+    <Label fx:id="title" text="Menu" />
+
+    <Button onAction="#navigateToRentalButton"  text="貸し出し" />
+    <Button onAction="#navigateToReturnButton"  text="返却" />
+    <Button onAction="#navigateToGoodsButton"   text="商品情報" />
+    <Button onAction="#navigateToMembersButton" text="会員情報" />
+</VBox>
