@@ -8,7 +8,10 @@ import javafx.stage.Stage;
 public class Navigator {
     private static final String[] FXML_PATHS = {
             "home/view.fxml",
-            "result/view.fxml"
+            "goods/view.fxml",
+            "members/view.fxml",
+            "rental/view.fxml",
+            "return/view.fxml"
     };
 
     private final Scene fromScene;
@@ -39,11 +42,23 @@ public class Navigator {
         navigateFxml(FXML_PATHS[0], "Home");
     }
 
-    public void navigateToResult() {
-        navigateFxml(FXML_PATHS[1], "Result");
+    public void navigateToGoods() {
+        navigateFxml(FXML_PATHS[1], "Goods");
+    }
+
+    public void navigateToMembers() {
+        navigateFxml(FXML_PATHS[2], "Members");
+    }
+
+    public void navigateToRental() {
+        navigateFxml(FXML_PATHS[3], "Rental");
+    }
+
+    public void navigateToReturn() {
+        navigateFxml(FXML_PATHS[4], "Return");
     }
 
     private String appTitle(String title) {
-        return "Gacha App - " + title;
+        return "DVD貸し出し管理アプリ - " + title;
     }
 }
