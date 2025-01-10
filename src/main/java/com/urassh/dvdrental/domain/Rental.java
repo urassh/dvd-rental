@@ -1,5 +1,7 @@
 package com.urassh.dvdrental.domain;
 
+import com.urassh.dvdrental.util.DateExtension;
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -16,11 +18,7 @@ public class Rental {
         this.menberId = menberId;
         this.rentalDate = rentalDate;
         // 返却期限を計算して代入する
-        // 日付加算は汎用な処理なので別ファイルにつくったほうがよい↓
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(rentalDate);
-        calendar.add(Calendar.DAY_OF_MONTH, 7);
-        this.dueDate = calendar.getTime();
+        this.dueDate = new DateExtension(rentalDate).addDay(7);
     }
 
     public String getId() {
