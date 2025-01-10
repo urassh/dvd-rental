@@ -1,0 +1,35 @@
+* {
+    -fx-text-fill: white;
+    -fx-background: transparent;
+}
+
+#sidebar {
+    -fx-background-color: #595555;
+    -fx-padding: 60px 40px;
+    -fx-min-width: 300px;
+    -fx-font-family: YuGothic;
+}
+
+#title {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 20px 0;
+}
+
+#sidebar .menu-item {
+    -fx-padding: 20px 0;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-color: transparent;
+    -fx-pref-width: Infinity;
+    -fx-alignment: CENTER_LEFT;
+}
+
+#sidebar .menu-item:hover {
+    -fx-background-color: #6d6d6d;
+}
+
+#sidebar .menu-item.active {
+    -fx-background-color: #4a90e2;
+    -fx-text-fill: white;
+}

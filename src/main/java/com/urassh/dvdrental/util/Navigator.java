@@ -5,10 +5,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.Map;
+
 public class Navigator {
+    private static final Map<String, Integer> WINDOW_SIZE = Map.of(
+            "width", 1440,
+            "height", 1024
+    );
     private static final String[] FXML_PATHS = {
             "home/view.fxml",
-            "result/view.fxml"
+            "goods/view.fxml",
+            "members/view.fxml",
+            "rental/view.fxml",
+            "return/view.fxml"
     };
 
     private final Scene fromScene;
@@ -24,7 +33,7 @@ public class Navigator {
             }
 
             FXMLLoader fxmlLoader = new FXMLLoader(RentalApp.class.getResource(fxmlPath));
-            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+            Scene scene = new Scene(fxmlLoader.load(), WINDOW_SIZE.get("width"), WINDOW_SIZE.get("height"));
             Stage stage = new Stage();
 
             stage.setScene(scene);
@@ -39,11 +48,23 @@ public class Navigator {
         navigateFxml(FXML_PATHS[0], "Home");
     }
 
-    public void navigateToResult() {
-        navigateFxml(FXML_PATHS[1], "Result");
+    public void navigateToGoods() {
+        navigateFxml(FXML_PATHS[1], "商品情報");
+    }
+
+    public void navigateToMembers() {
+        navigateFxml(FXML_PATHS[2], "会員情報");
+    }
+
+    public void navigateToRental() {
+        navigateFxml(FXML_PATHS[3], "貸し出し");
+    }
+
+    public void navigateToReturn() {
+        navigateFxml(FXML_PATHS[4], "返却");
     }
 
     private String appTitle(String title) {
-        return "Gacha App - " + title;
+        return "DVD貸し出し管理アプリ - " + title;
     }
 }
