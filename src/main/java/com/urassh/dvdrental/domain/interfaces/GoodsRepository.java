@@ -10,5 +10,5 @@ public interface GoodsRepository {
     CompletableFuture<Goods> getById(String id);
     CompletableFuture<Void> add(Goods goods);
     CompletableFuture<Void> update(Goods goods);
-    CompletableFuture<Void> delete(String id);
+    CompletableFuture<Void> delete(Goods goods);
 }

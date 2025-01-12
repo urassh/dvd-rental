@@ -59,8 +59,8 @@ public class GoodsDummyRepository implements GoodsRepository {
         return null;
     }
 
-    public CompletableFuture<Void> delete(String id) {
-        goodsList.removeIf(good -> good.getId().equals(id));
+    public CompletableFuture<Void> delete(Goods good) {
+        goodsList.removeIf(existingGood -> existingGood.getId().equals(good.getId()));
         return null;
     }
 }

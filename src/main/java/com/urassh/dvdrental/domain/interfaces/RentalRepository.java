@@ -13,5 +13,5 @@ public interface RentalRepository {
     CompletableFuture<Rental> getByMemberId(String memberId);
     CompletableFuture<Void> add(Rental rental);
     CompletableFuture<Void> update(Rental rental);
-    CompletableFuture<Void> delete(String id);
+    CompletableFuture<Void> delete(Rental rental);
 }

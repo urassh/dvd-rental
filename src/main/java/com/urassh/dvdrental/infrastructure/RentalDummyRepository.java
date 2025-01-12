@@ -93,8 +93,8 @@ public class RentalDummyRepository implements RentalRepository {
         return null;
     }
 
-    public CompletableFuture<Void> delete(String id) {
-        rentalList.removeIf(rental -> rental.getId().equals(id));
+    public CompletableFuture<Void> delete(Rental rental) {
+        rentalList.removeIf(existingRental -> existingRental.getId().equals(rental.getId()));
         return null;
     }
 }
