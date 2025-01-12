@@ -48,45 +48,24 @@ public class MemberDummyRepository implements MemberRepository {
 
     @Override
     public CompletableFuture<Void> add(Member member) {
-        return CompletableFuture.runAsync(() -> {
-            try {
-                Thread.sleep(1000); // Simulate delay
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-
-            membersList.add(member);
-        });
+        membersList.add(member);
+        return null;
     }
 
     @Override
     public CompletableFuture<Void> update(Member member) {
-        return CompletableFuture.runAsync(() -> {
-            try {
-                Thread.sleep(1000); // Simulate delay
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+        for (int i = 0; i < membersList.size(); i++) {
+            if (membersList.get(i).getId().equals(member.getId())) {
+                membersList.set(i, member);
+                return null;
             }
-
-            for (int i = 0; i < membersList.size(); i++) {
-                if (membersList.get(i).getId().equals(member.getId())) {
-                    membersList.set(i, member);
-                    return;
-                }
-            }
-        });
+        }
+        return null;
     }
 
     @Override
     public CompletableFuture<Void> delete(Member member) {
-        return CompletableFuture.runAsync(() -> {
-            try {
-                Thread.sleep(1000); // Simulate delay
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-
-            membersList.removeIf(existingMember -> existingMember.getId().equals(member.getId()));
-        });
+        membersList.removeIf(existingMember -> existingMember.getId().equals(member.getId()));
+        return null;
     }
 }
