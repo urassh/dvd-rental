@@ -2,20 +2,19 @@ package com.urassh.dvdrental.domain;
 
 import com.urassh.dvdrental.util.DateExtension;
 
-import java.util.Calendar;
 import java.util.Date;
 
 public class Rental {
     private final String id;
     private final String goodsId;
-    private final String menberId;
+    private final String memberId;
     private final Date rentalDate;
     private final Date dueDate;
 
-    public Rental(String id, String goodsId, String menberId, Date rentalDate) {
+    public Rental(String id, String goodsId, String memberId, Date rentalDate) {
         this.id = id;
         this.goodsId = goodsId;
-        this.menberId = menberId;
+        this.memberId = memberId;
         this.rentalDate = rentalDate;
         // 返却期限を計算して代入する
         this.dueDate = new DateExtension(rentalDate).addDay(7);
@@ -29,7 +28,7 @@ public class Rental {
         return goodsId;
     }
 
-    public String getMenberId() { return menberId; }
+    public String getMemberId() { return memberId; }
 
     public Date getRentalDate() { return rentalDate; }
 

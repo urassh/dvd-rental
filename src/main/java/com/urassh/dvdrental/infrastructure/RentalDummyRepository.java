@@ -69,7 +69,7 @@ public class RentalDummyRepository implements RentalRepository {
             }
 
             for (Rental rental : rentalList) {
-                if (rental.getMenberId().equals(memberId)) {
+                if (rental.getMemberId().equals(memberId)) {
                     return rental;
                 }
             }
