@@ -6,13 +6,13 @@
 
 <?import javafx.scene.control.Button?>
 <VBox alignment="CENTER"
-      spacing="20.0"
+      spacing="200.0"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.urassh.dvdrental.controller.HomeController" stylesheets="@style.css">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+    <Label text="DVD貸し出し管理アプリ" fx:id="welcomeText"/>
+    <Button text="スタッフメニュー" onAction="#onHelloButtonClick"/>
 </VBox>

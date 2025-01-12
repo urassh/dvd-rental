@@ -12,6 +12,10 @@
     </left>
 
     <center>
-        <Label text="返却画面" />
+        <BorderPane>
+            <top>
+                <Label text="未返却会員入力" />
+            </top>
+        </BorderPane>
     </center>
 </BorderPane>

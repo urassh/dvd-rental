@@ -12,6 +12,10 @@
     </left>
 
     <center>
-        <Label text="貸し出し画面" />
+        <BorderPane>
+            <top>
+                <Label text="貸出商品一覧" />
+            </top>
+        </BorderPane>
     </center>
 </BorderPane>
