@@ -12,6 +12,10 @@
     </left>
 
     <center>
-        <Label text="会員情報画面" />
+        <BorderPane>
+            <top>
+                <Label text="会員一覧" />
+            </top>
+        </BorderPane>
     </center>
 </BorderPane>
