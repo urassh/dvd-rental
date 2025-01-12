@@ -8,7 +8,7 @@ import java.util.concurrent.CompletableFuture;
 
 
 public class MemberDummyRepository implements MemberRepository {
-    private static List<Member> members = new ArrayList<>(List.of(
+    private static List<Member> membersList = new ArrayList<>(List.of(
             new Member("1", "Alice", 123456789, "123 Main St", new Date(1990, Calendar.JANUARY, 1)),
             new Member("2", "Bob", 987654321, "456 Elm St", new Date(1985, Calendar.MAY, 15)),
             new Member("3", "Charlie", 456789123, "789 Oak St", new Date(1992, Calendar.AUGUST, 10)),
@@ -24,7 +24,7 @@ public class MemberDummyRepository implements MemberRepository {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            return members;
+            return membersList;
         });
     }
 
@@ -37,7 +37,7 @@ public class MemberDummyRepository implements MemberRepository {
                 throw new RuntimeException(e);
             }
 
-            for (Member member : members) {
+            for (Member member : membersList) {
                 if (member.getId().equals(id)) {
                     return member;
                 }
@@ -55,7 +55,7 @@ public class MemberDummyRepository implements MemberRepository {
                 throw new RuntimeException(e);
             }
 
-            members.add(member);
+            membersList.add(member);
         });
     }
 
@@ -68,9 +68,9 @@ public class MemberDummyRepository implements MemberRepository {
                 throw new RuntimeException(e);
             }
 
-            for (int i = 0; i < members.size(); i++) {
-                if (members.get(i).getId().equals(member.getId())) {
-                    members.set(i, member);
+            for (int i = 0; i < membersList.size(); i++) {
+                if (membersList.get(i).getId().equals(member.getId())) {
+                    membersList.set(i, member);
                     return;
                 }
             }
@@ -86,7 +86,7 @@ public class MemberDummyRepository implements MemberRepository {
                 throw new RuntimeException(e);
             }
 
-            members.removeIf(existingMember -> existingMember.getId().equals(member.getId()));
+            membersList.removeIf(existingMember -> existingMember.getId().equals(member.getId()));
         });
     }
 }
