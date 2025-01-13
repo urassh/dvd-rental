@@ -69,7 +69,7 @@ public class RentalDummyRepository implements RentalRepository {
             }
 
             for (Rental rental : rentalList) {
-                if (rental.getMenberId().equals(memberId)) {
+                if (rental.getMemberId().equals(memberId)) {
                     return rental;
                 }
             }
@@ -83,8 +83,18 @@ public class RentalDummyRepository implements RentalRepository {
         return null;
     }
 
-    public CompletableFuture<Void> delete(String id) {
-        rentalList.removeIf(rental -> rental.getId().equals(id));
+    public CompletableFuture<Void> update(Rental rental) {
+        for (int i = 0; i < rentalList.size(); i++) {
+            if (rentalList.get(i).getId().equals(rental.getId())) {
+                rentalList.set(i, rental);
+                return null;
+            }
+        }
+        return null;
+    }
+
+    public CompletableFuture<Void> delete(Rental rental) {
+        rentalList.removeIf(existingRental -> existingRental.getId().equals(rental.getId()));
         return null;
     }
 }
