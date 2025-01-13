@@ -26,17 +26,9 @@ public class GetUnRentedGoodsUseCase {
 
             // 商品情報リポジトリから商品情報をすべて取得してリストに格納
             // その後、貸出情報リポジトリに商品IDが登録されている商品をリストからのぞく
-            List<Rental> rentalList = rentalRepository.getAll().join();
-            List<Goods> goodsList = goodsRepository.getAll().join();
-            List<Goods> unRentedGoodsList = new ArrayList<>();
+            List<Goods> unRentedGoodsList = goodsRepository.getAll().join();
 
-            for (Goods goods : goodsList) {
-                for (Rental rental : rentalList) {
-                    if (!goods.getId().equals(rental.getGoodsId())) {
-                        unRentedGoodsList.add(goods);
-                    }
-                }
-            }
+            unRentedGoodsList.removeIf(goods -> rentalRepository.getByGoodsId(goods.getId()).join() != null);
 
             return unRentedGoodsList;
         });
