@@ -1,13 +1,11 @@
 package com.urassh.dvdrental.usecase.rental;
 
 import com.urassh.dvdrental.domain.Member;
-import com.urassh.dvdrental.domain.Rental;
 import com.urassh.dvdrental.domain.interfaces.MemberRepository;
 import com.urassh.dvdrental.domain.interfaces.RentalRepository;
 import com.urassh.dvdrental.infrastructure.MemberDummyRepository;
 import com.urassh.dvdrental.infrastructure.RentalDummyRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
@@ -23,19 +21,11 @@ public class GetUnRentingMemberUseCase {
                 throw new RuntimeException(e);
             }
 
-            // 商品情報リポジトリから商品情報をすべて取得してリストに格納
-            // その後、貸出情報リポジトリに商品IDが登録されている商品をリストからのぞく
-            List<Rental> rentalList = rentalRepository.getAll().join();
-            List<Member> memberList = memberRepository.getAll().join();
-            List<Member> unRentingMemberList = new ArrayList<>();
+            // 会員情報リポジトリから会員情報をすべて取得してリストに格納
+            // その後、貸出情報リポジトリに会員IDが登録されている会員をリストからのぞく
+            List<Member> unRentingMemberList = memberRepository.getAll().join();
 
-            for (Member member : memberList) {
-                for (Rental rental : rentalList) {
-                    if (!member.getId().equals(rental.getGoodsId())) {
-                        unRentingMemberList.add(member);
-                    }
-                }
-            }
+            unRentingMemberList.removeIf(member -> rentalRepository.getByMemberId(member.getId()).join() != null);
 
             return unRentingMemberList;
         });
