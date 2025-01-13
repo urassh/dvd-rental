@@ -1,5 +1,6 @@
-package com.urassh.dvdrental.usecase.member;
+package com.urassh.dvdrental.usecase.rental;
 
+import com.urassh.dvdrental.domain.Goods;
 import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.domain.Rental;
 import com.urassh.dvdrental.domain.interfaces.MemberRepository;
@@ -23,18 +24,13 @@ public class GetRentingMemberUseCase {
                 throw new RuntimeException(e);
             }
 
-            // 商品情報リポジトリから商品情報をすべて取得してリストに格納
-            // その後、貸出情報リポジトリに商品IDが登録されている商品をリストからのぞく
+            // 貸出情報の商品IDから貸出中の商品を取得し、戻り値用リストに格納する
             List<Rental> rentalList = rentalRepository.getAll().join();
-            List<Member> memberList = memberRepository.getAll().join();
             List<Member> rentingMemberList = new ArrayList<>();
 
-            for (Member member : memberList) {
-                for (Rental rental : rentalList) {
-                    if (member.getId().equals(rental.getMemberId())) {
-                        rentingMemberList.add(member);
-                    }
-                }
+            for (Rental rental : rentalList) {
+                final Member member = memberRepository.getById(rental.getMemberId()).join();
+                rentingMemberList.add(member);
             }
 
             return rentingMemberList;

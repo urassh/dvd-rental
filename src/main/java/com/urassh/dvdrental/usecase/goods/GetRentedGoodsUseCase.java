@@ -23,18 +23,13 @@ public class GetRentedGoodsUseCase {
                 throw new RuntimeException(e);
             }
 
-            // 商品情報リポジトリから商品情報をすべて取得してリストに格納
-            // その後、貸出情報リポジトリに商品IDが登録されている商品をリストからのぞく
+            // 貸出情報の商品IDから貸出中の商品を取得し、戻り値用リストに格納する
             List<Rental> rentalList = rentalRepository.getAll().join();
-            List<Goods> goodsList = goodsRepository.getAll().join();
             List<Goods> rentedGoodsList = new ArrayList<>();
 
-            for (Goods goods : goodsList) {
-                for (Rental rental : rentalList) {
-                    if (goods.getId().equals(rental.getGoodsId())) {
-                        rentedGoodsList.add(goods);
-                    }
-                }
+            for (Rental rental : rentalList) {
+                final Goods goods = goodsRepository.getById(rental.getGoodsId()).join();
+                rentedGoodsList.add(goods);
             }
 
             return rentedGoodsList;

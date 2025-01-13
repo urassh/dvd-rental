@@ -1,4 +1,4 @@
-package com.urassh.dvdrental.usecase.member;
+package com.urassh.dvdrental.usecase.rental;
 
 import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.domain.interfaces.MemberRepository;
