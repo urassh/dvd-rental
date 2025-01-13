@@ -8,7 +8,7 @@ import java.util.concurrent.CompletableFuture;
 public interface MemberRepository {
     CompletableFuture<List<Member>> getAll();
     CompletableFuture<Member> getById(String id);
-    CompletableFuture<Void> add(Member member);
-    CompletableFuture<Void> update(Member member);
-    CompletableFuture<Void> delete(Member member);
+    void add(Member member);
+    void update(Member member);
+    void delete(Member member);
 }

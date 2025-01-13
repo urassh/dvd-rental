@@ -47,25 +47,21 @@ public class MemberDummyRepository implements MemberRepository {
     }
 
     @Override
-    public CompletableFuture<Void> add(Member member) {
+    public void add(Member member) {
         membersList.add(member);
-        return null;
     }
 
     @Override
-    public CompletableFuture<Void> update(Member member) {
+    public void update(Member member) {
         for (int i = 0; i < membersList.size(); i++) {
             if (membersList.get(i).getId().equals(member.getId())) {
                 membersList.set(i, member);
-                return null;
             }
         }
-        return null;
     }
 
     @Override
-    public CompletableFuture<Void> delete(Member member) {
+    public void delete(Member member) {
         membersList.removeIf(existingMember -> existingMember.getId().equals(member.getId()));
-        return null;
     }
 }
