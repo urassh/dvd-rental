@@ -1,16 +1,13 @@
-package com.urassh.dvdrental.usecase.rental;
+package com.urassh.dvdrental.usecase.members;
 
 import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.domain.interfaces.MemberRepository;
 import com.urassh.dvdrental.infrastructure.MemberDummyRepository;
 
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
-
-public class GetAllMemberUseCase {
+public class DeleteMemberUseCase {
     private final MemberRepository memberRepository = new MemberDummyRepository();
 
-    public CompletableFuture<List<Member>> execute() {
-        return memberRepository.getAll();
+    public void execute(Member member) {
+        memberRepository.delete(member);
     }
 }
