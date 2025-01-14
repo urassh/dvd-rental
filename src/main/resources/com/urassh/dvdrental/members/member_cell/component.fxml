@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.HBox?>
 
 <HBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.urassh.dvdrental.controller"
+      fx:controller="com.urassh.dvdrental.controller.members.MemberCellController"
       spacing="10"
       style="-fx-padding: 5;">
     <Label fx:id="memberIdLabel" style="-fx-font-weight: bold;" />
