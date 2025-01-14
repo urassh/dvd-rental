@@ -1,4 +1,4 @@
-package com.urassh.dvdrental.controller;
+package com.urassh.dvdrental.controller.home;
 
 import com.urassh.dvdrental.util.Navigator;
 import javafx.fxml.FXML;
