@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class RentalDummyRepository implements RentalRepository {
-    private static List<Rental> rentalList = List.of(
+    private static final List<Rental> rentalList = List.of(
             new Rental("1", "1", "1", new Date(1990, Calendar.JANUARY, 1)),
             new Rental("2", "2", "1", new Date(1990, Calendar.JANUARY, 1)),
             new Rental("3", "3", "2", new Date(1990, Calendar.JANUARY, 1))

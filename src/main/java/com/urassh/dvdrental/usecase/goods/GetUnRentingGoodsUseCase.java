@@ -4,7 +4,9 @@ import com.urassh.dvdrental.domain.Goods;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 
 import com.urassh.dvdrental.domain.Rental;
 import com.urassh.dvdrental.domain.interfaces.GoodsRepository;
@@ -12,33 +14,29 @@ import com.urassh.dvdrental.domain.interfaces.RentalRepository;
 import com.urassh.dvdrental.infrastructure.GoodsDummyRepository;
 import com.urassh.dvdrental.infrastructure.RentalDummyRepository;
 
-public class GetUnRentedGoodsUseCase {
+public class GetUnRentingGoodsUseCase {
     private final GoodsRepository goodsRepository = new GoodsDummyRepository();
     private final RentalRepository rentalRepository = new RentalDummyRepository();
 
     public CompletableFuture<List<Goods>> execute() {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+        return CompletableFuture.allOf(
+                rentalRepository.getAll(),
+                goodsRepository.getAll()
+        ).thenCompose(voidResult -> {
+            CompletableFuture<List<Rental>> rentalFuture = rentalRepository.getAll();
+            CompletableFuture<List<Goods>> goodsFuture = goodsRepository.getAll();
 
-            // 商品情報リポジトリから商品情報をすべて取得してリストに格納
-            // その後、貸出情報リポジトリに商品IDが登録されている商品をリストからのぞく
-            List<Rental> rentalList = rentalRepository.getAll().join();
-            List<Goods> goodsList = goodsRepository.getAll().join();
-            List<Goods> unRentedGoodsList = new ArrayList<>();
+            return rentalFuture.thenCombine(goodsFuture, (rentals, goodsList) -> {
+                // 貸出中のGoods IDリストを取得
+                Set<String> rentedGoodsIds = rentals.stream()
+                        .map(Rental::getGoodsId)
+                        .collect(Collectors.toSet());
 
-            for (Goods goods : goodsList) {
-                for (Rental rental : rentalList) {
-                    if (!goods.getId().equals(rental.getGoodsId())) {
-                        unRentedGoodsList.add(goods);
-                    }
-                }
-            }
-
-            return unRentedGoodsList;
+                // 貸出中ではないGoodsをフィルタリング
+                return goodsList.stream()
+                        .filter(goods -> !rentedGoodsIds.contains(goods.getId()))
+                        .collect(Collectors.toList());
+            });
         });
     }
 }
