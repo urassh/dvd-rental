@@ -19,7 +19,7 @@
             </top>
 
             <center>
-                <ListView fx:id="memberList" />
+                <ListView fx:id="memberList" styleClass="list-view" />
             </center>
         </BorderPane>
     </center>

@@ -13,6 +13,6 @@ public class MemberCellController {
 
     public void setMember(Member member) {
         memberIdLabel.setText(member.getId());
-        memberNameLabel.setText(member.getName());
+        memberNameLabel.setText(member.getName() + " 様");
     }
 }

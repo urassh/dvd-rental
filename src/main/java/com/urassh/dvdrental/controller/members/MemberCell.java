@@ -5,11 +5,12 @@ import com.urassh.dvdrental.domain.Member;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
 
 public class MemberCell extends ListCell<Member> {
-    private HBox content;
+    private StackPane content;
     private MemberCellController controller;
 
     public MemberCell() {
