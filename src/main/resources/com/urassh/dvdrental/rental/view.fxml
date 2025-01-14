@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.BorderPane?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.urassh.dvdrental.controller.RentalController"
+            fx:controller="com.urassh.dvdrental.controller.rental.RentalController"
             stylesheets="@style.css">
 
     <left>

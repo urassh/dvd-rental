@@ -3,8 +3,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 
+<?import javafx.scene.control.ListView?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.urassh.dvdrental.controller.MembersController"
+            fx:controller="com.urassh.dvdrental.controller.members.MembersController"
             stylesheets="@style.css">
 
     <left>
@@ -16,6 +17,10 @@
             <top>
                 <Label text="会員一覧" />
             </top>
+
+            <center>
+                <ListView fx:id="memberList" styleClass="list-view" />
+            </center>
         </BorderPane>
     </center>
 </BorderPane>

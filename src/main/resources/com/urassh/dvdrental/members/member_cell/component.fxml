@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+
+<?import javafx.scene.layout.VBox?>
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.urassh.dvdrental.controller.members.MemberCellController"
+           styleClass="card"
+           stylesheets="@card.css">
+    <VBox styleClass="card-content">
+        <Label fx:id="memberNameLabel" styleClass="member-name"/>
+        <Label fx:id="memberIdLabel" styleClass="member-id"/>
+    </VBox>
+</StackPane>
