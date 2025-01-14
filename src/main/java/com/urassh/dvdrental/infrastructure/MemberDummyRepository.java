@@ -26,8 +26,6 @@ public class MemberDummyRepository implements MemberRepository {
             new Member("560023456789", "Oscar", 707070707, "789 Beech St", new Date(1997 - 1900, Calendar.JUNE, 21))
     ));
 
-
-
     @Override
     public CompletableFuture<List<Member>> getAll() {
         return CompletableFuture.supplyAsync(() -> {
