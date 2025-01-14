@@ -4,10 +4,11 @@
 <?import javafx.scene.layout.BorderPane?>
 
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.layout.StackPane?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.urassh.dvdrental.controller.members.MembersController"
             stylesheets="@style.css">
-
     <left>
         <fx:include source="../sidebar/view.fxml"/>
     </left>
@@ -19,7 +20,10 @@
             </top>
 
             <center>
-                <ListView fx:id="memberList" styleClass="list-view" />
+                <StackPane>
+                    <ListView fx:id="memberList" styleClass="list-view" />
+                    <ProgressIndicator fx:id="loadingIndicator" visible="false" />
+                </StackPane>
             </center>
         </BorderPane>
     </center>
