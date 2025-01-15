@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.urassh.dvdrental.controller.goods.GoodsController"
@@ -12,10 +14,12 @@
     </left>
 
     <center>
-        <BorderPane>
-            <top>
-                <Label text="商品一覧" />
-            </top>
-        </BorderPane>
+        <VBox xmlns="http://javafx.com/javafx"
+              xmlns:fx="http://javafx.com/fxml"
+              spacing="20"
+              style="-fx-padding: 50;">
+            <Label text="商品一覧" styleClass="vbox-container" />
+            <TextField promptText="検索キーワードを入力" styleClass="search-field" />
+        </VBox>
     </center>
 </BorderPane>
