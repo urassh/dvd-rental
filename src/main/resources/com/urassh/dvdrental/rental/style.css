@@ -12,6 +12,7 @@
     -fx-background-color: rgba(255, 0, 0, 1); /* 完全な赤色（透明度なし） */
     -fx-text-fill: white;
     -fx-font-size: 14px;
+    -fx-font-weight: bold;
     -fx-padding: 4px;
     -fx-border-radius: 50%;
     -fx-background-radius: 50%;
