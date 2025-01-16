@@ -28,14 +28,12 @@
                         <TextField fx:id="searchField" promptText="検索" styleClass="search-field" />
                     </VBox>
 
-                    <StackPane alignment="TOP_RIGHT">
+                    <StackPane fx:id="cart" alignment="TOP_RIGHT">
                         <ImageView fitWidth="50" fitHeight="50" preserveRatio="true">
                             <Image url="@images/cart.png"/>
                         </ImageView>
 
-                        <Label fx:id="rentalCountLabel" styleClass="cart-count" text="12" />
-
-
+                        <Label fx:id="rentalCountLabel" styleClass="cart-count" />
                     </StackPane>
                 </HBox>
             </top>

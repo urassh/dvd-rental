@@ -21,7 +21,8 @@ public class Navigator {
             "members/view.fxml",
             "rental/view.fxml",
             "return/view.fxml",
-            "rental/detail/view.fxml"
+            "rental/detail/view.fxml",
+            "rental/cart/view.fxml"
     };
 
     private final Scene fromScene;
@@ -81,6 +82,10 @@ public class Navigator {
             RentalDetailController controller = fxmlLoader.getController();
             controller.setGoods(goods);
         });
+    }
+
+    public void navigateToRentalCart() {
+        navigateFxml(FXML_PATHS[6], "商品カート");
     }
 
     private String appTitle(String title) {

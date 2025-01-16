@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,9 @@ public class RentalController {
     @FXML
     private TextField searchField;
 
+    @FXML
+    private StackPane cart;
+
     private List<Goods> rentalGoods = new ArrayList<>();
 
     private final BooleanProperty isLoading = new SimpleBooleanProperty(false);
@@ -50,6 +54,11 @@ public class RentalController {
 
             final Navigator navigator = new Navigator(rentalList.getScene());
             navigator.navigateToRentalDetail(selectedGoods);
+        });
+
+        cart.setOnMouseClicked(event -> {
+            final Navigator navigator = new Navigator(cart.getScene());
+            navigator.navigateToRentalCart();
         });
     }
 

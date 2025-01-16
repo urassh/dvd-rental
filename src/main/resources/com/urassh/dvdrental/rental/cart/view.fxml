@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.urassh.dvdrental.controller.rental.RentalCartController"
+            stylesheets="@style.css">
+    <left>
+        <fx:include source="../../sidebar/view.fxml"/>
+    </left>
+
+    <center>
+        <VBox styleClass="container" spacing="24">
+            <Label fx:id="titleLabel" styleClass="title" text="商品カート" />
+        </VBox>
+    </center>
+</BorderPane>

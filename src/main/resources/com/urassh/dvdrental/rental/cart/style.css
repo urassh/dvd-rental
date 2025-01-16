@@ -1,0 +1,8 @@
+.container {
+    -fx-padding: 50;
+}
+
+.title {
+    -fx-font-weight: bold;
+    -fx-font-size: 48px;
+}
