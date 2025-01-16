@@ -5,11 +5,12 @@
 <?import javafx.scene.layout.VBox?>
 
 <StackPane xmlns:fx="http://javafx.com/fxml"
-           fx:controller="com.urassh.dvdrental.controller.members.MemberCellController"
+           fx:controller="com.urassh.dvdrental.controller.rental.RentalCellController"
            styleClass="card"
            stylesheets="@card.css">
     <VBox styleClass="card-content">
-        <Label fx:id="memberNameLabel" styleClass="member-name"/>
-        <Label fx:id="memberIdLabel" styleClass="member-id"/>
+        <Label fx:id="goodsTitleLabel" styleClass="goods-name"/>
+        <Label fx:id="goodsIdLabel" styleClass="goods-id"/>
+        <Label fx:id="goodsReleaseDateLabel" styleClass="goods-date"/>
     </VBox>
 </StackPane>
