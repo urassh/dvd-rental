@@ -2,6 +2,7 @@ module com.urassh.dvdrental {
     requires javafx.controls;
     requires javafx.fxml;
     requires mapdb;
+    requires annotations;
 
     exports com.urassh.dvdrental;
     exports com.urassh.dvdrental.controller.goods;
