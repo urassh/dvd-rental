@@ -47,3 +47,19 @@
 .search-field:focused {
     -fx-border-color: #4a90e2;
 }
+
+.red-button {
+    -fx-alignment: center;
+    -fx-background-color: rgb(192,128,128);
+    -fx-border-radius:  10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 12px 36px;
+
+    -fx-text-fill: black;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+    -fx-max-width: 210px;
+    -fx-max-height: 80px;
+}
