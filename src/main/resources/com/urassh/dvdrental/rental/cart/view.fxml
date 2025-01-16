@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Button?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.urassh.dvdrental.controller.rental.RentalCartController"
             stylesheets="@style.css">
@@ -24,7 +25,7 @@
 
                     <ListView fx:id="rentalCartView" styleClass="list-view" />
 
-
+                    <Button text="貸出カートに追加" styleClass="cart-button" onAction="#onConfirmRental" />
                 </VBox>
 
                 <VBox styleClass="rental-member" spacing="40">

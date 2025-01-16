@@ -1,8 +1,13 @@
 package com.urassh.dvdrental.controller.rental;
 
 import com.urassh.dvdrental.domain.Goods;
+import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.usecase.members.GetMemberUseCase;
+import com.urassh.dvdrental.usecase.rental.AddRentalUseCase;
+import com.urassh.dvdrental.usecase.rental.AddToRentalCartUseCase;
+import com.urassh.dvdrental.usecase.rental.ClearRentalCartUseCase;
 import com.urassh.dvdrental.usecase.rental.GetRentalCartUseCase;
+import com.urassh.dvdrental.util.Navigator;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -36,6 +41,7 @@ public class RentalCartController {
 
     private int sum = 0;
     private List<Goods> rentalCart = new ArrayList<>();
+    private Member rentingMember;
     private final BooleanProperty isFoundMember = new SimpleBooleanProperty(false);
 
     public void initialize() {
@@ -61,12 +67,27 @@ public class RentalCartController {
                 }
 
                 Platform.runLater(() -> {
+                    rentingMember = member;
                     isFoundMember.set(true);
                     memberIdLabel.setText(member.getId());
                     memberNameLabel.setText(member.getName());
                 });
             });
         });
+    }
+
+    public void onConfirmRental() {
+        if (rentingMember == null) return;
+        if (rentalCart.isEmpty()) return;
+
+        for (Goods goods : rentalCart) {
+            new AddRentalUseCase().execute(goods, rentingMember);
+        }
+
+        new ClearRentalCartUseCase().execute();
+
+        Navigator navigator = new Navigator(sumLabel.getScene());
+        navigator.navigateToRental();
     }
 
     private void setupRentalCart() {
