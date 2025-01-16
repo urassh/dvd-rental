@@ -7,5 +7,6 @@ public class ClearRentalCartUseCase {
 
     public void execute() {
         localStore.clearRentalCart();
+        localStore.setRentalCount(0);
     }
 }
