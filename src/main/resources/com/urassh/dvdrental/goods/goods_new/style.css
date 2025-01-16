@@ -1,0 +1,11 @@
+.label-title {
+    -fx-font-size: 22px;
+    -fx-text-fill: #333333;
+    -fx-font-weight: bold;
+}
+
+.label {
+    -fx-padding: 50 0 0 50;
+    -fx-font-weight: bold;
+    -fx-font-size: 48px;
+}
