@@ -1,11 +1,49 @@
-.label-title {
-    -fx-font-size: 22px;
-    -fx-text-fill: #333333;
-    -fx-font-weight: bold;
+.header {
+    -fx-padding: 50 0 24 50;
 }
 
 .label {
-    -fx-padding: 50 0 0 50;
     -fx-font-weight: bold;
     -fx-font-size: 48px;
+    -fx-padding: 0 0 24 0;
+}
+
+.list-view {
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 10px;
+    -fx-padding: 10 10 10 50;
+}
+
+.list-view .list-cell {
+    -fx-padding: 5 0;
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 12px;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #cccccc;
+    -fx-background-radius: 6px;
+}
+
+.scroll-bar:vertical:hover .thumb {
+    -fx-background-color: #aaaaaa;
+}
+
+.search-field {
+    -fx-pref-width: 600px;
+    -fx-max-width: 600px;
+    -fx-pref-height: 40px;
+    -fx-font-size: 24px;
+    -fx-border-color: #dcdcdc;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.search-field:focused {
+    -fx-border-color: #4a90e2;
 }
