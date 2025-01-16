@@ -82,6 +82,18 @@ public class LocalStore {
         db.close();
     }
 
+    public void clearRentalCart() {
+        final DB db = DBMaker.fileDB(Identifier).make();
+        final HTreeMap<String, Goods> map = db
+                .hashMap(rentalCartStore)
+                .keySerializer(Serializer.STRING)
+                .valueSerializer(new GoodsSerializer())
+                .createOrOpen();
+
+        map.clear();
+        db.close();
+    }
+
     private void deleteExistingStoreFile() {
         try {
             Files.deleteIfExists(Paths.get(Identifier));
