@@ -7,6 +7,8 @@ public class AddToRentalCartUseCase {
     private final LocalStore localStore = new LocalStore();
 
     public void execute(Goods goods) {
+        localStore.addToRentalCart(goods);
+
         int count = localStore.getRentalCount();
         localStore.setRentalCount(count + 1);
     }
