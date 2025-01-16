@@ -7,7 +7,7 @@
 <?import javafx.scene.control.DatePicker?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.urassh.dvdrental.controller.goods.GoodsController"
+            fx:controller="com.urassh.dvdrental.controller.goods.NewGoodsController"
             stylesheets="@style.css">
 
     <left>
@@ -17,17 +17,33 @@
     <center>
         <BorderPane>
             <top>
-                <Label text="商品追加画面" />
+                <VBox styleClass="header">
+                    <Label text="商品追加画面" />
+                </VBox>
             </top>
 
             <center>
-                <VBox>
-                    <Label text="会員一覧" />
-                    <TextField fx:id="goodsIdField" styleClass="goods-id-field" />
-                    <TextField fx:id="titleField" promptText="タイトルを入力" styleClass="title-field" />
-                    <TextField fx:id="genreField" promptText="ジャンルを入力" styleClass="genre-field" />
-                    <DatePicker fx:id="releaseDateField" promptText="発売日を入力" styleClass="releaseDate-field" />
-                    <TextField fx:id="belongToStoreField" promptText="保管場所を入力" styleClass="belongToStore-field" />
+                <VBox styleClass="content-group">
+                    <VBox>
+                        <Label text="商品ID(変更できません)" styleClass="label-direction" />
+                        <TextField fx:id="goodsIdField" styleClass="input-field" disable="true"/>
+                    </VBox>
+                    <VBox>
+                        <Label text="タイトル" styleClass="label-direction" />
+                        <TextField fx:id="titleField" promptText="タイトルを入力" styleClass="input-field" />
+                    </VBox>
+                    <VBox>
+                        <Label text="ジャンル" styleClass="label-direction" />
+                        <TextField fx:id="genreField" promptText="ジャンルを入力" styleClass="input-field" />
+                    </VBox>
+                    <VBox>
+                        <Label text="発売日" styleClass="label-direction" />
+                        <DatePicker fx:id="releaseDateField" promptText="発売日を入力" styleClass="input-field" />
+                    </VBox>
+                    <VBox>
+                        <Label text="保管場所" styleClass="label-direction" />
+                        <TextField fx:id="belongToStoreField" promptText="保管場所を入力" styleClass="input-field" />
+                    </VBox>
                 </VBox>
             </center>
         </BorderPane>

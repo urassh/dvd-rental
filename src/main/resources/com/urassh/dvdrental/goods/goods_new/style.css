@@ -1,11 +1,35 @@
-.label-title {
-    -fx-font-size: 22px;
-    -fx-text-fill: #333333;
-    -fx-font-weight: bold;
+.header {
+    -fx-padding: 50 0 24 50;
 }
 
 .label {
-    -fx-padding: 50 0 0 50;
     -fx-font-weight: bold;
     -fx-font-size: 48px;
+    -fx-padding: 0 0 24 0;
+}
+
+.content-group {
+    -fx-padding: 10 10 10 50;
+    -fx-spacing: 30
+}
+
+.label-direction {
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-padding: 0 0 5 0;
+}
+
+.input-field {
+    -fx-pref-width: 600px;
+    -fx-max-width: 600px;
+    -fx-pref-height: 40px;
+    -fx-font-size: 24px;
+    -fx-border-color: #dcdcdc;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.text-field:focused {
+    -fx-border-color: #4a90e2;
 }
