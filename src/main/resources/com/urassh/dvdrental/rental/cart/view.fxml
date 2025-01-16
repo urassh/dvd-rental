@@ -4,6 +4,8 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.urassh.dvdrental.controller.rental.RentalCartController"
             stylesheets="@style.css">
@@ -13,7 +15,24 @@
 
     <center>
         <VBox styleClass="container" spacing="24">
-            <Label fx:id="titleLabel" styleClass="title" text="商品カート" />
+            <Label styleClass="title" text="商品カート" />
+
+            <HBox spacing="40">
+                <VBox styleClass="cart">
+                    <Label fx:id="sumLabel" styleClass="sub-title" />
+                </VBox>
+
+                <VBox styleClass="rental-member" spacing="40">
+                    <Label styleClass="sub-title" text="貸し出し会員" />
+
+                    <TextField fx:id="searchField" promptText="会員のID検索" styleClass="search-field" />
+
+                    <VBox fx:id="memberCard" styleClass="member-info" visible="false">
+                        <Label fx:id="memberIdLabel" styleClass="member" />
+                        <Label fx:id="memberNameLabel" styleClass="member" />
+                    </VBox>
+                </VBox>
+            </HBox>
         </VBox>
     </center>
 </BorderPane>

@@ -6,3 +6,43 @@
     -fx-font-weight: bold;
     -fx-font-size: 48px;
 }
+
+.sub-title {
+    -fx-font-weight: bold;
+    -fx-font-size: 32px;
+}
+
+.cart {
+    -fx-min-width: 600px;
+}
+
+.member-info {
+    -fx-background-color: white;
+    -fx-padding: 24px;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+    -fx-max-width: 400px;
+    -fx-max-height: 80px;
+}
+
+.member {
+    -fx-font-size: 18px;
+    -fx-font-weight: 900;
+    -fx-text-fill: black;
+    -fx-padding: 0 0 12px 0;
+}
+
+.search-field {
+    -fx-pref-width: 400px;
+    -fx-max-width: 400px;
+    -fx-pref-height: 40px;
+    -fx-font-size: 24px;
+    -fx-border-color: #dcdcdc;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.search-field:focused {
+    -fx-border-color: #4a90e2;
+}
