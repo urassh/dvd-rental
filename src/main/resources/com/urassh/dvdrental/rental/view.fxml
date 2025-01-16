@@ -7,6 +7,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.urassh.dvdrental.controller.rental.RentalController"
@@ -19,10 +22,16 @@
     <center>
         <BorderPane>
             <top>
-                <VBox styleClass="header">
-                    <Label text="貸出商品一覧" />
-                    <TextField fx:id="searchField" promptText="検索" styleClass="search-field" />
-                </VBox>
+                <HBox styleClass="header">
+                    <VBox>
+                        <Label text="貸出商品一覧" />
+                        <TextField fx:id="searchField" promptText="検索" styleClass="search-field" />
+                    </VBox>
+
+                    <ImageView fitWidth="50" fitHeight="50" preserveRatio="true">
+                        <Image url="@images/cart.png"/>
+                    </ImageView>
+                </HBox>
             </top>
 
             <center>
