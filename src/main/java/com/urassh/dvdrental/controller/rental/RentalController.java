@@ -3,6 +3,7 @@ package com.urassh.dvdrental.controller.rental;
 import com.urassh.dvdrental.domain.Goods;
 import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.usecase.goods.GetUnRentingGoodsUseCase;
+import com.urassh.dvdrental.util.Navigator;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -35,6 +36,13 @@ public class RentalController {
         loadingIndicator.visibleProperty().bind(isLoading);
         loadRentals();
         searchField.setOnAction(event -> filterGoods());
+
+        rentalList.setOnMouseClicked(event -> {
+            final Goods selectedGoods = rentalList.getSelectionModel().getSelectedItem();
+
+            final Navigator navigator = new Navigator(rentalList.getScene());
+            navigator.navigateToRentalDetail(selectedGoods);
+        });
     }
 
     private void loadRentals() {
