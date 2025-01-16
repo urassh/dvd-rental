@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
 
+<?import javafx.scene.control.Button?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.urassh.dvdrental.controller.rental.RentalDetailController"
             stylesheets="@style.css">
@@ -13,7 +14,7 @@
     </left>
 
     <center>
-        <VBox styleClass="container">
+        <VBox styleClass="container" spacing="24">
             <Label fx:id="titleLabel" styleClass="title" />
 
             <HBox styleClass="card" alignment="CENTER_LEFT" spacing="20">
@@ -34,6 +35,8 @@
                     <Label fx:id="belongToStoreLabel" styleClass="card-label" />
                 </VBox>
             </HBox>
+
+            <Button text="貸出カートに追加" styleClass="cart-button" onAction="#onAddToCart" />
         </VBox>
     </center>
 </BorderPane>

@@ -1,6 +1,7 @@
 package com.urassh.dvdrental.controller.rental;
 
 import com.urassh.dvdrental.domain.Goods;
+import com.urassh.dvdrental.util.Navigator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -37,5 +38,11 @@ public class RentalDetailController {
         rentalCountLabel.setText(String.valueOf(goods.getLoanCount()));
         belongToStoreLabel.setText(goods.getBelongToStore());
         isNewLabel.setText(goods.isNew() ? "新作" : "旧作");
+    }
+
+    public void onAddToCart() {
+        Navigator navigator = new Navigator(titleLabel.getScene());
+
+        navigator.navigateToRental();
     }
 }
