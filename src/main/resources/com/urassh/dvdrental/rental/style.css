@@ -9,7 +9,7 @@
 }
 
 .cart-count {
-    -fx-background-color: rgba(255, 0, 0, 1); /* 完全な赤色（透明度なし） */
+    -fx-background-color: rgba(255, 0, 0, 1);
     -fx-text-fill: white;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
