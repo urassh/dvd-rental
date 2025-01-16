@@ -33,7 +33,7 @@
                             <Image url="@images/cart.png"/>
                         </ImageView>
 
-                        <Label fx:id="cartCount" styleClass="cart-count" text="12" />
+                        <Label fx:id="rentalCountLabel" styleClass="cart-count" text="12" />
 
 
                     </StackPane>
