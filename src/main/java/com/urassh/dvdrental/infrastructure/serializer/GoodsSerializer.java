@@ -10,11 +10,7 @@ import java.io.IOException;
 import java.util.Date;
 
 public class GoodsSerializer implements Serializer<Goods> {
-    private final Goods goods;
-
-    public GoodsSerializer(Goods goods) {
-        this.goods = goods;
-    }
+    public static final GoodsSerializer GOODS = new GoodsSerializer();
 
     @Override
     public void serialize(@NotNull DataOutput2 dataOutput2, @NotNull Goods goods) throws IOException {
