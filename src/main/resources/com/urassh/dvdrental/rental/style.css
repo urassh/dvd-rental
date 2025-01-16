@@ -8,6 +8,22 @@
     -fx-padding: 0 0 24 0;
 }
 
+.cart-count {
+    -fx-background-color: rgba(255, 0, 0, 1); /* 完全な赤色（透明度なし） */
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 4px;
+    -fx-border-radius: 50%;
+    -fx-background-radius: 50%;
+    -fx-min-width: 28px;
+    -fx-min-height: 28px;
+    -fx-pref-width: 28px;
+    -fx-pref-height: 28px;
+    -fx-alignment: center;
+    -fx-translate-x: 10px;
+    -fx-translate-y: -10px;
+}
+
 .list-view {
     -fx-background-color: #f0f0f0;
     -fx-background-radius: 10px;

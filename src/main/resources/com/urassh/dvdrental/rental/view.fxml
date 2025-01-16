@@ -28,9 +28,15 @@
                         <TextField fx:id="searchField" promptText="検索" styleClass="search-field" />
                     </VBox>
 
-                    <ImageView fitWidth="50" fitHeight="50" preserveRatio="true">
-                        <Image url="@images/cart.png"/>
-                    </ImageView>
+                    <StackPane alignment="TOP_RIGHT">
+                        <ImageView fitWidth="50" fitHeight="50" preserveRatio="true">
+                            <Image url="@images/cart.png"/>
+                        </ImageView>
+
+                        <Label fx:id="cartCount" styleClass="cart-count" text="12" />
+
+
+                    </StackPane>
                 </HBox>
             </top>
 
