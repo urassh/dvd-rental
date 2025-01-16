@@ -14,12 +14,13 @@
     </left>
 
     <center>
-        <VBox xmlns="http://javafx.com/javafx"
-              xmlns:fx="http://javafx.com/fxml"
-              spacing="20"
-              style="-fx-padding: 50;">
-            <Label text="商品一覧" styleClass="vbox-container" />
-            <TextField promptText="検索キーワードを入力" styleClass="search-field" />
-        </VBox>
+        <BorderPane>
+            <top>
+                <VBox styleClass="header">
+                    <Label text="商品一覧" />
+                    <TextField promptText="検索" styleClass="search-field" />
+                </VBox>
+            </top>
+        </BorderPane>
     </center>
 </BorderPane>

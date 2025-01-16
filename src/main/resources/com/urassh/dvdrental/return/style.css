@@ -1,6 +1,36 @@
+.header {
+    -fx-padding: 50 0 24 50;
+}
+
 .label {
     -fx-font-weight: bold;
     -fx-font-size: 48px;
+    -fx-padding: 0 0 24 0;
+}
+
+.list-view {
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 10px;
+    -fx-padding: 10 10 10 50;
+}
+
+.list-view .list-cell {
+    -fx-padding: 5 0;
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 12px;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #cccccc;
+    -fx-background-radius: 6px;
+}
+
+.scroll-bar:vertical:hover .thumb {
+    -fx-background-color: #aaaaaa;
 }
 
 .search-field {

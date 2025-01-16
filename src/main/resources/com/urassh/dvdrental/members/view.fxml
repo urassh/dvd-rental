@@ -17,8 +17,10 @@
     <center>
         <BorderPane>
             <top>
-                <Label text="会員一覧" />
-                <TextField promptText="検索キーワードを入力" styleClass="search-field" />
+                <VBox styleClass="header">
+                    <Label text="会員一覧" />
+                    <TextField promptText="検索" styleClass="search-field" />
+                </VBox>
             </top>
 
             <center>
