@@ -51,6 +51,9 @@ public class RentalController {
 
         rentalList.setOnMouseClicked(event -> {
             final Goods selectedGoods = rentalList.getSelectionModel().getSelectedItem();
+            if (selectedGoods == null) {
+                return;
+            }
 
             final Navigator navigator = new Navigator(rentalList.getScene());
             navigator.navigateToRentalDetail(selectedGoods);

@@ -30,6 +30,10 @@ public class Goods {
         return (int) (feeWithoutTax * 1.1);
     }
 
+    public int getFeeWithoutTax() {
+        return isNew() ? NEW_FEE : OLD_FEE;
+    }
+
     public boolean isNew() {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.MONTH, -6);

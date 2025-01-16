@@ -6,6 +6,7 @@
 
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ListView?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.urassh.dvdrental.controller.rental.RentalCartController"
             stylesheets="@style.css">
@@ -18,8 +19,12 @@
             <Label styleClass="title" text="商品カート" />
 
             <HBox spacing="40">
-                <VBox styleClass="cart">
+                <VBox styleClass="cart" spacing="40">
                     <Label fx:id="sumLabel" styleClass="sub-title" />
+
+                    <ListView fx:id="rentalCartView" styleClass="list-view" />
+
+
                 </VBox>
 
                 <VBox styleClass="rental-member" spacing="40">

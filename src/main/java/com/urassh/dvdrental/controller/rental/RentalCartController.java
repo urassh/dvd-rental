@@ -8,6 +8,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
@@ -30,6 +31,9 @@ public class RentalCartController {
     @FXML
     private TextField searchField;
 
+    @FXML
+    private ListView<Goods> rentalCartView;
+
     private int sum = 0;
     private List<Goods> rentalCart = new ArrayList<>();
     private final BooleanProperty isFoundMember = new SimpleBooleanProperty(false);
@@ -38,6 +42,7 @@ public class RentalCartController {
         memberCard.visibleProperty().bind(isFoundMember);
 
         setupRentalCart();
+        loadCarts();
 
         searchField.setOnAction(event -> {
             final String keyword = searchField.getText().trim().toLowerCase();
@@ -65,6 +70,7 @@ public class RentalCartController {
     }
 
     private void setupRentalCart() {
+        rentalCartView.setCellFactory(listView -> new RentalCartCell());
         rentalCart = new GetRentalCartUseCase().execute();
 
         for (Goods goods : rentalCart) {
@@ -74,5 +80,8 @@ public class RentalCartController {
         sumLabel.setText("合計 : " + sum + "円 (税込)");
     }
 
-
+    private void loadCarts() {
+        List<Goods> rentalCart = new GetRentalCartUseCase().execute();
+        rentalCartView.getItems().setAll(rentalCart);
+    }
 }
