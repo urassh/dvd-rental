@@ -1,0 +1,29 @@
+.container {
+    -fx-padding: 50;
+}
+
+.title {
+    -fx-font-weight: bold;
+    -fx-font-size: 48px;
+    -fx-padding: 0 0 24 0;
+}
+
+.card {
+    -fx-background-color: white;
+    -fx-padding: 24px;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+    -fx-max-width: 800px;
+    -fx-max-height: 80px;
+}
+
+.card-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: 900;
+    -fx-text-fill: black;
+    -fx-padding: 0 0 12px 0;
+}
+
+.card-column {
+    -fx-min-width: 120px;
+}

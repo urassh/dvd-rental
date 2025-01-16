@@ -1,12 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.urassh.dvdrental.controller.rental.RentalDetailController"
-      alignment="CENTER" spacing="10"
-      style="-fx-background-color: #2e2e2e; -fx-padding: 20;">
-    <Label fx:id="titleLabel" style="-fx-font-size: 24px; -fx-text-fill: white;"/>
-    <Label fx:id="idLabel" style="-fx-font-size: 18px; -fx-text-fill: white;"/>
-</VBox>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.urassh.dvdrental.controller.rental.RentalDetailController"
+            stylesheets="@style.css">
+    <left>
+        <fx:include source="../../sidebar/view.fxml"/>
+    </left>
+
+    <center>
+        <VBox styleClass="container">
+            <Label fx:id="titleLabel" styleClass="title" />
+
+            <HBox styleClass="card" alignment="CENTER_LEFT" spacing="20">
+                <VBox styleClass="card-column">
+                    <Label text="商品ID" styleClass="card-label" />
+                    <Label text="ジャンル" styleClass="card-label" />
+                    <Label text="発売日" styleClass="card-label" />
+                    <Label text="貸出回数" styleClass="card-label" />
+                    <Label text="保管場所" styleClass="card-label" />
+                    <Label fx:id="isNewLabel" styleClass="card-label" />
+                </VBox>
+
+                <VBox styleClass="card-column">
+                    <Label fx:id="idLabel" styleClass="card-label" />
+                    <Label fx:id="genreLabel" styleClass="card-label" />
+                    <Label fx:id="releaseDateLabel" styleClass="card-label" />
+                    <Label fx:id="rentalCountLabel" styleClass="card-label" />
+                    <Label fx:id="belongToStoreLabel" styleClass="card-label" />
+                </VBox>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>
