@@ -17,8 +17,8 @@ public class LocalStore {
     }
 
     public void setRentalCount(int count) {
-        DB db = DBMaker.fileDB(Identifier).make();
-        HTreeMap<String, Integer> map = db
+        final DB db = DBMaker.fileDB(Identifier).make();
+        final HTreeMap<String, Integer> map = db
                 .hashMap(retalCountStore)
                 .keySerializer(Serializer.STRING)
                 .valueSerializer(Serializer.INTEGER)
@@ -29,8 +29,8 @@ public class LocalStore {
     }
 
     public int getRentalCount() {
-        DB db = DBMaker.fileDB(Identifier).make();
-        HTreeMap<String, Integer> map = db
+        final DB db = DBMaker.fileDB(Identifier).make();
+        final HTreeMap<String, Integer> map = db
                 .hashMap(retalCountStore)
                 .keySerializer(Serializer.STRING)
                 .valueSerializer(Serializer.INTEGER)
