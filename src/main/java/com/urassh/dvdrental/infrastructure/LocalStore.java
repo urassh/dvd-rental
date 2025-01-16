@@ -79,6 +79,7 @@ public class LocalStore {
                 .createOrOpen();
 
         map.remove(goods.getId());
+        setRentalCount(getRentalCount() - 1);
         db.close();
     }
 
@@ -90,6 +91,7 @@ public class LocalStore {
                 .valueSerializer(new GoodsSerializer())
                 .createOrOpen();
 
+        setRentalCount(0);
         map.clear();
         db.close();
     }
