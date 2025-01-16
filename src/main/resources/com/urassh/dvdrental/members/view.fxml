@@ -20,7 +20,7 @@
             <top>
                 <VBox styleClass="header">
                     <Label text="会員一覧" />
-                    <TextField promptText="検索" styleClass="search-field" />
+                    <TextField fx:id="searchField" promptText="検索" styleClass="search-field" />
                 </VBox>
             </top>
 
