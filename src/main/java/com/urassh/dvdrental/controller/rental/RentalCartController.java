@@ -4,10 +4,7 @@ import com.urassh.dvdrental.domain.Goods;
 import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.domain.Money;
 import com.urassh.dvdrental.usecase.members.GetMemberUseCase;
-import com.urassh.dvdrental.usecase.rental.AddRentalUseCase;
-import com.urassh.dvdrental.usecase.rental.AddToRentalCartUseCase;
-import com.urassh.dvdrental.usecase.rental.ClearRentalCartUseCase;
-import com.urassh.dvdrental.usecase.rental.GetRentalCartUseCase;
+import com.urassh.dvdrental.usecase.rental.*;
 import com.urassh.dvdrental.util.Navigator;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
@@ -92,7 +89,7 @@ public class RentalCartController {
     }
 
     private void setupRentalCart() {
-        rentalCartView.setCellFactory(listView -> new RentalCartCell());
+        rentalCartView.setCellFactory(listView -> new RentalCartCell(this::onCancelRental));
         rentalCart = new GetRentalCartUseCase().execute();
 
         for (Goods goods : rentalCart) {
@@ -105,5 +102,10 @@ public class RentalCartController {
     private void loadCarts() {
         List<Goods> rentalCart = new GetRentalCartUseCase().execute();
         rentalCartView.getItems().setAll(rentalCart);
+    }
+
+    private void onCancelRental(Goods goods) {
+        new RemoveFromCartUseCase().execute(goods);
+        loadCarts();
     }
 }

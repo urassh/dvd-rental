@@ -6,7 +6,7 @@ import com.urassh.dvdrental.infrastructure.LocalStore;
 import java.util.List;
 
 public class GetRentalCartUseCase {
-    private final LocalStore localStore = new LocalStore();
+    private final LocalStore localStore = LocalStore.shared;
 
     public List<Goods> execute() {
         return localStore.getRentalCart();

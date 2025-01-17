@@ -16,6 +16,6 @@
             <Label fx:id="goodsIdLabel" styleClass="goods-id"/>
             <Label fx:id="goodsPriceLabel" styleClass="goods-price"/>
         </VBox>
-        <Button text="キャンセル" styleClass="cancel-button" AnchorPane.bottomAnchor="5" AnchorPane.rightAnchor="10"/>
+        <Button fx:id="cancelButton" text="キャンセル" styleClass="cancel-button" AnchorPane.bottomAnchor="5" AnchorPane.rightAnchor="10"/>
     </AnchorPane>
 </StackPane>

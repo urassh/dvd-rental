@@ -7,16 +7,19 @@ import javafx.scene.control.ListCell;
 import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
+import java.util.function.Consumer;
 
 public class RentalCartCell extends ListCell<Goods> {
     private StackPane content;
     private RentalCartCellController controller;
+    private Consumer<Goods> cancelAction;
 
-    public RentalCartCell() {
+    public RentalCartCell(Consumer<Goods> cancelAction) {
         try {
             FXMLLoader loader = new FXMLLoader(RentalApp.class.getResource("rental/cart_cell/component.fxml"));
-            content = loader.load();
-            controller = loader.getController();
+            this.content = loader.load();
+            this.controller = loader.getController();
+            this.cancelAction = cancelAction;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -28,7 +31,7 @@ public class RentalCartCell extends ListCell<Goods> {
         if (empty || goods == null) {
             setGraphic(null);
         } else {
-            controller.setGoods(goods);
+            controller.setGoods(goods, cancelAction);
             setGraphic(content);
         }
     }

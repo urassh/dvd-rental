@@ -12,24 +12,13 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class LocalStore {
+    public static final LocalStore shared = new LocalStore();
     private static final String Identifier = "app-local-store";
     private static final String retalCountStore = "rental-count-store";
     private static final String rentalCartStore = "rental-cart-store";
 
-    public LocalStore() {
+    private LocalStore() {
         Runtime.getRuntime().addShutdownHook(new Thread(this::deleteExistingStoreFile));
-    }
-
-    public void setRentalCount(int count) {
-        final DB db = DBMaker.fileDB(Identifier).make();
-        final HTreeMap<String, Integer> map = db
-                .hashMap(retalCountStore)
-                .keySerializer(Serializer.STRING)
-                .valueSerializer(Serializer.INTEGER)
-                .createOrOpen();
-
-        map.put("count", count);
-        db.close();
     }
 
     public int getRentalCount() {
@@ -43,6 +32,18 @@ public class LocalStore {
         Integer count = map.get("count");
         db.close();
         return count != null ? count : 0;
+    }
+
+    public void setRentalCount(int count) {
+        final DB db = DBMaker.fileDB(Identifier).make();
+        final HTreeMap<String, Integer> map = db
+                .hashMap(retalCountStore)
+                .keySerializer(Serializer.STRING)
+                .valueSerializer(Serializer.INTEGER)
+                .createOrOpen();
+
+        map.put("count", count);
+        db.close();
     }
 
     public List<Goods> getRentalCart() {
@@ -79,7 +80,6 @@ public class LocalStore {
                 .createOrOpen();
 
         map.remove(goods.getId());
-        setRentalCount(getRentalCount() - 1);
         db.close();
     }
 
@@ -90,8 +90,7 @@ public class LocalStore {
                 .keySerializer(Serializer.STRING)
                 .valueSerializer(new GoodsSerializer())
                 .createOrOpen();
-
-        setRentalCount(0);
+        
         map.clear();
         db.close();
     }
