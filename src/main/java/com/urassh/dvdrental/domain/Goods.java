@@ -1,5 +1,9 @@
 package com.urassh.dvdrental.domain;
 
+import com.urassh.dvdrental.domain.interfaces.GoodsRepository;
+import com.urassh.dvdrental.infrastructure.GoodsDummyRepository;
+
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
@@ -39,6 +43,10 @@ public class Goods {
 
     public Money getFee() {
         return isNew() ? NEW_FEE : OLD_FEE;
+    }
+
+    public static Goods newGoods() {
+        return new Goods("", new Date(), "", "", 0, true);
     }
 
     public boolean isNew() {
@@ -82,5 +90,21 @@ public class Goods {
         if (obj == null || getClass() != obj.getClass()) return false;
         Goods goods = (Goods) obj;
         return Objects.equals(id, goods.id);
+    }
+
+    public Goods setTitle(String title) {
+        return new Goods(id, title, releaseDate, genre, belongToStore, loanCount, isDisplayed);
+    }
+
+    public Goods setReleaseDate(Date releaseDate) {
+        return new Goods(id, title, releaseDate, genre, belongToStore, loanCount, isDisplayed);
+    }
+
+    public Goods setGenre(String genre) {
+        return new Goods(id, title, releaseDate, genre, belongToStore, loanCount, isDisplayed);
+    }
+
+    public Goods setBelongToStore(String belongToStore) {
+        return new Goods(id, title, releaseDate, genre, belongToStore, loanCount, isDisplayed);
     }
 }
