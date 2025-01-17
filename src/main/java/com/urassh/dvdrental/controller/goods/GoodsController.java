@@ -31,7 +31,7 @@ public class GoodsController {
         Navigator navigator = new Navigator(title.getScene());
         switch (buttonId) {
             case "newGoodsButton":
-                navigator.navigateToNewGoods();
+                navigator.navigateToGoodsNew();
                 break;
         }
     }
