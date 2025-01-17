@@ -17,7 +17,7 @@ public class RentalCartCellController {
     public void setGoods(Goods goods) {
         final String GOODS_ID = goods.getId();
         final String GOODS_TITLE = goods.getTitle();
-        final int GOODS_PRICE = goods.getFeeWithoutTax();
+        final int GOODS_PRICE = goods.getFee().getValue();
 
         goodsIdLabel.setText(GOODS_ID);
         goodsTitleLabel.setText(GOODS_TITLE);

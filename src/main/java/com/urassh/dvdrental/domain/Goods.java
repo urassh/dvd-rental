@@ -12,8 +12,8 @@ public class Goods {
     private final int loanCount;
     private final boolean isDisplayed;
 
-    private static final int NEW_FEE = 300;
-    private static final int OLD_FEE = 100;
+    private static final Money NEW_FEE = new Money(300);
+    private static final Money OLD_FEE = new Money(100);
 
     public Goods(String id, String title, Date releaseDate, String genre, String belongToStore, int loanCount, boolean isDisplayed) {
         this.id = id;
@@ -25,12 +25,7 @@ public class Goods {
         this.isDisplayed = isDisplayed;
     }
 
-    public int getFeeWithTax() {
-        final int feeWithoutTax = isNew() ? NEW_FEE : OLD_FEE;
-        return (int) (feeWithoutTax * 1.1);
-    }
-
-    public int getFeeWithoutTax() {
+    public Money getFee() {
         return isNew() ? NEW_FEE : OLD_FEE;
     }
 
