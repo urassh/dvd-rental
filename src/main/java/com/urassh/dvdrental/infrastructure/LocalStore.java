@@ -90,7 +90,7 @@ public class LocalStore {
                 .keySerializer(Serializer.STRING)
                 .valueSerializer(new GoodsSerializer())
                 .createOrOpen();
-        
+
         map.clear();
         db.close();
     }
