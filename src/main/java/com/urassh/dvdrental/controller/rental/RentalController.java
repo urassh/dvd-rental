@@ -3,13 +3,17 @@ package com.urassh.dvdrental.controller.rental;
 import com.urassh.dvdrental.domain.Goods;
 import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.usecase.goods.GetUnRentingGoodsUseCase;
+import com.urassh.dvdrental.usecase.rental.GetRentalCountUseCase;
+import com.urassh.dvdrental.util.Navigator;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +21,9 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class RentalController {
+    @FXML
+    private Label rentalCountLabel;
+
     @FXML
     private ListView<Goods> rentalList;
 
@@ -26,15 +33,36 @@ public class RentalController {
     @FXML
     private TextField searchField;
 
+    @FXML
+    private StackPane cart;
+
     private List<Goods> rentalGoods = new ArrayList<>();
 
     private final BooleanProperty isLoading = new SimpleBooleanProperty(false);
 
     public void initialize() {
+        final int rentalCount = new GetRentalCountUseCase().execute();
+        rentalCountLabel.setText(String.valueOf(rentalCount));
+
         rentalList.setCellFactory(listView -> new RentalCell());
         loadingIndicator.visibleProperty().bind(isLoading);
         loadRentals();
         searchField.setOnAction(event -> filterGoods());
+
+        rentalList.setOnMouseClicked(event -> {
+            final Goods selectedGoods = rentalList.getSelectionModel().getSelectedItem();
+            if (selectedGoods == null) {
+                return;
+            }
+
+            final Navigator navigator = new Navigator(rentalList.getScene());
+            navigator.navigateToRentalDetail(selectedGoods);
+        });
+
+        cart.setOnMouseClicked(event -> {
+            final Navigator navigator = new Navigator(cart.getScene());
+            navigator.navigateToRentalCart();
+        });
     }
 
     private void loadRentals() {

@@ -1,11 +1,14 @@
 package com.urassh.dvdrental.util;
 
 import com.urassh.dvdrental.RentalApp;
+import com.urassh.dvdrental.controller.rental.RentalDetailController;
+import com.urassh.dvdrental.domain.Goods;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.util.Map;
+import java.util.function.Consumer;
 
 public class Navigator {
     private static final Map<String, Integer> WINDOW_SIZE = Map.of(
@@ -17,7 +20,9 @@ public class Navigator {
             "goods/view.fxml",
             "members/view.fxml",
             "rental/view.fxml",
-            "return/view.fxml"
+            "return/view.fxml",
+            "rental/detail/view.fxml",
+            "rental/cart/view.fxml"
     };
 
     private final Scene fromScene;
@@ -26,7 +31,7 @@ public class Navigator {
         this.fromScene = from;
     }
 
-    private void navigateFxml(String fxmlPath, String title) {
+    private void navigateFxml(String fxmlPath, String title, Consumer<FXMLLoader> consumer) {
         try {
             if (fromScene != null) {
                 fromScene.getWindow().hide();
@@ -36,12 +41,20 @@ public class Navigator {
             Scene scene = new Scene(fxmlLoader.load(), WINDOW_SIZE.get("width"), WINDOW_SIZE.get("height"));
             Stage stage = new Stage();
 
+            if (consumer != null) {
+                consumer.accept(fxmlLoader);
+            }
+
             stage.setScene(scene);
             stage.setTitle(appTitle(title));
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void navigateFxml(String fxmlPath, String title) {
+        navigateFxml(fxmlPath, title, null);
     }
 
     public void navigateToHome() {
@@ -62,6 +75,17 @@ public class Navigator {
 
     public void navigateToReturn() {
         navigateFxml(FXML_PATHS[4], "返却");
+    }
+
+    public void navigateToRentalDetail(Goods goods) {
+        navigateFxml(FXML_PATHS[5], goods.getTitle(), fxmlLoader -> {
+            RentalDetailController controller = fxmlLoader.getController();
+            controller.setGoods(goods);
+        });
+    }
+
+    public void navigateToRentalCart() {
+        navigateFxml(FXML_PATHS[6], "商品カート");
     }
 
     private String appTitle(String title) {

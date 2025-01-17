@@ -1,6 +1,5 @@
 package com.urassh.dvdrental.domain.interfaces;
 
-import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.domain.Rental;
 
 import java.util.List;
@@ -11,7 +10,7 @@ public interface RentalRepository {
     CompletableFuture<Rental> getById(String id);
     CompletableFuture<Rental> getByGoodsId(String goodsId);
     CompletableFuture<Rental> getByMemberId(String memberId);
-    CompletableFuture<Void> add(Rental rental);
-    CompletableFuture<Void> update(Rental rental);
-    CompletableFuture<Void> delete(Rental rental);
+    void add(Rental rental);
+    void update(Rental rental);
+    void delete(Rental rental);
 }

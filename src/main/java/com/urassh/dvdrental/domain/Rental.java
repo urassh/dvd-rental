@@ -3,6 +3,7 @@ package com.urassh.dvdrental.domain;
 import com.urassh.dvdrental.util.DateExtension;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class Rental {
     private final String id;
@@ -13,6 +14,15 @@ public class Rental {
 
     public Rental(String id, String goodsId, String memberId, Date rentalDate) {
         this.id = id;
+        this.goodsId = goodsId;
+        this.memberId = memberId;
+        this.rentalDate = rentalDate;
+        // 返却期限を計算して代入する
+        this.dueDate = new DateExtension(rentalDate).addDay(7);
+    }
+
+    public Rental(String goodsId, String memberId, Date rentalDate) {
+        this.id = UUID.randomUUID().toString();
         this.goodsId = goodsId;
         this.memberId = memberId;
         this.rentalDate = rentalDate;

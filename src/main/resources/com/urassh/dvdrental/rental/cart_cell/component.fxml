@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Button?>
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.urassh.dvdrental.controller.rental.RentalCartCellController"
+           styleClass="card"
+           stylesheets="@card.css">
+    <AnchorPane>
+        <VBox styleClass="card-content" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10">
+            <Label fx:id="goodsTitleLabel" styleClass="goods-name"/>
+            <Label fx:id="goodsIdLabel" styleClass="goods-id"/>
+            <Label fx:id="goodsPriceLabel" styleClass="goods-price"/>
+        </VBox>
+        <Button fx:id="cancelButton" text="キャンセル" styleClass="cancel-button" AnchorPane.bottomAnchor="5" AnchorPane.rightAnchor="10"/>
+    </AnchorPane>
+</StackPane>
