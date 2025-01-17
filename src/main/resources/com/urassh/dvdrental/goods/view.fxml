@@ -20,15 +20,13 @@
             <top>
                 <VBox styleClass="header">
                     <Label text="商品一覧" fx:id="title"/>
-                    <HBox>
-                        <TextField promptText="検索" styleClass="search-field" />
-                        <Button fx:id="newGoodsButton" styleClass="red-button" text="商品を追加" />
-                    </HBox>
+                    <TextField promptText="検索" styleClass="search-field" />
                 </VBox>
             </top>
-
             <right>
-                <Button fx:id="goodsNewButton" styleClass="red-button" text="商品を追加" />
+                <VBox styleClass="right-display">
+                    <Button fx:id="newGoodsButton" styleClass="red-button" text="商品を追加" />
+                </VBox>
             </right>
         </BorderPane>
     </center>

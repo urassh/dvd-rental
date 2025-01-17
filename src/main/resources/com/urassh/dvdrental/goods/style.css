@@ -48,6 +48,11 @@
     -fx-border-color: #4a90e2;
 }
 
+.right-display {
+    -fx-alignment: bottom-right;
+    -fx-padding: 50 50 50 10;
+}
+
 .red-button {
     -fx-alignment: center;
     -fx-background-color: rgb(192,64,64);
