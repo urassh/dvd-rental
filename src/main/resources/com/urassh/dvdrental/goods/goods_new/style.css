@@ -33,3 +33,35 @@
 .text-field:focused {
     -fx-border-color: #4a90e2;
 }
+
+
+.right-display {
+    -fx-alignment: bottom-right;
+    -fx-padding: 50 50 50 10;
+}
+
+.red-button {
+    -fx-alignment: center;
+    -fx-background-color: rgb(192,64,64);
+    -fx-border-radius:  10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 12px 36px;
+
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+    -fx-max-width: 210px;
+    -fx-max-height: 80px;
+}
+
+.red-button:hover {
+    -fx-background-color: rgb(160,40,40);
+    -fx-text-fill: white;
+}
+
+.red-button.active {
+    -fx-background-color: rgb(192,160,160);
+    -fx-text-fill: white;
+}
