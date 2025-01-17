@@ -11,9 +11,7 @@ import javafx.scene.control.TextField;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class NewGoodsController {
     @FXML
@@ -57,23 +55,19 @@ public class NewGoodsController {
 
         switch (buttonId) {
             case "addGoodsButton":
-
-                newGoods.setTitle(titleField.getText());
-                newGoods.setGenre(genreField.getText());
+                newGoods = newGoods.setTitle(titleField.getText());
+                newGoods = newGoods.setGenre(genreField.getText());
                 LocalDate localDate = releaseDateField.getValue();
                 if (localDate != null) {
-                    // LocalDateをDateに変換
                     Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
                     System.out.println("選択された日付 (Date): " + date);
-                    newGoods.setReleaseDate(date);
-                } else {
-                    System.out.println("日付が選択されていません");
+                    newGoods = newGoods.setReleaseDate(date);
                 }
-                newGoods.setBelongToStore(belongToStoreField.getText());
+                newGoods = newGoods.setBelongToStore(belongToStoreField.getText());
 
-                //入力不備エラー
                 if (!newGoods.isAllDataExist()) {
                     System.out.println("入力に不備があります");
+                    clickedButton.getStyleClass().remove("active");
                     break;
                 }
 
