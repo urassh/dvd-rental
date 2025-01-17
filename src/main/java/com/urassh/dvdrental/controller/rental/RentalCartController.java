@@ -93,7 +93,7 @@ public class RentalCartController {
         rentalCart = new GetRentalCartUseCase().execute();
 
         for (Goods goods : rentalCart) {
-            sum.add(goods.getFee());
+            sum = sum.add(goods.getFee());
         }
 
         sumLabel.setText("合計 : " + sum.withTax().getValue() + "円 (税込)");
@@ -101,6 +101,13 @@ public class RentalCartController {
 
     private void loadCarts() {
         List<Goods> rentalCart = new GetRentalCartUseCase().execute();
+
+        sum = Money.ZERO;
+        for (Goods goods : rentalCart) {
+            sum = sum.add(goods.getFee());
+        }
+        sumLabel.setText("合計 : " + sum.withTax().getValue() + "円 (税込)");
+
         rentalCartView.getItems().setAll(rentalCart);
     }
 
