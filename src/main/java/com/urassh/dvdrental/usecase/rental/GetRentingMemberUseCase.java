@@ -8,32 +8,34 @@ import com.urassh.dvdrental.domain.interfaces.RentalRepository;
 import com.urassh.dvdrental.infrastructure.MemberDummyRepository;
 import com.urassh.dvdrental.infrastructure.RentalDummyRepository;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 
 public class GetRentingMemberUseCase {
     private final MemberRepository memberRepository = new MemberDummyRepository();
     private final RentalRepository rentalRepository = new RentalDummyRepository();
 
     public CompletableFuture<List<Member>> execute() {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+        return CompletableFuture.allOf(
+                rentalRepository.getAll(),
+                memberRepository.getAll()
+        ).thenCompose(voidResult -> {
+            CompletableFuture<List<Rental>> rentalFuture = rentalRepository.getAll();
+            CompletableFuture<List<Member>> goodsFuture = memberRepository.getAll();
 
-            // 貸出情報の商品IDから貸出中の商品を取得し、戻り値用リストに格納する
-            List<Rental> rentalList = rentalRepository.getAll().join();
-            List<Member> rentingMemberList = new ArrayList<>();
+            return rentalFuture.thenCombine(goodsFuture, (rentals, goodsList) -> {
+                // 貸出中のGoods IDリストを取得
+                Set<String> rentedGoodsIds = rentals.stream()
+                        .map(Rental::getGoodsId)
+                        .collect(Collectors.toSet());
 
-            for (Rental rental : rentalList) {
-                final Member member = memberRepository.getById(rental.getMemberId()).join();
-                rentingMemberList.add(member);
-            }
-
-            return rentingMemberList;
+                // 貸出中ではないGoodsをフィルタリング
+                return goodsList.stream()
+                        .filter(goods -> !rentedGoodsIds.contains(goods.getId()))
+                        .collect(Collectors.toList());
+            });
         });
     }
 }

@@ -1,0 +1,29 @@
+/* 背景を透過させたカード */
+.card {
+    -fx-background-color: white;
+    -fx-padding: 12px;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+    -fx-max-width: 800px;
+    -fx-max-height: 80px;
+}
+
+/* カードの内容配置 */
+.card-content {
+    -fx-alignment: center-left;
+}
+
+/* メンバー名 */
+.member-name {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+    -fx-padding: 0;
+}
+
+/* メンバーID */
+.member-id {
+    -fx-font-size: 14px;
+    -fx-text-fill: #555555;
+    -fx-padding: 0;
+}
