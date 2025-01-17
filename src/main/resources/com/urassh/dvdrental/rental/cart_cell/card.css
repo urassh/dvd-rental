@@ -30,3 +30,10 @@
     -fx-text-fill: #555555;
     -fx-padding: 0;
 }
+
+.cancel-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: #365dff;
+    -fx-underline: true;
+}
