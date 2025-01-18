@@ -14,25 +14,11 @@ public class GoodsController {
 
     @FXML
     protected void initialize() {
-        newGoodsButton.setOnAction(event -> handleButtonClick(newGoodsButton));
+        newGoodsButton.setOnAction(event -> navigateToNew());
     }
 
-    private void handleButtonClick(Button clickedButton) {
-        clickedButton.getStyleClass().remove("active");
-
-        clickedButton.getStyleClass().add("active");
-
-        String buttonId = clickedButton.getId();
-
-        navigateTo(buttonId);
-    }
-
-    private void navigateTo(String buttonId) {
+    private void navigateToNew() {
         Navigator navigator = new Navigator(title.getScene());
-        switch (buttonId) {
-            case "newGoodsButton":
-                navigator.navigateToGoodsNew();
-                break;
-        }
+        navigator.navigateToGoodsNew();
     }
 }
