@@ -2,6 +2,7 @@ package com.urassh.dvdrental.controller.goods;
 
 import com.urassh.dvdrental.domain.Goods;
 import com.urassh.dvdrental.usecase.goods.AddGoodsUseCase;
+import com.urassh.dvdrental.util.DateExtension;
 import com.urassh.dvdrental.util.Navigator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -46,49 +47,23 @@ public class NewGoodsController {
     }
 
     private void handleButtonClick(Button clickedButton) {
-        System.out.println("ボタンが押された");
-        clickedButton.getStyleClass().remove("active");
+        final String inputTitle = titleField.getText();
+        final String inputGenre = genreField.getText();
+        final Date inputReleaseDate = new DateExtension().fromLocalDate(releaseDateField.getValue());
+        final String inputBelongToStore = belongToStoreField.getText();
 
-        clickedButton.getStyleClass().add("active");
+        if (inputTitle.isBlank()) return;
+        if (inputGenre.isBlank()) return;
+        if (inputReleaseDate == null) return;
+        if (inputBelongToStore.isBlank()) return;
 
-        String buttonId = clickedButton.getId();
+        newGoods = newGoods.setTitle(inputTitle);
+        newGoods = newGoods.setGenre(inputGenre);
+        newGoods = newGoods.setReleaseDate(inputReleaseDate);
+        newGoods = newGoods.setBelongToStore(belongToStoreField.getText());
 
-        switch (buttonId) {
-            case "addGoodsButton":
-                newGoods = newGoods.setTitle(titleField.getText());
-                newGoods = newGoods.setGenre(genreField.getText());
-                LocalDate localDate = releaseDateField.getValue();
-                if (localDate != null) {
-                    Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-                    System.out.println("選択された日付 (Date): " + date);
-                    newGoods = newGoods.setReleaseDate(date);
-                }
-                newGoods = newGoods.setBelongToStore(belongToStoreField.getText());
-
-                if (!newGoods.isAllDataExist()) {
-                    System.out.println("入力に不備があります");
-                    clickedButton.getStyleClass().remove("active");
-                    break;
-                }
-
-                //モーダルを呼び出す
-
-                final AddGoodsUseCase addGoods = new AddGoodsUseCase();
-                addGoods.execute(newGoods);
-                System.out.println("商品が追加されました");
-
-                navigateTo(buttonId);
-                break;
-        }
-
-    }
-
-    private void navigateTo(String buttonId) {
+        new AddGoodsUseCase().execute(newGoods);
         Navigator navigator = new Navigator(title.getScene());
-        switch (buttonId) {
-            case "addGoodsButton":
-                navigator.navigateToGoods();
-                break;
-        }
+        navigator.navigateToGoods();
     }
 }
