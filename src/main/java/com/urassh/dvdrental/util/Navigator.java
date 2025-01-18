@@ -4,12 +4,10 @@ import com.urassh.dvdrental.RentalApp;
 import com.urassh.dvdrental.controller.rental.RentalDetailController;
 import com.urassh.dvdrental.controller.returns.detail.ReturnDetailController;
 import com.urassh.dvdrental.domain.Goods;
-import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.domain.Rental;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.util.Map;
 import java.util.function.Consumer;
 
@@ -28,7 +26,6 @@ public class Navigator {
             "rental/cart/view.fxml",
             "return/detail/view.fxml"
     };
-
     private final Scene fromScene;
 
     public Navigator(Scene from) {

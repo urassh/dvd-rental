@@ -1,13 +1,11 @@
 package com.urassh.dvdrental.usecase.goods;
 
-import com.urassh.dvdrental.domain.Goods;
-
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
-
+import com.urassh.dvdrental.domain.Goods;
 import com.urassh.dvdrental.domain.Rental;
 import com.urassh.dvdrental.domain.interfaces.GoodsRepository;
 import com.urassh.dvdrental.domain.interfaces.RentalRepository;

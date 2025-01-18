@@ -1,7 +1,6 @@
 package com.urassh.dvdrental.domain;
 
 import com.urassh.dvdrental.util.DateExtension;
-
 import java.util.Date;
 import java.util.UUID;
 

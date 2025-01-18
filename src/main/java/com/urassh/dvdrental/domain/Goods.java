@@ -1,7 +1,5 @@
 package com.urassh.dvdrental.domain;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;

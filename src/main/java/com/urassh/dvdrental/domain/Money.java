@@ -17,11 +17,6 @@ public class Money {
         return new Money(value + money.value);
     }
 
-    public Money subtract(Money money) {
-        final int result = value - money.value;
-        return new Money(Math.max(result, 0));
-    }
-
     public Money multiply(int multiplier) {
         return new Money(value * multiplier);
     }

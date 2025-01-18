@@ -2,10 +2,8 @@ package com.urassh.dvdrental.infrastructure;
 
 import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.domain.interfaces.MemberRepository;
-
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
-
 
 public class MemberDummyRepository implements MemberRepository {
     private static List<Member> membersList = new ArrayList<>(List.of(

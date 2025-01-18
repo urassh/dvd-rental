@@ -3,7 +3,6 @@ package com.urassh.dvdrental.usecase.rental;
 import com.urassh.dvdrental.domain.Rental;
 import com.urassh.dvdrental.domain.interfaces.RentalRepository;
 import com.urassh.dvdrental.infrastructure.RentalDummyRepository;
-
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 

@@ -2,7 +2,6 @@ package com.urassh.dvdrental.infrastructure;
 
 import com.urassh.dvdrental.domain.Goods;
 import com.urassh.dvdrental.domain.interfaces.GoodsRepository;
-
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;

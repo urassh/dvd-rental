@@ -5,7 +5,6 @@ import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.domain.Rental;
 import com.urassh.dvdrental.domain.interfaces.RentalRepository;
 import com.urassh.dvdrental.infrastructure.RentalDummyRepository;
-
 import java.util.Date;
 
 public class AddRentalUseCase {

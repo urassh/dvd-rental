@@ -3,10 +3,7 @@ package com.urassh.dvdrental.infrastructure;
 import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.domain.Rental;
 import com.urassh.dvdrental.domain.interfaces.RentalRepository;
-
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
@@ -24,7 +21,6 @@ public class RentalDummyRepository implements RentalRepository {
             return rentalList;
         });
     }
-
 
     @Override
     public CompletableFuture<List<Rental>> getByMember(Member member) {
