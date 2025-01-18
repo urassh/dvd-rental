@@ -67,7 +67,7 @@ public class LocalStore {
                 .valueSerializer(GoodsSerializer.GOODS)
                 .createOrOpen();
 
-        map.put(goods.getId(), goods);
+        map.put(goods.getId().toString(), goods);
         db.close();
     }
 

@@ -2,7 +2,10 @@ package com.urassh.dvdrental.util;
 
 import com.urassh.dvdrental.RentalApp;
 import com.urassh.dvdrental.controller.rental.RentalDetailController;
+import com.urassh.dvdrental.controller.returns.detail.ReturnDetailController;
 import com.urassh.dvdrental.domain.Goods;
+import com.urassh.dvdrental.domain.Member;
+import com.urassh.dvdrental.domain.Rental;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -22,7 +25,8 @@ public class Navigator {
             "rental/view.fxml",
             "return/view.fxml",
             "rental/detail/view.fxml",
-            "rental/cart/view.fxml"
+            "rental/cart/view.fxml",
+            "return/detail/view.fxml"
     };
 
     private final Scene fromScene;
@@ -86,6 +90,13 @@ public class Navigator {
 
     public void navigateToRentalCart() {
         navigateFxml(FXML_PATHS[6], "商品カート");
+    }
+
+    public void navigateToReturnDetail(Rental rental) {
+        navigateFxml(FXML_PATHS[7], "返却詳細", fxmlLoader -> {
+            ReturnDetailController controller = fxmlLoader.getController();
+            controller.setRental(rental);
+        });
     }
 
     private String appTitle(String title) {

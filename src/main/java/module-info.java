@@ -18,4 +18,6 @@ module com.urassh.dvdrental {
     opens com.urassh.dvdrental.controller.rental to javafx.fxml;
     opens com.urassh.dvdrental.controller.sidebar to javafx.fxml;
     opens com.urassh.dvdrental.controller.returns to javafx.fxml;
+    exports com.urassh.dvdrental.controller.returns.detail;
+    opens com.urassh.dvdrental.controller.returns.detail to javafx.fxml;
 }

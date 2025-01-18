@@ -1,7 +1,6 @@
 package com.urassh.dvdrental.controller.rental;
 
 import com.urassh.dvdrental.domain.Goods;
-import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.usecase.goods.GetUnRentingGoodsUseCase;
 import com.urassh.dvdrental.usecase.rental.GetRentalCountUseCase;
 import com.urassh.dvdrental.util.Navigator;
@@ -93,7 +92,7 @@ public class RentalController {
 
         final Predicate<Goods> matchesKeyword = good ->
                 good.getTitle().toLowerCase().contains(keyword) ||
-                good.getId().toLowerCase().contains(keyword);
+                good.getId().toString().toLowerCase().contains(keyword);
 
         List<Goods> filteredMembers = rentalGoods.stream()
                 .filter(matchesKeyword)

@@ -33,4 +33,9 @@ public class DateExtension {
         calendar.add(Calendar.MONTH, month);
         return calendar.getTime();
     }
+
+    public int diffDays(Date date) {
+        long diffTime = this.date.getTime() - date.getTime();
+        return (int) (diffTime / (1000 * 60 * 60 * 24));
+    }
 }

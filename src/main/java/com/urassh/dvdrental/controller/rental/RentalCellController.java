@@ -17,7 +17,7 @@ public class RentalCellController {
     private Label goodsReleaseDateLabel;
 
     public void setGoods(Goods goods) {
-        final String GOODS_ID = goods.getId();
+        final String GOODS_ID = goods.getId().toString();
         final String GOODS_TITLE = goods.getTitle();
         final String GOODS_DATE = new SimpleDateFormat("yyyy-MM-dd").format(goods.getReleaseDate());
 

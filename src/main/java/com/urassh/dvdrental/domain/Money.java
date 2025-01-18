@@ -22,6 +22,10 @@ public class Money {
         return new Money(Math.max(result, 0));
     }
 
+    public Money multiply(int multiplier) {
+        return new Money(value * multiplier);
+    }
+
     public int getValue() {
         return value;
     }

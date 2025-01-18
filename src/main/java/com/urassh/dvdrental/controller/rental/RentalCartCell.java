@@ -16,7 +16,7 @@ public class RentalCartCell extends ListCell<Goods> {
 
     public RentalCartCell(Consumer<Goods> cancelAction) {
         try {
-            FXMLLoader loader = new FXMLLoader(RentalApp.class.getResource("rental/cart_cell/component.fxml"));
+            FXMLLoader loader = new FXMLLoader(RentalApp.class.getResource("rental/cart/cell/component.fxml"));
             this.content = loader.load();
             this.controller = loader.getController();
             this.cancelAction = cancelAction;

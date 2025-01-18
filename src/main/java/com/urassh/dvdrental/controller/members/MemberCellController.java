@@ -12,7 +12,7 @@ public class MemberCellController {
     private Label memberNameLabel;
 
     public void setMember(Member member) {
-        memberIdLabel.setText(member.getId());
+        memberIdLabel.setText(member.getId().toString());
         memberNameLabel.setText(member.getName() + " 様");
     }
 }

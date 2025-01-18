@@ -1,6 +1,7 @@
-package com.urassh.dvdrental.controller.returns;
+package com.urassh.dvdrental.controller.returns.detail;
 
 import com.urassh.dvdrental.RentalApp;
+import com.urassh.dvdrental.domain.Goods;
 import com.urassh.dvdrental.domain.Rental;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
@@ -8,15 +9,15 @@ import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
 
-public class ReturnCell extends ListCell<Rental> {
+public class ReturnDetailCell extends ListCell<Rental> {
     private StackPane content;
-    private ReturnCellController controller;
+    private ReturnDetailCellController controller;
 
-    public ReturnCell() {
+    public ReturnDetailCell() {
         try {
-            FXMLLoader loader = new FXMLLoader(RentalApp.class.getResource("return/return_cell/component.fxml"));
-            content = loader.load();
-            controller = loader.getController();
+            FXMLLoader loader = new FXMLLoader(RentalApp.class.getResource("return/detail/cell/component.fxml"));
+            this.content = loader.load();
+            this.controller = loader.getController();
         } catch (IOException e) {
             e.printStackTrace();
         }

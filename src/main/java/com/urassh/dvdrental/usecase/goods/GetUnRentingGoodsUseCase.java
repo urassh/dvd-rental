@@ -27,13 +27,13 @@ public class GetUnRentingGoodsUseCase {
 
             return rentalFuture.thenCombine(goodsFuture, (rentals, goodsList) -> {
                 // 貸出中のGoods IDリストを取得
-                Set<String> rentedGoodsIds = rentals.stream()
-                        .map(Rental::getGoodsId)
+                Set<Goods> rentedGoods = rentals.stream()
+                        .map(Rental::getGoods)
                         .collect(Collectors.toSet());
 
                 // 貸出中ではないGoodsをフィルタリング
                 return goodsList.stream()
-                        .filter(goods -> !rentedGoodsIds.contains(goods.getId()))
+                        .filter(goods -> goods != rentedGoods)
                         .collect(Collectors.toList());
             });
         });

@@ -1,9 +1,10 @@
 package com.urassh.dvdrental.controller.returns;
 
 
-import com.urassh.dvdrental.controller.members.MemberCell;
 import com.urassh.dvdrental.domain.Member;
-import com.urassh.dvdrental.usecase.rental.GetRentingMemberUseCase;
+import com.urassh.dvdrental.domain.Rental;
+import com.urassh.dvdrental.usecase.goods.GetAllRentalsUseCase;
+import com.urassh.dvdrental.util.Navigator;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -19,7 +20,7 @@ import java.util.stream.Collectors;
 
 public class ReturnController {
     @FXML
-    private ListView<Member> memberList;
+    private ListView<Rental> rentalMemberList;
 
     @FXML
     private ProgressIndicator loadingIndicator;
@@ -28,25 +29,42 @@ public class ReturnController {
     private TextField searchField;
 
     private final BooleanProperty isLoading = new SimpleBooleanProperty(false);
-    private List<Member> allMembers = new ArrayList<>();
+    private List<Rental> rentals = new ArrayList<>();
 
     public void initialize() {
-        memberList.setCellFactory(listView -> new ReturnCell());
+        rentalMemberList.setCellFactory(listView -> new ReturnCell());
         loadingIndicator.visibleProperty().bind(isLoading);
-        loadMembers();
+        loadRentals();
 
         searchField.setOnAction(event -> filterMembers());
+
+        rentalMemberList.setOnMouseClicked(event -> {
+            final Rental selectedRental = rentalMemberList.getSelectionModel().getSelectedItem();
+            if (selectedRental == null) return;
+
+            final Navigator navigator = new Navigator(rentalMemberList.getScene());
+            navigator.navigateToReturnDetail(selectedRental);
+        });
     }
 
-    private void loadMembers() {
-        final GetRentingMemberUseCase getAllMembers = new GetRentingMemberUseCase();
+    private List<Rental> getRentingMembers(List<Rental> rentals) {
+        return rentals.stream()
+                .collect(Collectors.groupingBy(Rental::getMember))
+                .values()
+                .stream()
+                .map(list -> list.get(0))
+                .collect(Collectors.toList());
+    }
 
+    private void loadRentals() {
         isLoading.set(true);
 
-        getAllMembers.execute().thenAccept(members -> {
+        new GetAllRentalsUseCase().execute().thenAccept(rentals -> {
+            final List<Rental> rentingMembers = getRentingMembers(rentals);
+
             Platform.runLater(() -> {
-                allMembers = members;
-                memberList.getItems().setAll(members);
+                this.rentals = rentals;
+                rentalMemberList.getItems().setAll(rentingMembers);
                 isLoading.set(false);
             });
         }).exceptionally(ex -> {
@@ -60,18 +78,18 @@ public class ReturnController {
         final String keyword = searchField.getText().trim().toLowerCase();
 
         if (keyword.isEmpty()) {
-            memberList.getItems().setAll(allMembers);
+            rentalMemberList.getItems().setAll(rentals);
             return;
         }
 
         final Predicate<Member> matchesKeyword = member ->
                 member.getName().toLowerCase().contains(keyword) ||
-                        member.getId().toLowerCase().contains(keyword);
+                member.getId().toString().toLowerCase().contains(keyword);
 
-        List<Member> filteredMembers = allMembers.stream()
-                .filter(matchesKeyword)
-                .collect(Collectors.toList());
+        List<Rental> filteredRentals = rentals.stream()
+                .filter(rental -> matchesKeyword.test(rental.getMember()))
+                .toList();
 
-        memberList.getItems().setAll(filteredMembers);
+        rentalMemberList.getItems().setAll(filteredRentals);
     }
 }

@@ -17,6 +17,7 @@ import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class RentalCartController {
     @FXML
@@ -50,13 +51,14 @@ public class RentalCartController {
 
         searchField.setOnAction(event -> {
             final String keyword = searchField.getText().trim().toLowerCase();
+            final UUID memberId = UUID.fromString(keyword);
 
             if (keyword.isEmpty()) {
                 memberCard.setVisible(false);
                 return;
             }
 
-            new GetMemberUseCase().execute(keyword).thenAccept(member -> {
+            new GetMemberUseCase().execute(memberId).thenAccept(member -> {
                 if (member == null) {
                     Platform.runLater(() -> {
                         memberCard.setVisible(false);
@@ -67,7 +69,7 @@ public class RentalCartController {
                 Platform.runLater(() -> {
                     rentingMember = member;
                     isFoundMember.set(true);
-                    memberIdLabel.setText(member.getId());
+                    memberIdLabel.setText(member.getId().toString());
                     memberNameLabel.setText(member.getName());
                 });
             });

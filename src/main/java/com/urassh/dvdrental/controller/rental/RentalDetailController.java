@@ -36,7 +36,7 @@ public class RentalDetailController {
         this.goods = goods;
         final String GOODS_DATE = new SimpleDateFormat("yyyy-MM-dd").format(goods.getReleaseDate());
         titleLabel.setText(goods.getTitle());
-        idLabel.setText(goods.getId());
+        idLabel.setText(goods.getId().toString());
         genreLabel.setText(goods.getGenre());
         releaseDateLabel.setText(GOODS_DATE);
         rentalCountLabel.setText(String.valueOf(goods.getLoanCount()));
