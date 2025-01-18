@@ -2,7 +2,7 @@ package com.urassh.dvdrental.controller.returns.detail;
 
 import com.urassh.dvdrental.domain.Money;
 import com.urassh.dvdrental.domain.Rental;
-import com.urassh.dvdrental.usecase.goods.GetRentalsByMemberUseCase;
+import com.urassh.dvdrental.usecase.rental.GetRentalsByMemberUseCase;
 import com.urassh.dvdrental.usecase.rental.RemoveRentalUseCase;
 import com.urassh.dvdrental.util.Navigator;
 import javafx.application.Platform;

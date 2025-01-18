@@ -4,6 +4,7 @@ import com.urassh.dvdrental.domain.Goods;
 
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
@@ -26,14 +27,14 @@ public class GetUnRentingGoodsUseCase {
             CompletableFuture<List<Goods>> goodsFuture = goodsRepository.getAll();
 
             return rentalFuture.thenCombine(goodsFuture, (rentals, goodsList) -> {
-                // 貸出中のGoods IDリストを取得
-                Set<Goods> rentedGoods = rentals.stream()
+                Set<String> rentingGoodsIds = rentals.stream()
                         .map(Rental::getGoods)
+                        .map(Goods::getId)
+                        .map(UUID::toString)
                         .collect(Collectors.toSet());
 
-                // 貸出中ではないGoodsをフィルタリング
                 return goodsList.stream()
-                        .filter(goods -> goods != rentedGoods)
+                        .filter(goods -> !rentingGoodsIds.contains(goods.getId().toString()))
                         .collect(Collectors.toList());
             });
         });

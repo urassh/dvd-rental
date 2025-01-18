@@ -1,4 +1,4 @@
-package com.urassh.dvdrental.usecase.goods;
+package com.urassh.dvdrental.usecase.rental;
 
 import com.urassh.dvdrental.domain.Rental;
 import com.urassh.dvdrental.domain.interfaces.RentalRepository;

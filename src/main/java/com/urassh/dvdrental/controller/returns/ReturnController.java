@@ -3,7 +3,7 @@ package com.urassh.dvdrental.controller.returns;
 
 import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.domain.Rental;
-import com.urassh.dvdrental.usecase.goods.GetAllRentalsUseCase;
+import com.urassh.dvdrental.usecase.rental.GetAllRentalsUseCase;
 import com.urassh.dvdrental.util.Navigator;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;

@@ -2,7 +2,7 @@ package com.urassh.dvdrental.controller.rental;
 
 import com.urassh.dvdrental.domain.Goods;
 import com.urassh.dvdrental.usecase.goods.GetUnRentingGoodsUseCase;
-import com.urassh.dvdrental.usecase.rental.GetRentalCountUseCase;
+import com.urassh.dvdrental.usecase.rental.cart.GetRentalCountUseCase;
 import com.urassh.dvdrental.util.Navigator;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;

@@ -1,7 +1,7 @@
 package com.urassh.dvdrental.controller.rental;
 
 import com.urassh.dvdrental.domain.Goods;
-import com.urassh.dvdrental.usecase.rental.AddToRentalCartUseCase;
+import com.urassh.dvdrental.usecase.rental.cart.AddToRentalCartUseCase;
 import com.urassh.dvdrental.util.Navigator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
