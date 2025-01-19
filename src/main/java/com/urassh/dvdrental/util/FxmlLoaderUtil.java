@@ -15,6 +15,7 @@ public class FxmlLoaderUtil {
         "goods", "goods/view.fxml",
         "goods_new", "goods/new/view.fxml",
         "members", "members/view.fxml",
+        "members_new", "members/new/view.fxml",
         "rental", "rental/view.fxml",
         "return", "return/view.fxml",
         "rental_detail", "rental/detail/view.fxml",

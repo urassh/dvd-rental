@@ -9,16 +9,12 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class MembersController {
-    @FXML
-    private Label title;
-
     @FXML
     private ListView<Member> memberList;
 
@@ -33,10 +29,12 @@ public class MembersController {
 
     private final BooleanProperty isLoading = new SimpleBooleanProperty(false);
     private List<Member> allMembers = new ArrayList<>();
+    private final Navigator navigator;
     private final GetAllMembersUseCase getAllMembersUseCase;
 
     @Inject
-    public MembersController(GetAllMembersUseCase getAllMembersUseCase) {
+    public MembersController(Navigator navigator, GetAllMembersUseCase getAllMembersUseCase) {
+        this.navigator = navigator;
         this.getAllMembersUseCase = getAllMembersUseCase;
     }
 
@@ -51,7 +49,6 @@ public class MembersController {
     }
 
     private void navigateToNew() {
-        Navigator navigator = new Navigator(title.getScene());
         navigator.navigateToMembersNew();
     }
 

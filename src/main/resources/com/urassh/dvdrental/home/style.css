@@ -1,5 +1,5 @@
 /* Labelのスタイル */
-#welcomeText {
+.welcomeText {
     -fx-font-size: 48px;
     -fx-font-weight: bold;
     -fx-text-fill: #333333; /* ダークグレー */

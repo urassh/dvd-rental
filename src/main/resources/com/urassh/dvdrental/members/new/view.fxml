@@ -46,12 +46,11 @@
                         <DatePicker fx:id="birthDateField" promptText="生年月日を入力" styleClass="input-field" />
                     </VBox>
                 </VBox>
-            </center>
-            <right>
+
                 <VBox styleClass="right-display">
                     <Button fx:id="addMemberButton" styleClass="red-button" text="会員を追加" />
                 </VBox>
-            </right>
+            </center>
         </BorderPane>
     </center>
 </BorderPane>
