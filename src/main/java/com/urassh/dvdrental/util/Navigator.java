@@ -1,106 +1,88 @@
 package com.urassh.dvdrental.util;
 
-import com.urassh.dvdrental.RentalApp;
 import com.urassh.dvdrental.controller.rental.RentalDetailController;
 import com.urassh.dvdrental.controller.returns.detail.ReturnDetailController;
 import com.urassh.dvdrental.domain.Goods;
 import com.urassh.dvdrental.domain.Rental;
+import com.urassh.dvdrental.errors.NavigationException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.util.Map;
+
+import java.io.IOException;
 import java.util.function.Consumer;
 
 public class Navigator {
-    private static final Map<String, Integer> WINDOW_SIZE = Map.of(
-            "width", 1440,
-            "height", 1024
-    );
+    private static final int DEFAULT_WIDTH = 1440;
+    private static final int DEFAULT_HEIGHT = 1024;
+    private final Stage stage;
 
-    private static final String[] FXML_PATHS = {
-            "home/view.fxml",
-            "goods/view.fxml",
-            "goods/new/view.fxml",
-            "members/view.fxml",
-            "members/new/view.fxml",
-            "rental/view.fxml",
-            "return/view.fxml",
-            "rental/detail/view.fxml",
-            "rental/cart/view.fxml",
-            "return/detail/view.fxml"
-    };
-    private final Scene fromScene;
-
-    public Navigator(Scene from) {
-        this.fromScene = from;
+    public Navigator(Stage stage) {
+        this.stage = stage;
     }
 
-    private void navigateFxml(String fxmlPath, String title, Consumer<FXMLLoader> consumer) {
+    public void navigateTo(String key, String title) {
+        navigateTo(key, title, null);
+    }
+
+    public void navigateTo(String key, String title, Consumer<FXMLLoader> consumer) {
         try {
-            if (fromScene != null) {
-                fromScene.getWindow().hide();
-            }
-
-            FXMLLoader fxmlLoader = new FXMLLoader(RentalApp.class.getResource(fxmlPath));
-            Scene scene = new Scene(fxmlLoader.load(), WINDOW_SIZE.get("width"), WINDOW_SIZE.get("height"));
-            Stage stage = new Stage();
-
+            final FXMLLoader loader = FxmlLoaderUtil.loadFXML(key);
             if (consumer != null) {
-                consumer.accept(fxmlLoader);
+                consumer.accept(loader);
             }
 
+            final Scene scene = new Scene(loader.getRoot(), DEFAULT_WIDTH, DEFAULT_HEIGHT);
             stage.setScene(scene);
             stage.setTitle(appTitle(title));
             stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException e) {
+            throw new NavigationException("Failed to navigate to " + key, e);
         }
     }
 
-    private void navigateFxml(String fxmlPath, String title) {
-        navigateFxml(fxmlPath, title, null);
-    }
-
     public void navigateToHome() {
-        navigateFxml(FXML_PATHS[0], "Home");
+        navigateTo("home", "Home");
     }
 
     public void navigateToGoods() {
-        navigateFxml(FXML_PATHS[1], "商品情報");
+        navigateTo("goods", "商品情報");
     }
 
     public void navigateToGoodsNew() {
-        navigateFxml(FXML_PATHS[2], "商品追加");
+        navigateTo("goods_new", "商品追加");
     }
 
     public void navigateToMembers() {
-        navigateFxml(FXML_PATHS[3], "会員情報");
+        navigateTo("members", "会員情報");
     }
 
-    public void navigateToMembersNew() { navigateFxml(FXML_PATHS[4], "会員追加"); }
+    public void navigateToMembersNew() {
+        navigateTo("members_new", "会員追加");
+    }
 
     public void navigateToRental() {
-        navigateFxml(FXML_PATHS[5], "貸し出し");
+        navigateTo("rental", "貸し出し");
     }
 
     public void navigateToReturn() {
-        navigateFxml(FXML_PATHS[6], "返却");
+        navigateTo("return", "返却");
     }
 
     public void navigateToRentalDetail(Goods goods) {
-        navigateFxml(FXML_PATHS[7], goods.getTitle(), fxmlLoader -> {
-            RentalDetailController controller = fxmlLoader.getController();
+        navigateTo("rental_detail", goods.getTitle(), loader -> {
+            RentalDetailController controller = loader.getController();
             controller.setGoods(goods);
         });
     }
 
     public void navigateToRentalCart() {
-        navigateFxml(FXML_PATHS[8], "商品カート");
+        navigateTo("rental_cart", "商品カート");
     }
 
     public void navigateToReturnDetail(Rental rental) {
-        navigateFxml(FXML_PATHS[9], "返却詳細", fxmlLoader -> {
-            ReturnDetailController controller = fxmlLoader.getController();
+        navigateTo("return_detail", "返却詳細", loader -> {
+            ReturnDetailController controller = loader.getController();
             controller.setRental(rental);
         });
     }

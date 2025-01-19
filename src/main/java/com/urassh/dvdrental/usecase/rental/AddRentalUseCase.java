@@ -4,11 +4,14 @@ import com.urassh.dvdrental.domain.Goods;
 import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.domain.Rental;
 import com.urassh.dvdrental.domain.interfaces.RentalRepository;
-import com.urassh.dvdrental.infrastructure.RentalDummyRepository;
 import java.util.Date;
 
 public class AddRentalUseCase {
-    private final RentalRepository rentalRepository = new RentalDummyRepository();
+    private final RentalRepository rentalRepository;
+
+    public AddRentalUseCase(RentalRepository rentalRepository) {
+        this.rentalRepository = rentalRepository;
+    }
 
     public void execute(Goods goods, Member member) {
         final Rental rental = new Rental(goods, member, new Date());

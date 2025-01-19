@@ -1,7 +1,6 @@
 package com.urassh.dvdrental.util;
 
 import javafx.fxml.FXMLLoader;
-
 import java.io.IOException;
 import java.util.Map;
 
