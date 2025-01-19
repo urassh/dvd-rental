@@ -54,7 +54,7 @@
 
 .red-button {
     -fx-alignment: center;
-    -fx-background-color: rgb(192,64,64);
+    -fx-background-color: #e86d5f;
     -fx-border-radius:  10px;
     -fx-background-radius: 10px;
     -fx-padding: 12px 36px;

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<?import javafx.scene.control.Button?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.urassh.dvdrental.controller.goods.GoodsDetailController"
+            stylesheets="@style.css">
+    <left>
+        <fx:include source="../../sidebar/view.fxml"/>
+    </left>
+
+    <center>
+        <VBox styleClass="container" spacing="24">
+            <Label fx:id="titleLabel" styleClass="title" />
+
+            <HBox styleClass="card" alignment="CENTER_LEFT" spacing="20">
+                <VBox styleClass="card-column">
+                    <Label text="商品ID" styleClass="card-label" />
+                    <Label text="ジャンル" styleClass="card-label" />
+                    <Label text="発売日" styleClass="card-label" />
+                    <Label text="貸出回数" styleClass="card-label" />
+                    <Label text="保管場所" styleClass="card-label" />
+                    <Label fx:id="isNewLabel" styleClass="card-label" />
+                </VBox>
+
+                <VBox styleClass="card-column">
+                    <Label fx:id="idLabel" styleClass="card-label" />
+                    <Label fx:id="genreLabel" styleClass="card-label" />
+                    <Label fx:id="releaseDateLabel" styleClass="card-label" />
+                    <Label fx:id="rentalCountLabel" styleClass="card-label" />
+                    <Label fx:id="belongToStoreLabel" styleClass="card-label" />
+                </VBox>
+            </HBox>
+            <HBox spacing="20">
+                <Button text="商品を編集" styleClass="blue-button" onAction="#onEdit" />
+                <Button text="商品を削除" styleClass="red-button" onAction="#onRemove" />
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>
