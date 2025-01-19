@@ -53,12 +53,7 @@ public class NewMemberController {
     private void handleButtonClick() {
         final String inputName = nameField.getText();
         final String inputAddress = addressField.getText();
-        final int inputPhoneNumber;
-        try {
-            inputPhoneNumber = Integer.parseInt(phoneNumberField.getText());
-        } catch (final NumberFormatException e) {
-            return;
-        }
+        final String inputPhoneNumber = phoneNumberField.getText();
         final Date inputBirthDate = new DateExtension().fromLocalDate(birthDateField.getValue());
 
         if (inputName.isBlank()) return;
