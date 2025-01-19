@@ -26,6 +26,10 @@ public class Member {
         this.birthDate = birthDate;
     }
 
+    public static Member newMember() {
+        return new Member("", 0, "", new Date());
+    }
+
     public UUID getId() {
         return id;
     }
@@ -44,5 +48,21 @@ public class Member {
 
     public Date getBirthDate() {
         return birthDate;
+    }
+
+    public Member setName(String name) {
+        return new Member(name, phoneNumber, address, birthDate);
+    }
+
+    public Member setPhoneNumber(int phoneNumber) {
+        return new Member(name, phoneNumber, address, birthDate);
+    }
+
+    public Member setAddress(String address) {
+        return new Member(name, phoneNumber, address, birthDate);
+    }
+
+    public Member setBirthDate(Date birthDate) {
+        return new Member(name, phoneNumber, address, birthDate);
     }
 }

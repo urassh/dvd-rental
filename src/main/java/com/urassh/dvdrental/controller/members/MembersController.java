@@ -2,19 +2,22 @@ package com.urassh.dvdrental.controller.members;
 
 import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.usecase.members.GetAllMembersUseCase;
+import com.urassh.dvdrental.util.Navigator;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class MembersController {
+    @FXML
+    private Label title;
+
     @FXML
     private ListView<Member> memberList;
 
@@ -24,15 +27,25 @@ public class MembersController {
     @FXML
     private TextField searchField;
 
+    @FXML
+    private Button newMemberButton;
+
     private final BooleanProperty isLoading = new SimpleBooleanProperty(false);
     private List<Member> allMembers = new ArrayList<>();
 
     public void initialize() {
+        newMemberButton.setOnAction(event -> navigateToNew());
+
         memberList.setCellFactory(listView -> new MemberCell());
         loadingIndicator.visibleProperty().bind(isLoading);
         loadMembers();
 
         searchField.setOnAction(event -> filterMembers());
+    }
+
+    private void navigateToNew() {
+        Navigator navigator = new Navigator(title.getScene());
+        navigator.navigateToMembersNew();
     }
 
     private void loadMembers() {
