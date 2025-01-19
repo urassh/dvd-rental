@@ -10,11 +10,13 @@ import com.urassh.dvdrental.domain.Rental;
 import com.urassh.dvdrental.domain.interfaces.GoodsRepository;
 import com.urassh.dvdrental.domain.interfaces.RentalRepository;
 import com.urassh.dvdrental.infrastructure.GoodsDummyRepository;
+import com.urassh.dvdrental.infrastructure.LocalStore;
 import com.urassh.dvdrental.infrastructure.RentalDummyRepository;
 
 public class GetUnRentingGoodsUseCase {
     private final GoodsRepository goodsRepository = new GoodsDummyRepository();
     private final RentalRepository rentalRepository = new RentalDummyRepository();
+    private final LocalStore localStore = LocalStore.shared;
 
     public CompletableFuture<List<Goods>> execute() {
         return CompletableFuture.allOf(
@@ -33,6 +35,7 @@ public class GetUnRentingGoodsUseCase {
 
                 return goodsList.stream()
                         .filter(goods -> !rentingGoodsIds.contains(goods.getId().toString()))
+                        .filter(goods -> !localStore.getRentalCart().contains(goods))
                         .collect(Collectors.toList());
             });
         });

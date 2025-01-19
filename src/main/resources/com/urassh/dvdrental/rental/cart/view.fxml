@@ -25,7 +25,7 @@
 
                     <ListView fx:id="rentalCartView" styleClass="list-view" />
 
-                    <Button text="貸出カートに追加" styleClass="cart-button" onAction="#onConfirmRental" />
+                    <Button text="貸出確定" styleClass="cart-button" onAction="#onConfirmRental" />
                 </VBox>
 
                 <VBox styleClass="rental-member" spacing="40">
