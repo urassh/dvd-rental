@@ -29,9 +29,12 @@ public class DateExtension {
     }
 
     public Date fromLocalDate(LocalDate localDate) {
-        if (localDate != null) {
-            return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        }
-        return null;
+        if (localDate == null) return null;
+        return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+    }
+
+    public LocalDate toLocalDate() {
+        if (this.date == null) return null;
+        return this.date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
 }

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.DatePicker?>
+
+<?import javafx.scene.control.Button?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.urassh.dvdrental.controller.goods.EditGoodsController"
+            stylesheets="@style.css">
+
+    <left>
+        <fx:include source="../../sidebar/view.fxml"/>
+    </left>
+
+    <center>
+        <BorderPane>
+            <top>
+                <VBox styleClass="header">
+                    <Label text="商品編集画面" fx:id="title"/>
+                </VBox>
+            </top>
+
+            <center>
+                <VBox styleClass="content-group">
+                    <VBox>
+                        <Label text="商品ID(変更できません)" styleClass="label-direction" />
+                        <TextField fx:id="goodsIdField" styleClass="input-field" disable="true"/>
+                    </VBox>
+                    <VBox>
+                        <Label text="タイトル" styleClass="label-direction" />
+                        <TextField fx:id="titleField" promptText="タイトルを入力" styleClass="input-field" />
+                    </VBox>
+                    <VBox>
+                        <Label text="ジャンル" styleClass="label-direction" />
+                        <TextField fx:id="genreField" promptText="ジャンルを入力" styleClass="input-field" />
+                    </VBox>
+                    <VBox>
+                        <Label text="発売日" styleClass="label-direction" />
+                        <DatePicker fx:id="releaseDateField" promptText="発売日を入力" styleClass="input-field" />
+                    </VBox>
+                    <VBox>
+                        <Label text="保管場所" styleClass="label-direction" />
+                        <TextField fx:id="belongToStoreField" promptText="保管場所を入力" styleClass="input-field" />
+                    </VBox>
+                </VBox>
+            </center>
+            <right>
+                <VBox styleClass="right-display">
+                    <Button fx:id="updateGoodsButton" styleClass="red-button" text="編集を確定" />
+                </VBox>
+            </right>
+        </BorderPane>
+    </center>
+</BorderPane>
