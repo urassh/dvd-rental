@@ -20,7 +20,7 @@ public class Navigator {
     private static final String[] FXML_PATHS = {
             "home/view.fxml",
             "goods/view.fxml",
-            "goods/goods_new/view.fxml",
+            "goods/new/view.fxml",
             "members/view.fxml",
             "rental/view.fxml",
             "return/view.fxml",
