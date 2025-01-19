@@ -2,8 +2,6 @@ package com.urassh.dvdrental.module;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
-import com.urassh.dvdrental.domain.interfaces.MemberRepository;
-import com.urassh.dvdrental.infrastructure.MemberDummyRepository;
 import com.urassh.dvdrental.usecase.members.*;
 
 public class MemberModule extends AbstractModule {

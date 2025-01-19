@@ -2,8 +2,6 @@ package com.urassh.dvdrental.module;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
-import com.urassh.dvdrental.domain.interfaces.RentalRepository;
-import com.urassh.dvdrental.infrastructure.RentalDummyRepository;
 import com.urassh.dvdrental.usecase.rental.AddRentalUseCase;
 import com.urassh.dvdrental.usecase.rental.GetRentalsByMemberUseCase;
 import com.urassh.dvdrental.usecase.rental.RemoveRentalUseCase;
