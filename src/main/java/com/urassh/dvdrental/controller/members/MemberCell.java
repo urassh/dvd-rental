@@ -14,7 +14,7 @@ public class MemberCell extends ListCell<Member> {
 
     public MemberCell() {
         try {
-            FXMLLoader loader = new FXMLLoader(RentalApp.class.getResource("members/member_cell/component.fxml"));
+            FXMLLoader loader = new FXMLLoader(RentalApp.class.getResource("members/cell/component.fxml"));
             content = loader.load();
             controller = loader.getController();
         } catch (IOException e) {

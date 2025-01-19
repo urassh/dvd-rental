@@ -14,7 +14,7 @@ public class ReturnCell extends ListCell<Rental> {
 
     public ReturnCell() {
         try {
-            FXMLLoader loader = new FXMLLoader(RentalApp.class.getResource("return/return_cell/component.fxml"));
+            FXMLLoader loader = new FXMLLoader(RentalApp.class.getResource("return/cell/component.fxml"));
             content = loader.load();
             controller = loader.getController();
         } catch (IOException e) {
