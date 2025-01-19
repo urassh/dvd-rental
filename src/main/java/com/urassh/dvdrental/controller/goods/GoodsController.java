@@ -1,7 +1,6 @@
 package com.urassh.dvdrental.controller.goods;
 
 import com.google.inject.Inject;
-import com.urassh.dvdrental.controller.rental.RentalCell;
 import com.urassh.dvdrental.domain.Goods;
 import com.urassh.dvdrental.usecase.goods.GetAllGoodsUseCase;
 import com.urassh.dvdrental.util.Navigator;
@@ -32,7 +31,7 @@ public class GoodsController {
     @FXML
     private TextField searchField;
 
-    private List<Goods> goods = new ArrayList<>();
+    private List<Goods> allGoods = new ArrayList<>();
     private final BooleanProperty isLoading = new SimpleBooleanProperty(false);
     private final Navigator navigator;
     private final GetAllGoodsUseCase getAllGoodsUseCase;
@@ -45,7 +44,7 @@ public class GoodsController {
 
     @FXML
     protected void initialize() {
-        goodsList.setCellFactory(listView -> new RentalCell());
+        goodsList.setCellFactory(listView -> new GoodsCell());
         loadingIndicator.visibleProperty().bind(isLoading);
 
         loadGoods();
@@ -65,7 +64,7 @@ public class GoodsController {
 
         getAllGoodsUseCase.execute().thenAccept(result -> {
             Platform.runLater(() -> {
-                goods = result;
+                allGoods = result;
                 goodsList.getItems().setAll(result);
                 isLoading.set(false);
             });
@@ -80,7 +79,7 @@ public class GoodsController {
         final String keyword = searchField.getText().trim().toLowerCase();
 
         if (keyword.isEmpty()) {
-            goodsList.getItems().setAll(goods);
+            goodsList.getItems().setAll(allGoods);
             return;
         }
 
@@ -88,7 +87,7 @@ public class GoodsController {
                 good.getTitle().toLowerCase().contains(keyword) ||
                 good.getId().toString().toLowerCase().contains(keyword);
 
-        List<Goods> filteredMembers = goods.stream()
+        List<Goods> filteredMembers = allGoods.stream()
                 .filter(matchesKeyword)
                 .collect(Collectors.toList());
 
