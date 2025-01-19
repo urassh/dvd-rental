@@ -1,8 +1,5 @@
 package com.urassh.dvdrental.domain;
 
-import com.urassh.dvdrental.domain.interfaces.GoodsRepository;
-import com.urassh.dvdrental.infrastructure.GoodsDummyRepository;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;

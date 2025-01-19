@@ -27,4 +27,5 @@ module com.urassh.dvdrental {
     opens com.urassh.dvdrental.controller.sidebar to javafx.fxml;
     opens com.urassh.dvdrental.controller.returns to javafx.fxml;
     opens com.urassh.dvdrental.controller.returns.detail to javafx.fxml;
+    exports com.urassh.dvdrental.infrastructure.dummy to com.google.guice;
 }
