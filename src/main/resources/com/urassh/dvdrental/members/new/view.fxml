@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.DatePicker?>
+
+<?import javafx.scene.control.Button?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.urassh.dvdrental.controller.members.NewMemberController"
+            stylesheets="@style.css">
+
+    <left>
+        <fx:include source="../../sidebar/view.fxml"/>
+    </left>
+
+    <center>
+        <BorderPane>
+            <top>
+                <VBox styleClass="header">
+                    <Label text="会員追加画面" fx:id="title"/>
+                </VBox>
+            </top>
+
+            <center>
+                <VBox styleClass="content-group">
+                    <VBox>
+                        <Label text="会員ID(変更できません)" styleClass="label-direction" />
+                        <TextField fx:id="memberIdField" styleClass="input-field" disable="true"/>
+                    </VBox>
+                    <VBox>
+                        <Label text="氏名" styleClass="label-direction" />
+                        <TextField fx:id="nameField" promptText="氏名を入力" styleClass="input-field" />
+                    </VBox>
+                    <VBox>
+                        <Label text="住所" styleClass="label-direction" />
+                        <TextField fx:id="addressField" promptText="住所を入力" styleClass="input-field" />
+                    </VBox>
+                    <VBox>
+                        <Label text="電話番号" styleClass="label-direction" />
+                        <TextField fx:id="phoneNumberField" promptText="電話番号を入力" styleClass="input-field" />
+                    </VBox>
+                    <VBox>
+                        <Label text="生年月日" styleClass="label-direction" />
+                        <DatePicker fx:id="birthDateField" promptText="生年月日を入力" styleClass="input-field" />
+                    </VBox>
+                </VBox>
+            </center>
+            <right>
+                <VBox styleClass="right-display">
+                    <Button fx:id="addMemberButton" styleClass="red-button" text="会員を追加" />
+                </VBox>
+            </right>
+        </BorderPane>
+    </center>
+</BorderPane>
