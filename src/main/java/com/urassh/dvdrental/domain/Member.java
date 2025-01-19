@@ -6,11 +6,11 @@ import java.util.UUID;
 public class Member {
     private final UUID id;
     private final String name;
-    private final int phoneNumber;
+    private final String phoneNumber;
     private final String address;
     private final Date birthDate;
 
-    public Member(UUID id, String name, int phoneNumber, String address, Date birthDate) {
+    public Member(UUID id, String name, String phoneNumber, String address, Date birthDate) {
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -18,7 +18,7 @@ public class Member {
         this.birthDate = birthDate;
     }
 
-    public Member(String name, int phoneNumber, String address, Date birthDate) {
+    public Member(String name, String phoneNumber, String address, Date birthDate) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -27,7 +27,7 @@ public class Member {
     }
 
     public static Member newMember() {
-        return new Member("", 0, "", new Date());
+        return new Member("", "", "", new Date());
     }
 
     public UUID getId() {
@@ -38,7 +38,7 @@ public class Member {
         return name;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
@@ -54,7 +54,7 @@ public class Member {
         return new Member(name, phoneNumber, address, birthDate);
     }
 
-    public Member setPhoneNumber(int phoneNumber) {
+    public Member setPhoneNumber(String phoneNumber) {
         return new Member(name, phoneNumber, address, birthDate);
     }
 
