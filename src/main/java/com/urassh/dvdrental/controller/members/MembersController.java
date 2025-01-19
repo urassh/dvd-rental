@@ -1,5 +1,6 @@
 package com.urassh.dvdrental.controller.members;
 
+import com.google.inject.Inject;
 import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.usecase.members.GetAllMembersUseCase;
 import com.urassh.dvdrental.util.Navigator;
@@ -8,16 +9,12 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class MembersController {
-    @FXML
-    private Label title;
-
     @FXML
     private ListView<Member> memberList;
 
@@ -32,6 +29,14 @@ public class MembersController {
 
     private final BooleanProperty isLoading = new SimpleBooleanProperty(false);
     private List<Member> allMembers = new ArrayList<>();
+    private final Navigator navigator;
+    private final GetAllMembersUseCase getAllMembersUseCase;
+
+    @Inject
+    public MembersController(Navigator navigator, GetAllMembersUseCase getAllMembersUseCase) {
+        this.navigator = navigator;
+        this.getAllMembersUseCase = getAllMembersUseCase;
+    }
 
     public void initialize() {
         newMemberButton.setOnAction(event -> navigateToNew());
@@ -44,16 +49,13 @@ public class MembersController {
     }
 
     private void navigateToNew() {
-        Navigator navigator = new Navigator(title.getScene());
         navigator.navigateToMembersNew();
     }
 
     private void loadMembers() {
-        final GetAllMembersUseCase getAllMembers = new GetAllMembersUseCase();
-
         isLoading.set(true);
 
-        getAllMembers.execute().thenAccept(members -> {
+        getAllMembersUseCase.execute().thenAccept(members -> {
             Platform.runLater(() -> {
                 allMembers = members;
                 memberList.getItems().setAll(members);

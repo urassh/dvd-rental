@@ -1,5 +1,6 @@
 package com.urassh.dvdrental.controller.rental;
 
+import com.google.inject.Inject;
 import com.urassh.dvdrental.domain.Goods;
 import com.urassh.dvdrental.usecase.goods.GetUnRentingGoodsUseCase;
 import com.urassh.dvdrental.usecase.rental.cart.GetRentalCountUseCase;
@@ -13,7 +14,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -36,8 +36,15 @@ public class RentalController {
     private StackPane cart;
 
     private List<Goods> rentalGoods = new ArrayList<>();
-
     private final BooleanProperty isLoading = new SimpleBooleanProperty(false);
+    private final Navigator navigator;
+    private final GetUnRentingGoodsUseCase getUnRentingGoodsUseCase;
+
+    @Inject
+    public RentalController(Navigator navigator, GetUnRentingGoodsUseCase getUnRentingGoodsUseCase) {
+        this.navigator = navigator;
+        this.getUnRentingGoodsUseCase = getUnRentingGoodsUseCase;
+    }
 
     public void initialize() {
         final int rentalCount = new GetRentalCountUseCase().execute();
@@ -54,22 +61,18 @@ public class RentalController {
                 return;
             }
 
-            final Navigator navigator = new Navigator(rentalList.getScene());
             navigator.navigateToRentalDetail(selectedGoods);
         });
 
         cart.setOnMouseClicked(event -> {
-            final Navigator navigator = new Navigator(cart.getScene());
             navigator.navigateToRentalCart();
         });
     }
 
     private void loadRentals() {
-        final GetUnRentingGoodsUseCase getAllRentals = new GetUnRentingGoodsUseCase();
-
         isLoading.set(true);
 
-        getAllRentals.execute().thenAccept(rentals -> {
+        getUnRentingGoodsUseCase.execute().thenAccept(rentals -> {
             Platform.runLater(() -> {
                 rentalGoods = rentals;
                 rentalList.getItems().setAll(rentals);

@@ -1,5 +1,6 @@
 package com.urassh.dvdrental.controller.goods;
 
+import com.google.inject.Inject;
 import com.urassh.dvdrental.domain.Goods;
 import com.urassh.dvdrental.usecase.goods.AddGoodsUseCase;
 import com.urassh.dvdrental.util.DateExtension;
@@ -36,6 +37,15 @@ public class NewGoodsController {
 
     private Goods newGoods;
 
+    private final Navigator navigator;
+    private final AddGoodsUseCase addGoodsUseCase;
+
+    @Inject
+    public NewGoodsController(Navigator navigator, AddGoodsUseCase addGoodsUseCase) {
+        this.navigator = navigator;
+        this.addGoodsUseCase = addGoodsUseCase;
+    }
+
     @FXML
     protected void initialize() {
         addGoodsButton.setOnAction(event -> handleButtonClick());
@@ -60,8 +70,7 @@ public class NewGoodsController {
         newGoods = newGoods.setReleaseDate(inputReleaseDate);
         newGoods = newGoods.setBelongToStore(belongToStoreField.getText());
 
-        new AddGoodsUseCase().execute(newGoods);
-        Navigator navigator = new Navigator(title.getScene());
+        addGoodsUseCase.execute(newGoods);
         navigator.navigateToGoods();
     }
 }

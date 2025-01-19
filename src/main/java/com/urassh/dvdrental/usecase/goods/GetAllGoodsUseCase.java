@@ -1,13 +1,18 @@
 package com.urassh.dvdrental.usecase.goods;
 
+import com.google.inject.Inject;
 import com.urassh.dvdrental.domain.Goods;
 import com.urassh.dvdrental.domain.interfaces.GoodsRepository;
-import com.urassh.dvdrental.infrastructure.GoodsDummyRepository;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class GetAllGoodsUseCase {
-    private final GoodsRepository goodsRepository = new GoodsDummyRepository();
+    private final GoodsRepository goodsRepository;
+
+    @Inject
+    public GetAllGoodsUseCase(GoodsRepository goodsRepository) {
+        this.goodsRepository = goodsRepository;
+    }
 
     public CompletableFuture<List<Goods>> execute() {
         return goodsRepository.getAll();

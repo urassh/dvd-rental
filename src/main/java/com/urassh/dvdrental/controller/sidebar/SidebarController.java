@@ -1,5 +1,6 @@
 package com.urassh.dvdrental.controller.sidebar;
 
+import com.google.inject.Inject;
 import com.urassh.dvdrental.util.Navigator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -33,6 +34,13 @@ public class SidebarController {
         menuItems.forEach(button -> button.setOnAction(event -> handleButtonClick(button)));
     }
 
+    private final Navigator navigator;
+
+    @Inject
+    public SidebarController(Navigator navigator) {
+        this.navigator = navigator;
+    }
+
     private void handleButtonClick(Button clickedButton) {
         menuItems.forEach(button -> button.getStyleClass().remove("active"));
 
@@ -44,7 +52,6 @@ public class SidebarController {
     }
 
     private void navigateTo(String buttonId) {
-        Navigator navigator = new Navigator(title.getScene());
         switch (buttonId) {
             case "rentalButton":
                 navigator.navigateToRental();

@@ -1,5 +1,6 @@
 package com.urassh.dvdrental.controller.members;
 
+import com.google.inject.Inject;
 import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.usecase.members.AddMemberUseCase;
 import com.urassh.dvdrental.util.DateExtension;
@@ -7,15 +8,11 @@ import com.urassh.dvdrental.util.Navigator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.util.Date;
 
 public class NewMemberController {
-    @FXML
-    private Label title;
-
     @FXML
     private TextField memberIdField;
 
@@ -35,6 +32,15 @@ public class NewMemberController {
     private Button addMemberButton;
 
     private Member newMember;
+
+    private final Navigator navigator;
+    private final AddMemberUseCase addMemberUseCase;
+
+    @Inject
+    public NewMemberController(Navigator navigator, AddMemberUseCase addMemberUseCase) {
+        this.navigator = navigator;
+        this.addMemberUseCase = addMemberUseCase;
+    }
 
     @FXML
     protected void initialize() {
@@ -64,8 +70,7 @@ public class NewMemberController {
         newMember = newMember.setBirthDate(inputBirthDate);
         newMember = newMember.setPhoneNumber(inputPhoneNumber);
 
-        new AddMemberUseCase().execute(newMember);
-        Navigator navigator = new Navigator(title.getScene());
+        addMemberUseCase.execute(newMember);
         navigator.navigateToMembers();
     }
 }

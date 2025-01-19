@@ -5,18 +5,23 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
+import com.google.inject.Inject;
 import com.urassh.dvdrental.domain.Goods;
 import com.urassh.dvdrental.domain.Rental;
 import com.urassh.dvdrental.domain.interfaces.GoodsRepository;
 import com.urassh.dvdrental.domain.interfaces.RentalRepository;
-import com.urassh.dvdrental.infrastructure.GoodsDummyRepository;
 import com.urassh.dvdrental.infrastructure.LocalStore;
-import com.urassh.dvdrental.infrastructure.RentalDummyRepository;
 
 public class GetUnRentingGoodsUseCase {
-    private final GoodsRepository goodsRepository = new GoodsDummyRepository();
-    private final RentalRepository rentalRepository = new RentalDummyRepository();
+    private final GoodsRepository goodsRepository;
+    private final RentalRepository rentalRepository;
     private final LocalStore localStore = LocalStore.shared;
+
+    @Inject
+    public GetUnRentingGoodsUseCase(GoodsRepository goodsRepository, RentalRepository rentalRepository) {
+        this.goodsRepository = goodsRepository;
+        this.rentalRepository = rentalRepository;
+    }
 
     public CompletableFuture<List<Goods>> execute() {
         return CompletableFuture.allOf(

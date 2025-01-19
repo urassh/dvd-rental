@@ -1,11 +1,11 @@
 package com.urassh.dvdrental.controller.rental;
 
+import com.google.inject.Inject;
 import com.urassh.dvdrental.domain.Goods;
 import com.urassh.dvdrental.usecase.rental.cart.AddToRentalCartUseCase;
 import com.urassh.dvdrental.util.Navigator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-
 import java.text.SimpleDateFormat;
 
 public class RentalDetailController {
@@ -32,6 +32,13 @@ public class RentalDetailController {
 
     private Goods goods;
 
+    private final Navigator navigator;
+
+    @Inject
+    public RentalDetailController(Navigator navigator) {
+        this.navigator = navigator;
+    }
+
     public void setGoods(Goods goods) {
         this.goods = goods;
         final String GOODS_DATE = new SimpleDateFormat("yyyy-MM-dd").format(goods.getReleaseDate());
@@ -46,8 +53,6 @@ public class RentalDetailController {
 
     public void onAddToCart() {
         new AddToRentalCartUseCase().execute(goods);
-        Navigator navigator = new Navigator(titleLabel.getScene());
-
         navigator.navigateToRental();
     }
 }
