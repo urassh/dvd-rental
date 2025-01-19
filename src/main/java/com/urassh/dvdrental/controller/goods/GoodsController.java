@@ -54,6 +54,7 @@ public class GoodsController {
         goodsList.setOnMouseClicked(event -> {
             final Goods selectedGoods = goodsList.getSelectionModel().getSelectedItem();
             if (selectedGoods == null) return;
+            navigator.navigateToGoodsDetail(selectedGoods);
         });
 
         newGoodsButton.setOnAction(event -> navigator.navigateToGoodsNew());
