@@ -8,17 +8,18 @@ import com.urassh.dvdrental.errors.NavigationException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.function.Consumer;
 
 public class Navigator {
     private static final int DEFAULT_WIDTH = 1440;
     private static final int DEFAULT_HEIGHT = 1024;
+    private final FxmlLoaderUtil loaderUtil;
     private final Stage stage;
 
-    public Navigator(Stage stage) {
+    public Navigator(Stage stage, FxmlLoaderUtil loaderUtil) {
         this.stage = stage;
+        this.loaderUtil = loaderUtil;
     }
 
     public void navigateTo(String key, String title) {
@@ -27,7 +28,7 @@ public class Navigator {
 
     public void navigateTo(String key, String title, Consumer<FXMLLoader> consumer) {
         try {
-            final FXMLLoader loader = FxmlLoaderUtil.loadFXML(key);
+            final FXMLLoader loader = loaderUtil.loadFXML(key);
             if (consumer != null) {
                 consumer.accept(loader);
             }

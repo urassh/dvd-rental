@@ -4,7 +4,6 @@ import com.google.inject.Inject;
 import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.domain.Rental;
 import com.urassh.dvdrental.domain.interfaces.RentalRepository;
-import com.urassh.dvdrental.infrastructure.RentalDummyRepository;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 

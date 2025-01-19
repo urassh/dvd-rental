@@ -1,5 +1,6 @@
 package com.urassh.dvdrental.controller.members;
 
+import com.google.inject.Inject;
 import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.usecase.members.GetAllMembersUseCase;
 import com.urassh.dvdrental.util.Navigator;
@@ -32,6 +33,12 @@ public class MembersController {
 
     private final BooleanProperty isLoading = new SimpleBooleanProperty(false);
     private List<Member> allMembers = new ArrayList<>();
+    private final GetAllMembersUseCase getAllMembersUseCase;
+
+    @Inject
+    public MembersController(GetAllMembersUseCase getAllMembersUseCase) {
+        this.getAllMembersUseCase = getAllMembersUseCase;
+    }
 
     public void initialize() {
         newMemberButton.setOnAction(event -> navigateToNew());
@@ -49,11 +56,9 @@ public class MembersController {
     }
 
     private void loadMembers() {
-        final GetAllMembersUseCase getAllMembers = new GetAllMembersUseCase();
-
         isLoading.set(true);
 
-        getAllMembers.execute().thenAccept(members -> {
+        getAllMembersUseCase.execute().thenAccept(members -> {
             Platform.runLater(() -> {
                 allMembers = members;
                 memberList.getItems().setAll(members);

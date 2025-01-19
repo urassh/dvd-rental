@@ -1,9 +1,6 @@
 package com.urassh.dvdrental.controller.goods;
 
-import com.google.inject.Guice;
 import com.google.inject.Inject;
-import com.google.inject.Injector;
-import com.urassh.dvdrental.di.AppModule;
 import com.urassh.dvdrental.domain.Goods;
 import com.urassh.dvdrental.usecase.goods.AddGoodsUseCase;
 import com.urassh.dvdrental.util.DateExtension;
@@ -40,10 +37,12 @@ public class NewGoodsController {
 
     private Goods newGoods;
 
+    private final Navigator navigator;
     private final AddGoodsUseCase addGoodsUseCase;
 
     @Inject
-    public NewGoodsController(AddGoodsUseCase addGoodsUseCase) {
+    public NewGoodsController(Navigator navigator, AddGoodsUseCase addGoodsUseCase) {
+        this.navigator = navigator;
         this.addGoodsUseCase = addGoodsUseCase;
     }
 
@@ -72,7 +71,6 @@ public class NewGoodsController {
         newGoods = newGoods.setBelongToStore(belongToStoreField.getText());
 
         addGoodsUseCase.execute(newGoods);
-        Navigator navigator = new Navigator(title.getScene());
         navigator.navigateToGoods();
     }
 }

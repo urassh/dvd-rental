@@ -1,5 +1,6 @@
 package com.urassh.dvdrental.controller.rental;
 
+import com.google.inject.Inject;
 import com.urassh.dvdrental.domain.Goods;
 import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.domain.Money;
@@ -46,6 +47,17 @@ public class RentalCartController {
     private Member rentingMember;
     private final BooleanProperty isFoundMember = new SimpleBooleanProperty(false);
 
+    private final Navigator navigator;
+    private final GetMemberUseCase getMemberUseCase;
+    private final AddRentalUseCase addRentalUseCase;
+
+    @Inject
+    public RentalCartController(Navigator navigator, GetMemberUseCase getMemberUseCase, AddRentalUseCase addRentalUseCase) {
+        this.navigator = navigator;
+        this.getMemberUseCase = getMemberUseCase;
+        this.addRentalUseCase = addRentalUseCase;
+    }
+
     public void initialize() {
         memberCard.visibleProperty().bind(isFoundMember);
 
@@ -61,7 +73,7 @@ public class RentalCartController {
                 return;
             }
 
-            new GetMemberUseCase().execute(memberId).thenAccept(member -> {
+            getMemberUseCase.execute(memberId).thenAccept(member -> {
                 if (member == null) {
                     Platform.runLater(() -> {
                         memberCard.setVisible(false);
@@ -84,12 +96,10 @@ public class RentalCartController {
         if (rentalCart.isEmpty()) return;
 
         for (Goods goods : rentalCart) {
-            new AddRentalUseCase().execute(goods, rentingMember);
+            addRentalUseCase.execute(goods, rentingMember);
         }
 
         new ClearRentalCartUseCase().execute();
-
-        Navigator navigator = new Navigator(sumLabel.getScene());
         navigator.navigateToRental();
     }
 

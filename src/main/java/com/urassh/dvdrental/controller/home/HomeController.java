@@ -1,16 +1,27 @@
 package com.urassh.dvdrental.controller.home;
 
+import com.google.inject.Inject;
 import com.urassh.dvdrental.util.Navigator;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 
 public class HomeController {
     @FXML
-    private Label welcomeText;
+    public Button button;
+
+    private final Navigator navigator;
+
+    @Inject
+    public HomeController(Navigator navigator) {
+        this.navigator = navigator;
+    }
 
     @FXML
-    protected void onHelloButtonClick() {
-        Navigator navigator = new Navigator(welcomeText.getScene());
+    protected void initialize() {
+        button.setOnAction(event -> onHelloButtonClick());
+    }
+
+    private void onHelloButtonClick() {
         navigator.navigateToRental();
     }
 }

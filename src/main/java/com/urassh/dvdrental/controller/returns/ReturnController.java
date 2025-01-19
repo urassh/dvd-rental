@@ -1,6 +1,6 @@
 package com.urassh.dvdrental.controller.returns;
 
-
+import com.google.inject.Inject;
 import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.domain.Rental;
 import com.urassh.dvdrental.usecase.rental.GetAllRentalsUseCase;
@@ -12,7 +12,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -30,6 +29,14 @@ public class ReturnController {
 
     private final BooleanProperty isLoading = new SimpleBooleanProperty(false);
     private List<Rental> rentals = new ArrayList<>();
+    private final Navigator navigator;
+    private final GetAllRentalsUseCase getAllRentalsUseCase;
+
+    @Inject
+    public ReturnController(Navigator navigator, GetAllRentalsUseCase getAllRentalsUseCase) {
+        this.navigator = navigator;
+        this.getAllRentalsUseCase = getAllRentalsUseCase;
+    }
 
     public void initialize() {
         rentalMemberList.setCellFactory(listView -> new ReturnCell());
@@ -42,7 +49,6 @@ public class ReturnController {
             final Rental selectedRental = rentalMemberList.getSelectionModel().getSelectedItem();
             if (selectedRental == null) return;
 
-            final Navigator navigator = new Navigator(rentalMemberList.getScene());
             navigator.navigateToReturnDetail(selectedRental);
         });
     }
@@ -59,7 +65,7 @@ public class ReturnController {
     private void loadRentals() {
         isLoading.set(true);
 
-        new GetAllRentalsUseCase().execute().thenAccept(rentals -> {
+        getAllRentalsUseCase.execute().thenAccept(rentals -> {
             final List<Rental> rentingMembers = getRentingMembers(rentals);
 
             Platform.runLater(() -> {

@@ -1,5 +1,6 @@
 package com.urassh.dvdrental.usecase.rental;
 
+import com.google.inject.Inject;
 import com.urassh.dvdrental.domain.Goods;
 import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.domain.Rental;
@@ -9,6 +10,7 @@ import java.util.Date;
 public class AddRentalUseCase {
     private final RentalRepository rentalRepository;
 
+    @Inject
     public AddRentalUseCase(RentalRepository rentalRepository) {
         this.rentalRepository = rentalRepository;
     }
