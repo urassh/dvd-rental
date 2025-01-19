@@ -21,7 +21,7 @@ public class RentalCartCellController {
     private Button cancelButton;
 
     public void setGoods(Goods goods, Consumer<Goods> cancelAction) {
-        final String GOODS_ID = goods.getId();
+        final String GOODS_ID = goods.getId().toString();
         final String GOODS_TITLE = goods.getTitle();
         final int GOODS_PRICE = goods.getFee().getValue();
 

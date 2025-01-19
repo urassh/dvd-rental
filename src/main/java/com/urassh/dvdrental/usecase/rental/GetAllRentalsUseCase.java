@@ -1,17 +1,15 @@
 package com.urassh.dvdrental.usecase.rental;
 
-import com.urassh.dvdrental.domain.Goods;
-import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.domain.Rental;
 import com.urassh.dvdrental.domain.interfaces.RentalRepository;
 import com.urassh.dvdrental.infrastructure.RentalDummyRepository;
-import java.util.Date;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
-public class AddRentalUseCase {
+public class GetAllRentalsUseCase {
     private final RentalRepository rentalRepository = new RentalDummyRepository();
 
-    public void execute(Goods goods, Member member) {
-        final Rental rental = new Rental(goods, member, new Date());
-        rentalRepository.add(rental);
+    public CompletableFuture<List<Rental>> execute() {
+        return rentalRepository.getAll();
     }
 }

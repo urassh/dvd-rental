@@ -3,7 +3,6 @@ package com.urassh.dvdrental.usecase.members;
 import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.domain.interfaces.MemberRepository;
 import com.urassh.dvdrental.infrastructure.MemberDummyRepository;
-
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 

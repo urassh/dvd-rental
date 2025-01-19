@@ -1,20 +1,14 @@
 package com.urassh.dvdrental.infrastructure;
 
+import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.domain.Rental;
 import com.urassh.dvdrental.domain.interfaces.RentalRepository;
-
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class RentalDummyRepository implements RentalRepository {
-    private static List<Rental> rentalList = new ArrayList<>(List.of(
-            new Rental("1", "1", "1", new Date(90, Calendar.JANUARY, 1)), // 年は1900年基準
-            new Rental("2", "2", "1", new Date(90, Calendar.JANUARY, 1)),
-            new Rental("3", "3", "2", new Date(90, Calendar.JANUARY, 1))
-    ));
+    private static List<Rental> rentalList = new ArrayList<>(List.of());
 
     @Override
     public CompletableFuture<List<Rental>> getAll() {
@@ -29,7 +23,7 @@ public class RentalDummyRepository implements RentalRepository {
     }
 
     @Override
-    public CompletableFuture<Rental> getById(String id) {
+    public CompletableFuture<List<Rental>> getByMember(Member member) {
         return CompletableFuture.supplyAsync(() -> {
             try {
                 Thread.sleep(2000);
@@ -37,48 +31,13 @@ public class RentalDummyRepository implements RentalRepository {
                 throw new RuntimeException(e);
             }
 
+            List<Rental> memberRentalList = new ArrayList<>();
             for (Rental rental : rentalList) {
-                if (rental.getId().equals(id)) {
-                    return rental;
+                if (rental.getMember().getId().equals(member.getId())) {
+                    memberRentalList.add(rental);
                 }
             }
-            return null;
-        });
-    }
-
-    @Override
-    public CompletableFuture<Rental> getByGoodsId(String goodsId) {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-
-            for (Rental rental : rentalList) {
-                if (rental.getGoodsId().equals(goodsId)) {
-                    return rental;
-                }
-            }
-            return null;
-        });
-    }
-
-    @Override
-    public CompletableFuture<Rental> getByMemberId(String memberId) {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                Thread.sleep(2000); // Simulate delay
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-
-            for (Rental rental : rentalList) {
-                if (rental.getMemberId().equals(memberId)) {
-                    return rental;
-                }
-            }
-            return null;
+            return memberRentalList;
         });
     }
 

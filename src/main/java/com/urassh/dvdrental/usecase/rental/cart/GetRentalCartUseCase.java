@@ -1,8 +1,7 @@
-package com.urassh.dvdrental.usecase.rental;
+package com.urassh.dvdrental.usecase.rental.cart;
 
 import com.urassh.dvdrental.domain.Goods;
 import com.urassh.dvdrental.infrastructure.LocalStore;
-
 import java.util.List;
 
 public class GetRentalCartUseCase {

@@ -2,9 +2,11 @@ package com.urassh.dvdrental.domain;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
+import java.util.UUID;
 
 public class Goods {
-    private final String id;
+    private final UUID id;
     private final String title;
     private final Date releaseDate;
     private final String genre;
@@ -15,8 +17,18 @@ public class Goods {
     private static final Money NEW_FEE = new Money(300);
     private static final Money OLD_FEE = new Money(100);
 
-    public Goods(String id, String title, Date releaseDate, String genre, String belongToStore, int loanCount, boolean isDisplayed) {
+    public Goods(UUID id, String title, Date releaseDate, String genre, String belongToStore, int loanCount, boolean isDisplayed) {
         this.id = id;
+        this.title = title;
+        this.releaseDate = releaseDate;
+        this.genre = genre;
+        this.belongToStore = belongToStore;
+        this.loanCount = loanCount;
+        this.isDisplayed = isDisplayed;
+    }
+
+    public Goods(String title, Date releaseDate, String genre, String belongToStore, int loanCount, boolean isDisplayed) {
+        this.id = UUID.randomUUID();
         this.title = title;
         this.releaseDate = releaseDate;
         this.genre = genre;
@@ -36,7 +48,7 @@ public class Goods {
         return releaseDate.after(sixMonthsAgo);
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
@@ -62,5 +74,13 @@ public class Goods {
 
     public boolean isDisplayed() {
         return isDisplayed;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Goods goods = (Goods) obj;
+        return Objects.equals(id, goods.id);
     }
 }

@@ -7,7 +7,6 @@ import java.util.concurrent.CompletableFuture;
 
 public interface GoodsRepository {
     CompletableFuture<List<Goods>> getAll();
-    CompletableFuture<Goods> getById(String id);
     CompletableFuture<Void> add(Goods goods);
     CompletableFuture<Void> update(Goods goods);
     CompletableFuture<Void> delete(Goods goods);

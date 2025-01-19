@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Button?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.urassh.dvdrental.controller.returns.detail.ReturnDetailController"
+            stylesheets="@style.css">
+    <left>
+        <fx:include source="../../sidebar/view.fxml"/>
+    </left>
+
+    <center>
+        <VBox styleClass="container" spacing="24">
+            <Label styleClass="title" text="商品カート" />
+
+            <HBox spacing="40">
+                <VBox styleClass="cart" spacing="40">
+                    <Label fx:id="lateFeeLabel" styleClass="sub-title" />
+
+                    <ListView fx:id="rentingGoodsView" styleClass="list-view" />
+
+                    <Button text="返却確定" styleClass="cart-button" onAction="#onConfirmReturn" />
+                </VBox>
+
+                <VBox styleClass="rental-member" spacing="40">
+                    <Label styleClass="sub-title" text="貸し出し会員" />
+
+                    <VBox styleClass="member-info">
+                        <Label fx:id="memberIdLabel" styleClass="member" />
+                        <Label fx:id="memberNameLabel" styleClass="member" />
+                    </VBox>
+                </VBox>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

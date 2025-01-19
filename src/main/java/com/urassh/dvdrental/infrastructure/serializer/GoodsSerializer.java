@@ -14,7 +14,7 @@ public class GoodsSerializer implements Serializer<Goods> {
 
     @Override
     public void serialize(@NotNull DataOutput2 dataOutput2, @NotNull Goods goods) throws IOException {
-        dataOutput2.writeUTF(goods.getId());
+        dataOutput2.writeUTF(goods.getId().toString());
         dataOutput2.writeUTF(goods.getTitle());
         dataOutput2.writeLong(goods.getReleaseDate().getTime());
         dataOutput2.writeUTF(goods.getGenre());
@@ -25,7 +25,7 @@ public class GoodsSerializer implements Serializer<Goods> {
 
     @Override
     public Goods deserialize(@NotNull DataInput2 dataInput2, int i) throws IOException {
-        String id = dataInput2.readUTF();
+        java.util.UUID id = java.util.UUID.fromString(dataInput2.readUTF());
         String title = dataInput2.readUTF();
         Date releaseDate = new Date(dataInput2.readLong());
         String genre = dataInput2.readUTF();

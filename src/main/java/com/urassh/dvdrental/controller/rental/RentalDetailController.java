@@ -1,7 +1,7 @@
 package com.urassh.dvdrental.controller.rental;
 
 import com.urassh.dvdrental.domain.Goods;
-import com.urassh.dvdrental.usecase.rental.AddToRentalCartUseCase;
+import com.urassh.dvdrental.usecase.rental.cart.AddToRentalCartUseCase;
 import com.urassh.dvdrental.util.Navigator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -36,7 +36,7 @@ public class RentalDetailController {
         this.goods = goods;
         final String GOODS_DATE = new SimpleDateFormat("yyyy-MM-dd").format(goods.getReleaseDate());
         titleLabel.setText(goods.getTitle());
-        idLabel.setText(goods.getId());
+        idLabel.setText(goods.getId().toString());
         genreLabel.setText(goods.getGenre());
         releaseDateLabel.setText(GOODS_DATE);
         rentalCountLabel.setText(String.valueOf(goods.getLoanCount()));

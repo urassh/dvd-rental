@@ -6,7 +6,6 @@ import org.mapdb.DB;
 import org.mapdb.DBMaker;
 import org.mapdb.HTreeMap;
 import org.mapdb.Serializer;
-
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -67,7 +66,7 @@ public class LocalStore {
                 .valueSerializer(GoodsSerializer.GOODS)
                 .createOrOpen();
 
-        map.put(goods.getId(), goods);
+        map.put(goods.getId().toString(), goods);
         db.close();
     }
 

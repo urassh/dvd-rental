@@ -63,7 +63,7 @@ public class MembersController {
 
         final Predicate<Member> matchesKeyword = member ->
                 member.getName().toLowerCase().contains(keyword) ||
-                member.getId().toLowerCase().contains(keyword);
+                member.getId().toString().toLowerCase().contains(keyword);
 
         List<Member> filteredMembers = allMembers.stream()
                 .filter(matchesKeyword)

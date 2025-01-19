@@ -1,15 +1,16 @@
 package com.urassh.dvdrental.domain;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class Member {
-    private final String id;
+    private final UUID id;
     private final String name;
     private final int phoneNumber;
     private final String address;
     private final Date birthDate;
 
-    public Member(String id, String name, int phoneNumber, String address, Date birthDate) {
+    public Member(UUID id, String name, int phoneNumber, String address, Date birthDate) {
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -17,7 +18,15 @@ public class Member {
         this.birthDate = birthDate;
     }
 
-    public String getId() {
+    public Member(String name, int phoneNumber, String address, Date birthDate) {
+        this.id = UUID.randomUUID();
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.birthDate = birthDate;
+    }
+
+    public UUID getId() {
         return id;
     }
 
