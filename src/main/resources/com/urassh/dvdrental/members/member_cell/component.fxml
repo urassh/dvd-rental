@@ -10,9 +10,9 @@
            fx:controller="com.urassh.dvdrental.controller.members.MemberCellController"
            styleClass="card"
            stylesheets="@card.css">
-    <HBox styleClass="card-h-content">
+    <HBox styleClass="member-container">
         <ImageView fx:id="memberImageView" fitWidth="60" fitHeight="60"/>
-        <VBox styleClass="card-v-content">
+        <VBox styleClass="member-info">
             <Label fx:id="memberNameLabel" styleClass="member-name"/>
             <Label fx:id="memberIdLabel" styleClass="member-id"/>
         </VBox>
