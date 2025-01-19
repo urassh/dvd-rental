@@ -57,6 +57,11 @@ public class NewGoodsController {
         final Date inputReleaseDate = new DateExtension().fromLocalDate(releaseDateField.getValue());
         final String inputBelongToStore = belongToStoreField.getText();
 
+        ErrorControlHighlight(titleField, inputTitle.isBlank());
+        ErrorControlHighlight(genreField, inputGenre.isBlank());
+        ErrorControlHighlight(releaseDateField, inputReleaseDate == null);
+        ErrorControlHighlight(belongToStoreField, inputBelongToStore.isBlank());
+
         if (inputTitle.isBlank()) return;
         if (inputGenre.isBlank()) return;
         if (inputReleaseDate == null) return;
@@ -71,7 +76,7 @@ public class NewGoodsController {
         navigator.navigateToGoods();
     }
 
-    private void ErrorFieldHighlight(Control control, boolean hasError) {
+    private void ErrorControlHighlight(Control control, boolean hasError) {
         String errorClass = "error";
         if (hasError) {
             if (!control.getStyleClass().contains(errorClass)) {
