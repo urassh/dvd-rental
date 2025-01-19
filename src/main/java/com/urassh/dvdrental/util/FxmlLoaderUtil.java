@@ -15,6 +15,7 @@ public class FxmlLoaderUtil {
             Map.entry("goods", "goods/view.fxml"),
             Map.entry("goods_new", "goods/new/view.fxml"),
             Map.entry("goods_detail", "goods/detail/view.fxml"),
+            Map.entry("goods_edit", "goods/edit/view.fxml"),
             Map.entry("members", "members/view.fxml"),
             Map.entry("members_new", "members/new/view.fxml"),
             Map.entry("rental", "rental/view.fxml"),

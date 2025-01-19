@@ -55,7 +55,7 @@ public class GoodsDetailController {
     }
 
     public void onEdit() {
-        // navigator.navigateToGoods();
+        navigator.navigateToGoodsEdit(goods);
     }
 
     public void onRemove() {

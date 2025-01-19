@@ -1,5 +1,6 @@
 package com.urassh.dvdrental.util;
 
+import com.urassh.dvdrental.controller.goods.EditGoodsController;
 import com.urassh.dvdrental.controller.goods.GoodsDetailController;
 import com.urassh.dvdrental.controller.rental.RentalDetailController;
 import com.urassh.dvdrental.controller.returns.detail.ReturnDetailController;
@@ -58,6 +59,13 @@ public class Navigator {
     public void navigateToGoodsDetail(Goods goods) {
         navigateTo("goods_detail", "商品詳細", loader -> {
             GoodsDetailController controller = loader.getController();
+            controller.setGoods(goods);
+        });
+    }
+
+    public void navigateToGoodsEdit(Goods goods) {
+        navigateTo("goods_edit", "商品編集", loader -> {
+            EditGoodsController controller = loader.getController();
             controller.setGoods(goods);
         });
     }
