@@ -1,14 +1,14 @@
-package com.urassh.dvdrental.usecase.rental;
+package com.urassh.dvdrental.usecase.returns;
 
 import com.google.inject.Inject;
 import com.urassh.dvdrental.domain.Rental;
 import com.urassh.dvdrental.domain.interfaces.RentalRepository;
 
-public class RemoveRentalUseCase {
+public class ReturnUseCase {
     private final RentalRepository rentalRepository;
 
     @Inject
-    public RemoveRentalUseCase(RentalRepository rentalRepository) {
+    public ReturnUseCase(RentalRepository rentalRepository) {
         this.rentalRepository = rentalRepository;
     }
 

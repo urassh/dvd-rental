@@ -4,7 +4,7 @@ import com.google.inject.Inject;
 import com.urassh.dvdrental.domain.Money;
 import com.urassh.dvdrental.domain.Rental;
 import com.urassh.dvdrental.usecase.rental.GetRentalsByMemberUseCase;
-import com.urassh.dvdrental.usecase.rental.RemoveRentalUseCase;
+import com.urassh.dvdrental.usecase.returns.ReturnUseCase;
 import com.urassh.dvdrental.util.Navigator;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -30,17 +30,17 @@ public class ReturnDetailController {
     private final List<Rental> rentalsWithMember = new ArrayList<>();
     private final List<Rental> returnTargets = new ArrayList<>();
     private final GetRentalsByMemberUseCase getRentalsByMemberUseCase;
-    private final RemoveRentalUseCase removeRentalUseCase;
+    private final ReturnUseCase returnUseCase;
     private final Navigator navigator;
 
     @Inject
     public ReturnDetailController(
             Navigator navigator,
             GetRentalsByMemberUseCase getRentalsByMemberUseCase,
-            RemoveRentalUseCase removeRentalUseCase) {
+            ReturnUseCase returnUseCase) {
         this.navigator = navigator;
         this.getRentalsByMemberUseCase = getRentalsByMemberUseCase;
-        this.removeRentalUseCase = removeRentalUseCase;
+        this.returnUseCase = returnUseCase;
     }
 
     public void setRental(Rental rental) {
@@ -70,7 +70,7 @@ public class ReturnDetailController {
         if (returnTargets.isEmpty()) return;
 
         for (Rental rental : returnTargets) {
-            removeRentalUseCase.execute(rental);
+            returnUseCase.execute(rental);
         }
 
         navigator.navigateToReturn();
