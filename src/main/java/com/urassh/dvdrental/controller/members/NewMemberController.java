@@ -7,6 +7,7 @@ import com.urassh.dvdrental.util.DateExtension;
 import com.urassh.dvdrental.util.Navigator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Control;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
@@ -56,6 +57,11 @@ public class NewMemberController {
         final String inputPhoneNumber = phoneNumberField.getText();
         final Date inputBirthDate = new DateExtension().fromLocalDate(birthDateField.getValue());
 
+        ErrorControlHighlight(nameField, inputName.isBlank());
+        ErrorControlHighlight(addressField, inputAddress.isBlank());
+        ErrorControlHighlight(phoneNumberField, inputPhoneNumber.isBlank());
+        ErrorControlHighlight(birthDateField, inputBirthDate == null);
+
         if (inputName.isBlank()) return;
         if (inputAddress.isBlank()) return;
         if (inputPhoneNumber.isBlank()) return;
@@ -68,5 +74,16 @@ public class NewMemberController {
 
         addMemberUseCase.execute(newMember);
         navigator.navigateToMembers();
+    }
+
+    private void ErrorControlHighlight(Control control, boolean hasError) {
+        String errorClass = "error";
+        if (hasError) {
+            if (!control.getStyleClass().contains(errorClass)) {
+                control.getStyleClass().add(errorClass);
+            }
+        } else {
+            control.getStyleClass().remove(errorClass);
+        }
     }
 }
