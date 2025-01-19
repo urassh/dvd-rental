@@ -4,6 +4,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.urassh.dvdrental.controller.goods.GoodsController"
@@ -17,10 +18,15 @@
         <BorderPane>
             <top>
                 <VBox styleClass="header">
-                    <Label text="商品一覧" />
+                    <Label text="商品一覧" fx:id="title"/>
                     <TextField promptText="検索" styleClass="search-field" />
                 </VBox>
             </top>
+            <right>
+                <VBox styleClass="right-display">
+                    <Button fx:id="newGoodsButton" styleClass="red-button" text="商品を追加" />
+                </VBox>
+            </right>
         </BorderPane>
     </center>
 </BorderPane>

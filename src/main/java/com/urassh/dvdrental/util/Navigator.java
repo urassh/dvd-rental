@@ -16,9 +16,11 @@ public class Navigator {
             "width", 1440,
             "height", 1024
     );
+
     private static final String[] FXML_PATHS = {
             "home/view.fxml",
             "goods/view.fxml",
+            "goods/goods_new/view.fxml",
             "members/view.fxml",
             "rental/view.fxml",
             "return/view.fxml",
@@ -66,31 +68,35 @@ public class Navigator {
         navigateFxml(FXML_PATHS[1], "商品情報");
     }
 
+    public void navigateToGoodsNew() {
+        navigateFxml(FXML_PATHS[2], "商品追加");
+    }
+
     public void navigateToMembers() {
-        navigateFxml(FXML_PATHS[2], "会員情報");
+        navigateFxml(FXML_PATHS[3], "会員情報");
     }
 
     public void navigateToRental() {
-        navigateFxml(FXML_PATHS[3], "貸し出し");
+        navigateFxml(FXML_PATHS[4], "貸し出し");
     }
 
     public void navigateToReturn() {
-        navigateFxml(FXML_PATHS[4], "返却");
+        navigateFxml(FXML_PATHS[5], "返却");
     }
 
     public void navigateToRentalDetail(Goods goods) {
-        navigateFxml(FXML_PATHS[5], goods.getTitle(), fxmlLoader -> {
+        navigateFxml(FXML_PATHS[6], goods.getTitle(), fxmlLoader -> {
             RentalDetailController controller = fxmlLoader.getController();
             controller.setGoods(goods);
         });
     }
 
     public void navigateToRentalCart() {
-        navigateFxml(FXML_PATHS[6], "商品カート");
+        navigateFxml(FXML_PATHS[7], "商品カート");
     }
 
     public void navigateToReturnDetail(Rental rental) {
-        navigateFxml(FXML_PATHS[7], "返却詳細", fxmlLoader -> {
+        navigateFxml(FXML_PATHS[8], "返却詳細", fxmlLoader -> {
             ReturnDetailController controller = fxmlLoader.getController();
             controller.setRental(rental);
         });
