@@ -10,8 +10,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Date;
 
 public class NewGoodsController {
@@ -40,13 +38,13 @@ public class NewGoodsController {
 
     @FXML
     protected void initialize() {
-        addGoodsButton.setOnAction(event -> handleButtonClick(addGoodsButton));
+        addGoodsButton.setOnAction(event -> handleButtonClick());
         newGoods = Goods.newGoods();
 
-        goodsIdField.setText(newGoods.getId());
+        goodsIdField.setText(newGoods.getId().toString());
     }
 
-    private void handleButtonClick(Button clickedButton) {
+    private void handleButtonClick() {
         final String inputTitle = titleField.getText();
         final String inputGenre = genreField.getText();
         final Date inputReleaseDate = new DateExtension().fromLocalDate(releaseDateField.getValue());
