@@ -58,6 +58,7 @@ public class NewMemberController {
 
         if (inputName.isBlank()) return;
         if (inputAddress.isBlank()) return;
+        if (inputPhoneNumber.isBlank()) return;
         if (inputBirthDate == null) return;
 
         newMember = newMember.setName(inputName);
