@@ -13,9 +13,9 @@ module com.urassh.dvdrental {
     exports com.urassh.dvdrental.controller.sidebar;
     exports com.urassh.dvdrental.controller.returns;
     exports com.urassh.dvdrental.controller.returns.detail;
-    exports com.urassh.dvdrental.module;
-    exports com.urassh.dvdrental.util;
-    exports com.urassh.dvdrental.infrastructure;
+    exports com.urassh.dvdrental.module to com.google.guice;
+    exports com.urassh.dvdrental.util to com.google.guice;
+    exports com.urassh.dvdrental.infrastructure to com.google.guice;
     exports com.urassh.dvdrental.usecase.goods to com.google.guice;
     exports com.urassh.dvdrental.usecase.members to com.google.guice;
     exports com.urassh.dvdrental.usecase.rental to com.google.guice;
