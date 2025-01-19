@@ -49,8 +49,7 @@
 }
 
 .right-display {
-    -fx-alignment: bottom-right;
-    -fx-padding: 50 50 50 10;
+    -fx-padding: 10px;
 }
 
 .red-button {
