@@ -6,10 +6,7 @@ import com.urassh.dvdrental.usecase.goods.AddGoodsUseCase;
 import com.urassh.dvdrental.util.DateExtension;
 import com.urassh.dvdrental.util.Navigator;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.util.Date;
 
@@ -72,5 +69,16 @@ public class NewGoodsController {
 
         addGoodsUseCase.execute(newGoods);
         navigator.navigateToGoods();
+    }
+
+    private void ErrorFieldHighlight(Control control, boolean hasError) {
+        String errorClass = "error";
+        if (hasError) {
+            if (!control.getStyleClass().contains(errorClass)) {
+                control.getStyleClass().add(errorClass);
+            }
+        } else {
+            control.getStyleClass().remove(errorClass);
+        }
     }
 }

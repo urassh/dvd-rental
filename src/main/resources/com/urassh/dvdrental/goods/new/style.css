@@ -30,6 +30,11 @@
     -fx-background-radius: 10;
 }
 
+.input-field.error {
+    -fx-border-color: red;
+    -fx-border-width: 2;
+}
+
 .text-field:focused {
     -fx-border-color: #4a90e2;
 }
