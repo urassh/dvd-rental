@@ -2,13 +2,15 @@ package com.urassh.dvdrental.infrastructure.dummy;
 
 import com.urassh.dvdrental.domain.Goods;
 import com.urassh.dvdrental.domain.interfaces.GoodsRepository;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 public class GoodsDummyRepository implements GoodsRepository {
-    private static List<Goods> goodsList = List.of(
+    private static List<Goods> goodsList = new ArrayList<>(List.of(
             new Goods("The Matrix", new Date(1672531200000L), "Sci-Fi", "MovieStore1", 0, true),  // 2023-01-01
             new Goods("Inception", new Date(1675036800000L), "Sci-Fi", "MovieStore2", 0, true),  // 2023-01-30
             new Goods("Spirited Away", new Date(1677628800000L), "Animation", "MovieStore3", 0, true),  // 2023-03-01
@@ -29,7 +31,7 @@ public class GoodsDummyRepository implements GoodsRepository {
             new Goods("Toy Story", new Date(1717113600000L), "Animation", "MovieStore18", 0, true), // 2024-06-01
             new Goods("A Silent Voice", new Date(1719705600000L), "Drama", "MovieStore19", 0, true), // 2024-07-01
             new Goods("The Pursuit of Happyness", new Date(1722384000000L), "Biography", "MovieStore20", 0, true)  // 2024-08-01
-    );
+    ));
 
     public CompletableFuture<List<Goods>> getAll() {
         return CompletableFuture.supplyAsync(() -> {

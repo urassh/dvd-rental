@@ -55,7 +55,7 @@ public class GoodsController {
             final Goods selectedGoods = goodsList.getSelectionModel().getSelectedItem();
             if (selectedGoods == null) return;
 
-            //navigator.navigateToGoodsDetail(selectedGoods);
+            navigator.navigateToGoodsDetail(selectedGoods);
         });
 
         newGoodsButton.setOnAction(event -> navigator.navigateToGoodsNew());
