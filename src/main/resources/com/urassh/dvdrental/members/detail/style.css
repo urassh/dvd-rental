@@ -1,0 +1,58 @@
+.container {
+    -fx-padding: 50;
+}
+
+.title {
+    -fx-font-weight: bold;
+    -fx-font-size: 48px;
+}
+
+.card {
+    -fx-background-color: white;
+    -fx-padding: 24px;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+    -fx-max-width: 600px;
+    -fx-max-height: 80px;
+}
+
+.card-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: 900;
+    -fx-text-fill: black;
+    -fx-padding: 0 0 12px 0;
+}
+
+.card-column {
+    -fx-min-width: 120px;
+}
+
+.blue-button {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-background-color: #5f84e8;
+    -fx-text-fill: white;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.blue-button:hover {
+    -fx-background-color: rgb(60,90,160);
+}
+
+.red-button {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-background-color: #e86d5f;
+    -fx-text-fill: white;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.red-button:hover {
+    -fx-background-color: rgb(160,40,40); /* ホバー時の色変更 */
+}

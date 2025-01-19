@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<?import javafx.scene.control.Button?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.urassh.dvdrental.controller.members.MemberDetailController"
+            stylesheets="@style.css">
+    <left>
+        <fx:include source="../../sidebar/view.fxml"/>
+    </left>
+
+    <center>
+        <VBox styleClass="container" spacing="24">
+            <Label fx:id="nameLabel" styleClass="title" />
+
+            <HBox styleClass="card" alignment="CENTER_LEFT" spacing="20">
+                <VBox styleClass="card-column">
+                    <Label text="会員ID" styleClass="card-label" />
+                    <Label text="住所" styleClass="card-label" />
+                    <Label text="電話番号" styleClass="card-label" />
+                    <Label text="生年月日" styleClass="card-label" />
+                </VBox>
+
+                <VBox styleClass="card-column">
+                    <Label fx:id="idLabel" styleClass="card-label" />
+                    <Label fx:id="addressLabel" styleClass="card-label" />
+                    <Label fx:id="phoneNumberLabel" styleClass="card-label" />
+                    <Label fx:id="birthDateLabel" styleClass="card-label" />
+                </VBox>
+            </HBox>
+            <HBox spacing="20">
+                <Button text="会員を編集" styleClass="blue-button" onAction="#onEdit" />
+                <Button text="会員を削除" styleClass="red-button" onAction="#onRemove" />
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>
