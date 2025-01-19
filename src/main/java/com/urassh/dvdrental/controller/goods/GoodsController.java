@@ -54,7 +54,6 @@ public class GoodsController {
         goodsList.setOnMouseClicked(event -> {
             final Goods selectedGoods = goodsList.getSelectionModel().getSelectedItem();
             if (selectedGoods == null) return;
-
             navigator.navigateToGoodsDetail(selectedGoods);
         });
 
@@ -87,7 +86,7 @@ public class GoodsController {
 
         final Predicate<Goods> matchesKeyword = good ->
                 good.getTitle().toLowerCase().contains(keyword) ||
-                        good.getId().toString().toLowerCase().contains(keyword);
+                good.getId().toString().toLowerCase().contains(keyword);
 
         List<Goods> filteredMembers = goods.stream()
                 .filter(matchesKeyword)
