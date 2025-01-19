@@ -13,12 +13,12 @@
 }
 
 /* カードの内容縦配置 */
-.card-v-content {
+.member-info {
     -fx-alignment: center-left;
 }
 
 /* カードの内容横配置 */
-.card-h-content {
+.member-container {
     -fx-alignment: center-left;
     -fx-padding: 0 0 0 8;
     -fx-spacing: 10px;
