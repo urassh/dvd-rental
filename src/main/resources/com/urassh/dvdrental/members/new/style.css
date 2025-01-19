@@ -30,10 +30,13 @@
     -fx-background-radius: 10;
 }
 
+.input-field.error {
+    -fx-border-color: red;
+}
+
 .text-field:focused {
     -fx-border-color: #4a90e2;
 }
-
 
 .right-display {
     -fx-alignment: bottom-right;
