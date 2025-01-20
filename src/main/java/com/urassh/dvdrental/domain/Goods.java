@@ -16,7 +16,7 @@ public class Goods {
 
     private static final Money NEW_FEE = new Money(300);
     private static final Money OLD_FEE = new Money(100);
-    private static final int RECENT_GOODS_MONTH_PERIOD = -6;
+    private static final int RECENT_GOODS_PERIOD_MONTHS = -6;
 
     public Goods(UUID id, String title, Date releaseDate, String genre, String belongToStore, int loanCount, boolean isDisplayed) {
         this.id = id;
@@ -48,7 +48,7 @@ public class Goods {
 
     public boolean isNew() {
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.MONTH, RECENT_GOODS_MONTH_PERIOD);
+        calendar.add(Calendar.MONTH, RECENT_GOODS_PERIOD_MONTHS);
         Date sixMonthsAgo = calendar.getTime();
         return releaseDate.after(sixMonthsAgo);
     }
