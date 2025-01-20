@@ -47,6 +47,7 @@ public class ReturnDetailController {
     public void setRental(Rental rental) {
         memberIdLabel.setText(rental.getMember().getId().toString());
         memberNameLabel.setText(rental.getMember().getName());
+        lateFeeLabel.setText("遅延料金 : 0円 (税込)");
 
         getRentalsByMemberUseCase.execute(rental.getMember())
             .thenAccept(rentals -> {
@@ -56,7 +57,6 @@ public class ReturnDetailController {
             })
             .thenRun(() -> {
                 Platform.runLater(() -> {
-                    lateFeeLabel.setText("遅延料金 : " + sumLateFee.withTax().getValue() + "円 (税込)");
                     rentingGoodsView.setCellFactory(listView -> new ReturnDetailCell(onChangedReturn()));
                     rentingGoodsView.getItems().setAll(rentalsWithMember);
                 });
@@ -79,10 +79,11 @@ public class ReturnDetailController {
                 returnTargets.remove(rental);
             } else {
                 returnTargets.add(rental);
-
                 sumLateFee = returnTargets.stream()
                         .map(Rental::getLateFee)
                         .reduce(Money.ZERO, Money::add);
+                
+                lateFeeLabel.setText("遅延料金 : " + sumLateFee.withTax().getValue() + "円 (税込)");
             }
         };
     }
