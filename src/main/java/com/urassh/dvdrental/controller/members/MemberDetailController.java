@@ -47,6 +47,7 @@ public class MemberDetailController {
     }
 
     public void onEdit() {
+        navigator.navigateToMemberEdit(member);
     }
 
     public void onRemove() {
