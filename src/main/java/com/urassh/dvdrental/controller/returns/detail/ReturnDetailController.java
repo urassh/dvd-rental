@@ -82,7 +82,7 @@ public class ReturnDetailController {
                 sumLateFee = returnTargets.stream()
                         .map(Rental::getLateFee)
                         .reduce(Money.ZERO, Money::add);
-                
+
                 lateFeeLabel.setText("遅延料金 : " + sumLateFee.withTax().getValue() + "円 (税込)");
             }
         };
