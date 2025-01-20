@@ -8,7 +8,7 @@
 
 <?import javafx.scene.control.Button?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.urassh.dvdrental.controller.members.NewMemberController"
+            fx:controller="com.urassh.dvdrental.controller.members.EditMemberController"
             stylesheets="@style.css">
 
     <left>
@@ -19,7 +19,7 @@
         <BorderPane>
             <top>
                 <VBox styleClass="header">
-                    <Label text="会員追加画面" />
+                    <Label text="会員編集画面"/>
                 </VBox>
             </top>
 
@@ -49,7 +49,7 @@
             </center>
             <right>
                 <VBox styleClass="right-display">
-                    <Button fx:id="addMemberButton" styleClass="red-button" text="会員を追加" />
+                    <Button fx:id="updateMemberButton" styleClass="red-button" text="編集を確定" />
                 </VBox>
             </right>
         </BorderPane>
