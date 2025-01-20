@@ -47,7 +47,7 @@ public class Rental {
         if (isOverdue()) {
             return new Money(100).multiply(calcOverdueDays());
         }
-        return new Money(100);
+        return new Money(0);
     }
 
     public boolean isOverdue() {
