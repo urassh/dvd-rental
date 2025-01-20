@@ -21,9 +21,9 @@ public class FxmlLoaderUtil {
             Map.entry("member_detail", "members/detail/view.fxml"),
             Map.entry("member_edit", "members/edit/view.fxml"),
             Map.entry("rental", "rental/view.fxml"),
-            Map.entry("return", "return/view.fxml"),
             Map.entry("rental_detail", "rental/detail/view.fxml"),
             Map.entry("rental_cart", "rental/cart/view.fxml"),
+            Map.entry("return", "return/view.fxml"),
             Map.entry("return_detail", "return/detail/view.fxml")
     );
 
