@@ -14,6 +14,7 @@ import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -92,6 +93,7 @@ public class RentalCartController {
     }
 
     public void onConfirmRental() {
+        ErrorControlHighlight(searchField, rentingMember == null);
         if (rentingMember == null) return;
         if (rentalCart.isEmpty()) return;
 
@@ -129,5 +131,16 @@ public class RentalCartController {
     private void onCancelRental(Goods goods) {
         new RemoveFromCartUseCase().execute(goods);
         loadCarts();
+    }
+
+    private void ErrorControlHighlight(Control control, boolean hasError) {
+        String errorClass = "error";
+        if (hasError) {
+            if (!control.getStyleClass().contains(errorClass)) {
+                control.getStyleClass().add(errorClass);
+            }
+        } else {
+            control.getStyleClass().remove(errorClass);
+        }
     }
 }
