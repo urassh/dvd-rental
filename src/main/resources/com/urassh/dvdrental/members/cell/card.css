@@ -8,6 +8,10 @@
     -fx-max-height: 80px;
 }
 
+.card:hover {
+    -fx-background-color: #DDDDDD;
+}
+
 /* カードの内容配置 */
 .card-content {
     -fx-alignment: center-left;

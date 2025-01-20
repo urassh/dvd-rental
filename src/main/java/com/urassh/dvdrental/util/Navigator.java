@@ -2,9 +2,11 @@ package com.urassh.dvdrental.util;
 
 import com.urassh.dvdrental.controller.goods.EditGoodsController;
 import com.urassh.dvdrental.controller.goods.GoodsDetailController;
+import com.urassh.dvdrental.controller.members.MemberDetailController;
 import com.urassh.dvdrental.controller.rental.RentalDetailController;
 import com.urassh.dvdrental.controller.returns.detail.ReturnDetailController;
 import com.urassh.dvdrental.domain.Goods;
+import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.domain.Rental;
 import com.urassh.dvdrental.errors.NavigationException;
 import javafx.fxml.FXMLLoader;
@@ -76,6 +78,13 @@ public class Navigator {
 
     public void navigateToMembersNew() {
         navigateTo("members_new", "会員追加");
+    }
+
+    public void navigateToMemberDetail(Member member) {
+        navigateTo("member_detail", "会員詳細", loader -> {
+            MemberDetailController controller = loader.getController();
+            controller.setMember(member);
+        });
     }
 
     public void navigateToRental() {
