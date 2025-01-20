@@ -6,7 +6,6 @@ import com.urassh.dvdrental.domain.interfaces.GoodsRepository;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 public class GoodsDummyRepository implements GoodsRepository {
@@ -41,23 +40,6 @@ public class GoodsDummyRepository implements GoodsRepository {
                 throw new RuntimeException(e);
             }
             return goodsList;
-        });
-    }
-
-    public CompletableFuture<Goods> getById(UUID id) {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-
-            for (Goods good : goodsList) {
-                if (good.getId().equals(id)) {
-                    return good;
-                }
-            }
-            return null;
         });
     }
 

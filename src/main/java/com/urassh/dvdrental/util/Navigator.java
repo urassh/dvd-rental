@@ -2,6 +2,7 @@ package com.urassh.dvdrental.util;
 
 import com.urassh.dvdrental.controller.goods.EditGoodsController;
 import com.urassh.dvdrental.controller.goods.GoodsDetailController;
+import com.urassh.dvdrental.controller.members.EditMemberController;
 import com.urassh.dvdrental.controller.members.MemberDetailController;
 import com.urassh.dvdrental.controller.rental.RentalDetailController;
 import com.urassh.dvdrental.controller.returns.detail.ReturnDetailController;
@@ -83,6 +84,13 @@ public class Navigator {
     public void navigateToMemberDetail(Member member) {
         navigateTo("member_detail", "会員詳細", loader -> {
             MemberDetailController controller = loader.getController();
+            controller.setMember(member);
+        });
+    }
+
+    public void navigateToMemberEdit(Member member) {
+        navigateTo("member_edit", "会員編集", loader -> {
+            EditMemberController controller = loader.getController();
             controller.setMember(member);
         });
     }
