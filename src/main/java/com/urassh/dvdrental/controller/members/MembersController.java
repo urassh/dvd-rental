@@ -16,6 +16,9 @@ import java.util.stream.Collectors;
 
 public class MembersController {
     @FXML
+    private Button newMemberButton;
+
+    @FXML
     private ListView<Member> memberList;
 
     @FXML
@@ -24,11 +27,8 @@ public class MembersController {
     @FXML
     private TextField searchField;
 
-    @FXML
-    private Button newMemberButton;
-
-    private final BooleanProperty isLoading = new SimpleBooleanProperty(false);
     private List<Member> allMembers = new ArrayList<>();
+    private final BooleanProperty isLoading = new SimpleBooleanProperty(false);
     private final Navigator navigator;
     private final GetAllMembersUseCase getAllMembersUseCase;
 
@@ -39,17 +39,19 @@ public class MembersController {
     }
 
     public void initialize() {
-        newMemberButton.setOnAction(event -> navigateToNew());
-
         memberList.setCellFactory(listView -> new MemberCell());
         loadingIndicator.visibleProperty().bind(isLoading);
+
         loadMembers();
-
         searchField.setOnAction(event -> filterMembers());
-    }
 
-    private void navigateToNew() {
-        navigator.navigateToMembersNew();
+        memberList.setOnMouseClicked(event -> {
+            final Member selectedMember = memberList.getSelectionModel().getSelectedItem();
+            if (selectedMember == null) return;
+            navigator.navigateToMemberDetail(selectedMember);
+        });
+
+        newMemberButton.setOnAction(event -> navigator.navigateToMembersNew());
     }
 
     private void loadMembers() {

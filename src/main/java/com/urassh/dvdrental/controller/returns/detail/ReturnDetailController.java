@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class ReturnDetailController {
     @FXML
@@ -46,21 +47,17 @@ public class ReturnDetailController {
     public void setRental(Rental rental) {
         memberIdLabel.setText(rental.getMember().getId().toString());
         memberNameLabel.setText(rental.getMember().getName());
+        lateFeeLabel.setText("遅延料金 : 0円 (税込)");
 
         getRentalsByMemberUseCase.execute(rental.getMember())
             .thenAccept(rentals -> {
                 synchronized (rentalsWithMember) {
                     rentalsWithMember.addAll(rentals);
                 }
-
-                sumLateFee = rentals.stream()
-                        .map(Rental::getLateFee)
-                        .reduce(Money.ZERO, Money::add);
             })
             .thenRun(() -> {
                 Platform.runLater(() -> {
-                    lateFeeLabel.setText("遅延料金 : " + sumLateFee.withTax().getValue() + "円 (税込)");
-                    rentingGoodsView.setCellFactory(listView -> new ReturnDetailCell());
+                    rentingGoodsView.setCellFactory(listView -> new ReturnDetailCell(onChangedReturn()));
                     rentingGoodsView.getItems().setAll(rentalsWithMember);
                 });
             });
@@ -74,5 +71,20 @@ public class ReturnDetailController {
         }
 
         navigator.navigateToReturn();
+    }
+
+    private Consumer<Rental> onChangedReturn() {
+        return rental -> {
+            if (returnTargets.contains(rental)) {
+                returnTargets.remove(rental);
+            } else {
+                returnTargets.add(rental);
+                sumLateFee = returnTargets.stream()
+                        .map(Rental::getLateFee)
+                        .reduce(Money.ZERO, Money::add);
+
+                lateFeeLabel.setText("遅延料金 : " + sumLateFee.withTax().getValue() + "円 (税込)");
+            }
+        };
     }
 }

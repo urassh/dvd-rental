@@ -51,18 +51,18 @@ public class Member {
     }
 
     public Member setName(String name) {
-        return new Member(name, phoneNumber, address, birthDate);
+        return new Member(id, name, phoneNumber, address, birthDate);
     }
 
     public Member setPhoneNumber(String phoneNumber) {
-        return new Member(name, phoneNumber, address, birthDate);
+        return new Member(id, name, phoneNumber, address, birthDate);
     }
 
     public Member setAddress(String address) {
-        return new Member(name, phoneNumber, address, birthDate);
+        return new Member(id, name, phoneNumber, address, birthDate);
     }
 
     public Member setBirthDate(Date birthDate) {
-        return new Member(name, phoneNumber, address, birthDate);
+        return new Member(id, name, phoneNumber, address, birthDate);
     }
 }

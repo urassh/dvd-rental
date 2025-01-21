@@ -69,6 +69,10 @@
     -fx-background-radius: 10;
 }
 
+.search-field.error {
+    -fx-border-color: red;
+}
+
 .search-field:focused {
     -fx-border-color: #4a90e2;
 }

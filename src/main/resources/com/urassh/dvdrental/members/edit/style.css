@@ -1,0 +1,69 @@
+.header {
+    -fx-padding: 50 0 24 50;
+}
+
+.label {
+    -fx-font-weight: bold;
+    -fx-font-size: 48px;
+    -fx-padding: 0 0 24 0;
+}
+
+.content-group {
+    -fx-padding: 10 10 10 50;
+    -fx-spacing: 30
+}
+
+.label-direction {
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-padding: 0 0 5 0;
+}
+
+.input-field {
+    -fx-pref-width: 600px;
+    -fx-max-width: 600px;
+    -fx-pref-height: 40px;
+    -fx-font-size: 24px;
+    -fx-border-color: #dcdcdc;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.input-field.error {
+    -fx-border-color: red;
+}
+
+.text-field:focused {
+    -fx-border-color: #4a90e2;
+}
+
+.right-display {
+    -fx-padding: 10px;
+}
+
+.red-button {
+    -fx-alignment: center;
+    -fx-background-color: #e86d5f;
+    -fx-border-radius:  10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 12px 36px;
+
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+    -fx-max-width: 210px;
+    -fx-max-height: 80px;
+}
+
+.red-button:hover {
+    -fx-background-color: rgb(160,40,40);
+    -fx-text-fill: white;
+}
+
+.red-button.active {
+    -fx-background-color: rgb(192,160,160);
+    -fx-text-fill: white;
+}

@@ -5,11 +5,23 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
     -fx-max-width: 800px;
     -fx-max-height: 80px;
+    -fx-opacity: 0.6;
+}
+
+.card:hover {
+    -fx-background-color: #DDDDDD;
 }
 
 .card-content {
     -fx-alignment: center-left;
     -fx-min-height: 120px;
+}
+
+.selected {
+    -fx-border-color: #365dff;
+    -fx-border-width: 2px;
+    -fx-text-fill: white;
+    -fx-opacity: 1;
 }
 
 .goods-name {

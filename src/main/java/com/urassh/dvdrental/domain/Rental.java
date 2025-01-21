@@ -11,13 +11,15 @@ public class Rental {
     private final Date rentalDate;
     private final Date dueDate;
 
+    private static final Money LATE_FEE_PER_DAY = new Money(100);
+    private static final int RENTAL_PERIOD_DAYS = 7;
+
     public Rental(String id, Goods goods, Member member, Date rentalDate) {
         this.id = id;
         this.goods = goods;
         this.member = member;
         this.rentalDate = rentalDate;
-        // 返却期限を計算して代入する
-        this.dueDate = new DateExtension(rentalDate).addDay(7);
+        this.dueDate = new DateExtension(rentalDate).addDay(RENTAL_PERIOD_DAYS);
     }
 
     public Rental(Goods goods, Member member, Date rentalDate) {
@@ -25,8 +27,7 @@ public class Rental {
         this.goods = goods;
         this.member = member;
         this.rentalDate = rentalDate;
-        // 返却期限を計算して代入する
-        this.dueDate = new DateExtension(rentalDate).addDay(7);
+        this.dueDate = new DateExtension(rentalDate).addDay(RENTAL_PERIOD_DAYS);
     }
 
     public String getId() {
@@ -44,17 +45,15 @@ public class Rental {
     public Date getDueDate() { return dueDate; }
 
     public Money getLateFee() {
-        if (isOverdue()) {
-            return new Money(100).multiply(calcOverdueDays());
-        }
-        return new Money(100);
+        if (isOverdue()) return LATE_FEE_PER_DAY.multiply(getOverdueDays());
+        return Money.ZERO;
     }
 
     public boolean isOverdue() {
         return new Date().after(dueDate);
     }
 
-    private int calcOverdueDays() {
+    private int getOverdueDays() {
         final Date today = new Date();
         final int diffDate = new DateExtension(today).diffDays(dueDate);
 
