@@ -1,5 +1,7 @@
 package com.urassh.dvdrental.domain;
 
+import java.util.Objects;
+
 public class Money {
     private final int value;
     private static final Double TAX_RATE = 1.1;
@@ -27,5 +29,13 @@ public class Money {
 
     public Money withTax() {
         return new Money((int) (value * TAX_RATE));
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Money money = (Money) obj;
+        return Objects.equals(value, money.getValue());
     }
 }
