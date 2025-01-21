@@ -1,5 +1,6 @@
 package com.urassh.dvdrental.controller.rental;
 
+import com.google.inject.Binding;
 import com.google.inject.Inject;
 import com.urassh.dvdrental.domain.Goods;
 import com.urassh.dvdrental.domain.Member;
@@ -11,13 +12,11 @@ import com.urassh.dvdrental.usecase.rental.cart.GetRentalCartUseCase;
 import com.urassh.dvdrental.usecase.rental.cart.RemoveFromCartUseCase;
 import com.urassh.dvdrental.util.Navigator;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
-import javafx.scene.control.Control;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
@@ -38,6 +37,12 @@ public class RentalCartController {
     private Label memberNameLabel;
 
     @FXML
+    private ProgressIndicator loadingIndicator;
+
+    @FXML
+    private Label memberNotFoundLabel;
+
+    @FXML
     private TextField searchField;
 
     @FXML
@@ -48,6 +53,7 @@ public class RentalCartController {
     private Member rentingMember;
     private final BooleanProperty isFoundMember = new SimpleBooleanProperty(false);
 
+    private final BooleanProperty isLoading = new SimpleBooleanProperty(false);
     private final Navigator navigator;
     private final GetMemberUseCase getMemberUseCase;
     private final AddRentalUseCase addRentalUseCase;
@@ -60,24 +66,32 @@ public class RentalCartController {
     }
 
     public void initialize() {
+        loadingIndicator.visibleProperty().bind(isLoading);
         memberCard.visibleProperty().bind(isFoundMember);
+        memberNotFoundLabel.visibleProperty().bind(Bindings.not(isFoundMember));
 
         setupRentalCart();
         loadCarts();
 
         searchField.setOnAction(event -> {
             final String keyword = searchField.getText().trim().toLowerCase();
-            final UUID memberId = UUID.fromString(keyword);
+            ErrorControlHighlight(searchField, false);
 
             if (keyword.isEmpty()) {
-                memberCard.setVisible(false);
+                isFoundMember.set(false);
+                ErrorControlHighlight(searchField, true);
                 return;
             }
+
+            isLoading.set(true);
+            final UUID memberId = UUID.fromString(keyword);
 
             getMemberUseCase.execute(memberId).thenAccept(member -> {
                 if (member == null) {
                     Platform.runLater(() -> {
-                        memberCard.setVisible(false);
+                        isFoundMember.set(false);
+                        ErrorControlHighlight(searchField, true);
+                        isLoading.set(false);
                     });
                     return;
                 }
@@ -87,6 +101,7 @@ public class RentalCartController {
                     isFoundMember.set(true);
                     memberIdLabel.setText(member.getId().toString());
                     memberNameLabel.setText(member.getName());
+                    isLoading.set(false);
                 });
             });
         });
