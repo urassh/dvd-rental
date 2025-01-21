@@ -12,9 +12,16 @@
     -fx-background-color: #DDDDDD;
 }
 
-/* カードの内容配置 */
-.card-content {
+/* カードの内容縦配置 */
+.member-info {
     -fx-alignment: center-left;
+}
+
+/* カードの内容横配置 */
+.member-container {
+    -fx-alignment: center-left;
+    -fx-padding: 0 0 0 8;
+    -fx-spacing: 10px;
 }
 
 /* メンバー名 */

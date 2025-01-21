@@ -12,5 +12,6 @@ public class MemberModule extends AbstractModule {
         bind(GetAllMembersUseCase.class).in(Singleton.class);
         bind(GetMemberUseCase.class).in(Singleton.class);
         bind(UpdateMemberUseCase.class).in(Singleton.class);
+        bind(GetMemberIconUseCase.class).in(Singleton.class);
     }
 }

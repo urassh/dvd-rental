@@ -4,9 +4,11 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import com.urassh.dvdrental.domain.interfaces.GoodsRepository;
+import com.urassh.dvdrental.domain.interfaces.ImageRepository;
 import com.urassh.dvdrental.domain.interfaces.MemberRepository;
 import com.urassh.dvdrental.domain.interfaces.RentalRepository;
 import com.urassh.dvdrental.infrastructure.dummy.GoodsDummyRepository;
+import com.urassh.dvdrental.infrastructure.dummy.ImageDummyRepository;
 import com.urassh.dvdrental.infrastructure.dummy.MemberDummyRepository;
 import com.urassh.dvdrental.infrastructure.dummy.RentalDummyRepository;
 import com.urassh.dvdrental.util.FxmlLoaderUtil;
@@ -28,6 +30,7 @@ public class AppModule extends AbstractModule {
         bind(GoodsRepository.class).to(GoodsDummyRepository.class).in(Singleton.class);
         bind(MemberRepository.class).to(MemberDummyRepository.class).in(Singleton.class);
         bind(RentalRepository.class).to(RentalDummyRepository.class).in(Singleton.class);
+        bind(ImageRepository.class).to(ImageDummyRepository.class).in(Singleton.class);
 
         install(new GoodsModule());
         install(new MemberModule());

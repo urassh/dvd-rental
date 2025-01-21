@@ -1,9 +1,12 @@
 package com.urassh.dvdrental.controller.members;
 
+import com.google.inject.Inject;
 import com.urassh.dvdrental.RentalApp;
 import com.urassh.dvdrental.domain.Member;
+import com.urassh.dvdrental.usecase.members.GetMemberIconUseCase;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
@@ -28,7 +31,8 @@ public class MemberCell extends ListCell<Member> {
         if (empty || member == null) {
             setGraphic(null);
         } else {
-            controller.setMember(member);
+            final Image memberIcon = new GetMemberIconUseCase().execute(member);
+            controller.setMember(member, memberIcon);
             setGraphic(content);
         }
     }
