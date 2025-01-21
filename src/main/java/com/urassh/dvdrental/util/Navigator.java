@@ -11,14 +11,14 @@ import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.domain.Rental;
 import com.urassh.dvdrental.errors.NavigationException;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.function.Consumer;
 
 public class Navigator {
-    private static final int DEFAULT_WIDTH = 1440;
-    private static final int DEFAULT_HEIGHT = 1024;
     private final FxmlLoaderUtil loaderUtil;
     private final Stage stage;
 
@@ -38,7 +38,12 @@ public class Navigator {
                 consumer.accept(loader);
             }
 
-            final Scene scene = new Scene(loader.getRoot(), DEFAULT_WIDTH, DEFAULT_HEIGHT);
+            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+            final double screenWidth = screenBounds.getWidth();
+            final double screenHeight = screenBounds.getHeight();
+            final Scene scene = new Scene(loader.getRoot(), screenWidth, screenHeight);
+
+            stage.setMaximized(true);
             stage.setScene(scene);
             stage.setTitle(appTitle(title));
             stage.show();
