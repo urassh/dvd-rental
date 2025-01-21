@@ -17,10 +17,9 @@ public class MemberCellController {
     @FXML
     private ImageView memberImageView;
 
-    public void setMember(Member member) {
+    public void setMember(Member member, Image memberImage) {
         memberIdLabel.setText(member.getId().toString());
         memberNameLabel.setText(member.getName() + " 様");
-        Image memberImage = new Image("file:src/main/resources/com/urassh/dvdrental/members/images/" + member.getId() + ".png");
         memberImageView.setImage(memberImage);
         Circle circle = new Circle(30);
         circle.setCenterX(30);
