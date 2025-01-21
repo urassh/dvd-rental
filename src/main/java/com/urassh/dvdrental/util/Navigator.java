@@ -78,7 +78,7 @@ public class Navigator {
     }
 
     public void navigateToMembersNew() {
-        navigateTo("members_new", "会員追加");
+        navigateTo("member_new", "会員追加");
     }
 
     public void navigateToMemberDetail(Member member) {
