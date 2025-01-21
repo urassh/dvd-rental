@@ -47,3 +47,9 @@
 .search-field:focused {
     -fx-border-color: #4a90e2;
 }
+
+.no-rental-label {
+    -fx-font-size: 32px;
+    -fx-text-fill: gray;
+    -fx-alignment: center;
+}

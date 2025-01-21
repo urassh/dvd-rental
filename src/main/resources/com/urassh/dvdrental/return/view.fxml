@@ -30,6 +30,7 @@
                 <StackPane>
                     <ListView fx:id="rentalMemberList" styleClass="list-view" />
                     <ProgressIndicator fx:id="loadingIndicator" visible="false" />
+                    <Label fx:id="noRentalLabel" text="" visible="false" styleClass="no-rental-label" />
                 </StackPane>
             </center>
         </BorderPane>

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import javafx.scene.control.Label;
 
 public class ReturnController {
     @FXML
@@ -26,6 +27,9 @@ public class ReturnController {
 
     @FXML
     private TextField searchField;
+    
+    @FXML
+    private Label noRentalLabel;
 
     private final BooleanProperty isLoading = new SimpleBooleanProperty(false);
     private List<Rental> rentals = new ArrayList<>();
@@ -72,6 +76,12 @@ public class ReturnController {
                 this.rentals = rentals;
                 rentalMemberList.getItems().setAll(rentingMembers);
                 isLoading.set(false);
+                if (rentingMembers.isEmpty()) {
+                    noRentalLabel.setText("貸出をしている人はいません");
+                    noRentalLabel.setVisible(true);
+                } else {
+                    noRentalLabel.setVisible(false);
+                }
             });
         }).exceptionally(ex -> {
             ex.printStackTrace();
