@@ -19,6 +19,9 @@ public class RentalCartCellController {
 
     @FXML
     private Button cancelButton;
+    
+    @FXML
+    private Label cartGoodsNewLabel;
 
     public void setGoods(Goods goods, Consumer<Goods> cancelAction) {
         final String GOODS_ID = goods.getId().toString();
@@ -29,5 +32,11 @@ public class RentalCartCellController {
         goodsTitleLabel.setText(GOODS_TITLE);
         goodsPriceLabel.setText(GOODS_PRICE + "円");
         cancelButton.setOnAction(event -> cancelAction.accept(goods));
+        if(goods.isNew()) {
+            cartGoodsNewLabel.setVisible(true);
+        } else {
+            cartGoodsNewLabel.setVisible(false);
+        }
     }
+    
 }

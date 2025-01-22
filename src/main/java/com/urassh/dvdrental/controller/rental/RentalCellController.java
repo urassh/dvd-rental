@@ -15,6 +15,9 @@ public class RentalCellController {
 
     @FXML
     private Label goodsReleaseDateLabel;
+    
+    @FXML
+    private Label rentalGoodsNewLabel;
 
     public void setGoods(Goods goods) {
         final String GOODS_ID = goods.getId().toString();
@@ -24,5 +27,10 @@ public class RentalCellController {
         goodsIdLabel.setText(GOODS_ID);
         goodsTitleLabel.setText(GOODS_TITLE);
         goodsReleaseDateLabel.setText("発売 : " + GOODS_DATE);
+        if(goods.isNew()) {
+            rentalGoodsNewLabel.setVisible(true);
+        } else {
+            rentalGoodsNewLabel.setVisible(false);
+        }
     }
 }

@@ -11,6 +11,7 @@
            styleClass="card"
            stylesheets="@card.css">
     <AnchorPane>
+        <Label fx:id="cartGoodsNewLabel" text="新作" styleClass="goods-new" visible="false" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0"/>
         <VBox styleClass="card-content" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10">
             <Label fx:id="goodsTitleLabel" styleClass="goods-name"/>
             <Label fx:id="goodsIdLabel" styleClass="goods-id"/>
