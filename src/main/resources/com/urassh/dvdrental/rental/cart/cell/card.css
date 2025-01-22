@@ -41,3 +41,15 @@
     -fx-text-fill: #365dff;
     -fx-underline: true;
 }
+
+.goods-new {
+    -fx-alignment: top-right;
+    -fx-background-color: #ff9899;
+    -fx-border-radius:  10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 12px 24px;
+
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
