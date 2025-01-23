@@ -14,9 +14,6 @@ import java.util.Optional;
 
 public class NewGoodsController {
     @FXML
-    private Label title;
-
-    @FXML
     private TextField goodsIdField;
 
     @FXML
