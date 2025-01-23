@@ -3,12 +3,14 @@ package com.urassh.dvdrental.controller.members;
 import com.google.inject.Inject;
 import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.usecase.members.UpdateMemberUseCase;
+import com.urassh.dvdrental.util.ConfirmationAlertUtil;
 import com.urassh.dvdrental.util.DateExtension;
 import com.urassh.dvdrental.util.Navigator;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.util.Date;
+import java.util.Optional;
 
 public class EditMemberController {
     @FXML
@@ -75,8 +77,15 @@ public class EditMemberController {
         editedMember = editedMember.setPhoneNumber(inputPhoneNumber);
         editedMember = editedMember.setBirthDate(inputBirthDate);
 
-        updateMemberUseCase.execute(editedMember);
-        navigator.navigateToMembers();
+        String content = "会員ID     : " + editedMember.getId() + "\n氏名     : " + editedMember.getName();
+        ConfirmationAlertUtil alertUtil = new ConfirmationAlertUtil("会員編集", "会員情報を更新しますか？", content);
+
+        Optional<ButtonType> result = alertUtil.showAndWait();
+
+        if (result.isPresent() && result.get() == alertUtil.getAcceptButtonType()) {
+            updateMemberUseCase.execute(editedMember);
+            navigator.navigateToMembers();
+        }
     }
 
     private void ErrorControlHighlight(Control control, boolean hasError) {

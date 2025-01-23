@@ -3,15 +3,14 @@ package com.urassh.dvdrental.controller.members;
 import com.google.inject.Inject;
 import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.usecase.members.AddMemberUseCase;
+import com.urassh.dvdrental.util.ConfirmationAlertUtil;
 import com.urassh.dvdrental.util.DateExtension;
 import com.urassh.dvdrental.util.Navigator;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Control;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.util.Date;
+import java.util.Optional;
 
 public class NewMemberController {
     @FXML
@@ -72,8 +71,15 @@ public class NewMemberController {
         newMember = newMember.setBirthDate(inputBirthDate);
         newMember = newMember.setPhoneNumber(inputPhoneNumber);
 
-        addMemberUseCase.execute(newMember);
-        navigator.navigateToMembers();
+        String content = "会員ID     : " + newMember.getId() + "\n氏名     : " + newMember.getName();
+        ConfirmationAlertUtil alertUtil = new ConfirmationAlertUtil("会員追加", "会員情報を追加しますか？", content);
+
+        Optional<ButtonType> result = alertUtil.showAndWait();
+
+        if (result.isPresent() && result.get() == alertUtil.getAcceptButtonType()) {
+            addMemberUseCase.execute(newMember);
+            navigator.navigateToMembers();
+        }
     }
 
     private void ErrorControlHighlight(Control control, boolean hasError) {

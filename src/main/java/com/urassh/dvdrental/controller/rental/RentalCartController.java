@@ -1,6 +1,5 @@
 package com.urassh.dvdrental.controller.rental;
 
-import com.google.inject.Binding;
 import com.google.inject.Inject;
 import com.urassh.dvdrental.domain.Goods;
 import com.urassh.dvdrental.domain.Member;
@@ -10,6 +9,7 @@ import com.urassh.dvdrental.usecase.rental.*;
 import com.urassh.dvdrental.usecase.rental.cart.ClearRentalCartUseCase;
 import com.urassh.dvdrental.usecase.rental.cart.GetRentalCartUseCase;
 import com.urassh.dvdrental.usecase.rental.cart.RemoveFromCartUseCase;
+import com.urassh.dvdrental.util.ConfirmationAlertUtil;
 import com.urassh.dvdrental.util.Navigator;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
@@ -21,6 +21,7 @@ import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public class RentalCartController {
@@ -112,12 +113,28 @@ public class RentalCartController {
         if (rentingMember == null) return;
         if (rentalCart.isEmpty()) return;
 
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("貸出会員ID : ").append(rentingMember.getId()).append("\n氏名     : ").append(rentingMember.getName()).append("\n");
+        stringBuilder.append("----------------------------------\n\n");
         for (Goods goods : rentalCart) {
-            addRentalUseCase.execute(goods, rentingMember);
+            stringBuilder.append(goods.getTitle()).append("\n");
         }
+        stringBuilder.append("\n----------------------------------\n");
+        stringBuilder.append(rentalCart.size()).append(" 点\n");
+        stringBuilder.append("合計 : ").append(sum.withTax().getValue()).append("円 (税込)");
 
-        new ClearRentalCartUseCase().execute();
-        navigator.navigateToRental();
+        String content = stringBuilder.toString();
+        ConfirmationAlertUtil alertUtil = new ConfirmationAlertUtil("貸出", "貸出操作を確定しますか？", content);
+
+        Optional<ButtonType> result = alertUtil.showAndWait();
+
+        if (result.isPresent() && result.get() == alertUtil.getAcceptButtonType()) {
+            for (Goods goods : rentalCart) {
+                addRentalUseCase.execute(goods, rentingMember);
+            }
+            new ClearRentalCartUseCase().execute();
+            navigator.navigateToRental();
+        }
     }
 
     private void setupRentalCart() {
