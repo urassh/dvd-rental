@@ -5,9 +5,10 @@ import com.urassh.dvdrental.domain.Goods;
 import com.urassh.dvdrental.usecase.goods.DeleteGoodsUseCase;
 import com.urassh.dvdrental.util.Navigator;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 
 import java.text.SimpleDateFormat;
+import java.util.Optional;
 
 public class GoodsDetailController {
     @FXML
@@ -59,7 +60,27 @@ public class GoodsDetailController {
     }
 
     public void onRemove() {
-        deleteGoodsUseCase.execute(goods);
-        navigator.navigateToGoods();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("商品削除");
+        alert.setHeaderText("商品を削除しますか？");
+        alert.setContentText("商品ID     : " + goods.getId() + "\nタイトル : " + goods.getTitle());
+
+        ButtonType deleteButtonType = new ButtonType("削除", ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancelButtonType = new ButtonType("キャンセル", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        alert.getButtonTypes().setAll(deleteButtonType, cancelButtonType);
+
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(getClass().getResource("/com/urassh/dvdrental/util/alert.css").toExternalForm());
+        dialogPane.getStyleClass().add("ios-alert");
+        Button deleteButton = (Button) dialogPane.lookupButton(deleteButtonType);
+        deleteButton.getStyleClass().add("delete-button");
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            deleteGoodsUseCase.execute(goods);
+            navigator.navigateToGoods();
+        }
     }
 }
