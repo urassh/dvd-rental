@@ -7,6 +7,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.layout.StackPane?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.urassh.dvdrental.controller.returns.detail.ReturnDetailController"
             stylesheets="@style.css">
@@ -22,7 +24,10 @@
                 <VBox styleClass="cart" spacing="40">
                     <Label fx:id="lateFeeLabel" styleClass="sub-title" />
 
-                    <ListView fx:id="rentingGoodsView" styleClass="list-view" />
+                    <StackPane>
+                        <ListView fx:id="rentingGoodsView" styleClass="list-view" />
+                        <ProgressIndicator fx:id="loadingIndicator" visible="false" />
+                    </StackPane>
 
                     <Button text="返却確定" styleClass="cart-button" onAction="#onConfirmReturn" />
                 </VBox>

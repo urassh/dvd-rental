@@ -20,6 +20,7 @@
 .selected {
     -fx-border-color: #365dff;
     -fx-border-width: 2px;
+    -fx-border-radius: 10px;
     -fx-text-fill: white;
     -fx-opacity: 1;
 }

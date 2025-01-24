@@ -41,7 +41,7 @@
                             <Label fx:id="memberNameLabel" styleClass="member" />
                         </VBox>
                         <ProgressIndicator fx:id="loadingIndicator" visible="false" />
-                        <Label fx:id="memberNotFoundLabel" text="メンバーが見つかっていません。" styleClass="error_message" />
+                        <Label fx:id="memberNotFoundLabel" text="会員情報が見つかっていません。" styleClass="error_message" />
                     </StackPane>
                 </VBox>
             </HBox>
