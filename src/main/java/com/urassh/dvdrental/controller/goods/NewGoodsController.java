@@ -3,17 +3,16 @@ package com.urassh.dvdrental.controller.goods;
 import com.google.inject.Inject;
 import com.urassh.dvdrental.domain.Goods;
 import com.urassh.dvdrental.usecase.goods.AddGoodsUseCase;
+import com.urassh.dvdrental.util.ConfirmationAlertUtil;
 import com.urassh.dvdrental.util.DateExtension;
 import com.urassh.dvdrental.util.Navigator;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.util.Date;
+import java.util.Optional;
 
 public class NewGoodsController {
-    @FXML
-    private Label title;
-
     @FXML
     private TextField goodsIdField;
 
@@ -72,8 +71,15 @@ public class NewGoodsController {
         newGoods = newGoods.setReleaseDate(inputReleaseDate);
         newGoods = newGoods.setBelongToStore(belongToStoreField.getText());
 
-        addGoodsUseCase.execute(newGoods);
-        navigator.navigateToGoods();
+        String content = "商品ID     : " + newGoods.getId() + "\nタイトル : " + newGoods.getTitle();
+        ConfirmationAlertUtil alertUtil = new ConfirmationAlertUtil("商品追加", "商品情報を追加しますか？", content);
+
+        Optional<ButtonType> result = alertUtil.showAndWait();
+
+        if (result.isPresent() && result.get() == alertUtil.getAcceptButtonType()) {
+            addGoodsUseCase.execute(newGoods);
+            navigator.navigateToGoods();
+        }
     }
 
     private void ErrorControlHighlight(Control control, boolean hasError) {

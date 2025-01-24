@@ -3,6 +3,7 @@ package com.urassh.dvdrental.controller.goods;
 import com.google.inject.Inject;
 import com.urassh.dvdrental.domain.Goods;
 import com.urassh.dvdrental.usecase.goods.DeleteGoodsUseCase;
+import com.urassh.dvdrental.util.ConfirmationAlertUtil;
 import com.urassh.dvdrental.util.Navigator;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -60,25 +61,14 @@ public class GoodsDetailController {
     }
 
     public void onRemove() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("商品削除");
-        alert.setHeaderText("商品を削除しますか？");
-        alert.setContentText("商品ID     : " + goods.getId() + "\nタイトル : " + goods.getTitle());
+        String content = "商品ID     : " + goods.getId() + "\nタイトル : " + goods.getTitle();
+        ConfirmationAlertUtil alertUtil = new ConfirmationAlertUtil("商品削除", "商品情報を削除しますか？", content);
+        alertUtil.setAcceptButtonText("削除");
+        alertUtil.acceptIsDanger();
 
-        ButtonType deleteButtonType = new ButtonType("削除", ButtonBar.ButtonData.OK_DONE);
-        ButtonType cancelButtonType = new ButtonType("キャンセル", ButtonBar.ButtonData.CANCEL_CLOSE);
+        Optional<ButtonType> result = alertUtil.showAndWait();
 
-        alert.getButtonTypes().setAll(deleteButtonType, cancelButtonType);
-
-        DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add(getClass().getResource("/com/urassh/dvdrental/util/alert.css").toExternalForm());
-        dialogPane.getStyleClass().add("ios-alert");
-        Button deleteButton = (Button) dialogPane.lookupButton(deleteButtonType);
-        deleteButton.getStyleClass().add("delete-button");
-
-        Optional<ButtonType> result = alert.showAndWait();
-
-        if (result.isPresent() && result.get() == ButtonType.OK) {
+        if (result.isPresent() && result.get() == alertUtil.getAcceptButtonType()) {
             deleteGoodsUseCase.execute(goods);
             navigator.navigateToGoods();
         }

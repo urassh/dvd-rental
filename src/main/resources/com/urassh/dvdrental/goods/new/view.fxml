@@ -19,7 +19,7 @@
         <BorderPane>
             <top>
                 <VBox styleClass="header">
-                    <Label text="商品追加画面" fx:id="title"/>
+                    <Label text="商品追加画面"/>
                 </VBox>
             </top>
 

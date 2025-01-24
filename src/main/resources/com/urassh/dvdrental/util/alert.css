@@ -21,12 +21,31 @@
 }
 
 .dialog-pane .button {
-    -fx-background-color: #007aff;
-    -fx-text-fill: white;
+    -fx-background-color: #d4d4d4;
+    -fx-text-fill: black;
     -fx-background-radius: 10;
     -fx-padding: 10 20;
+    -fx-font-size: 14px;
 }
 
-.dialog-pane .button.delete-button {
-    -fx-background-color: red; /* Make the delete button red */
+.dialog-pane .button:hover {
+    -fx-background-color: #b8b8b8; /* グレー */
+}
+
+.dialog-pane .button.confirm-button {
+    -fx-background-color: #5f84e8;
+    -fx-text-fill: white;
+}
+
+.dialog-pane .button.confirm-button:hover {
+    -fx-background-color: rgb(60,90,160);
+}
+
+.dialog-pane .button.confirm-button.danger {
+    -fx-background-color: #e86d5f;
+    -fx-text-fill: white;
+}
+
+.dialog-pane .button.confirm-button.danger:hover {
+    -fx-background-color: rgb(160,40,40);
 }

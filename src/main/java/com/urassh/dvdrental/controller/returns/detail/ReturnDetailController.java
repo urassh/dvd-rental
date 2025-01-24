@@ -5,13 +5,16 @@ import com.urassh.dvdrental.domain.Money;
 import com.urassh.dvdrental.domain.Rental;
 import com.urassh.dvdrental.usecase.rental.GetRentalsByMemberUseCase;
 import com.urassh.dvdrental.usecase.returns.ReturnUseCase;
+import com.urassh.dvdrental.util.ConfirmationAlertUtil;
 import com.urassh.dvdrental.util.Navigator;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 
 public class ReturnDetailController {
@@ -66,11 +69,27 @@ public class ReturnDetailController {
     public void onConfirmReturn() {
         if (returnTargets.isEmpty()) return;
 
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("----------------------------------\n\n");
         for (Rental rental : returnTargets) {
-            returnUseCase.execute(rental);
+            stringBuilder.append(rental.getGoods().getTitle()).append("\n");
         }
+        stringBuilder.append("\n----------------------------------\n");
+        stringBuilder.append(returnTargets.size()).append(" 点\n");
+        stringBuilder.append("延滞料金合計 : ").append(sumLateFee.withTax().getValue()).append("円 (税込)");
 
-        navigator.navigateToReturn();
+        String content = stringBuilder.toString();
+        ConfirmationAlertUtil alertUtil = new ConfirmationAlertUtil("返却", "返却操作を確定しますか？", content);
+
+        Optional<ButtonType> result = alertUtil.showAndWait();
+
+        if (result.isPresent() && result.get() == alertUtil.getAcceptButtonType()) {
+            for (Rental rental : returnTargets) {
+                returnUseCase.execute(rental);
+            }
+
+            navigator.navigateToReturn();
+        }
     }
 
     private Consumer<Rental> onChangedReturn() {
