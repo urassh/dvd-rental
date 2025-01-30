@@ -4,6 +4,8 @@ module com.urassh.dvdrental {
     requires mapdb;
     requires annotations;
     requires com.google.guice;
+    requires java.net.http;
+    requires com.google.gson;
 
     exports com.urassh.dvdrental;
     exports com.urassh.dvdrental.controller.goods;
