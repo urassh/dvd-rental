@@ -2,7 +2,7 @@ package com.urassh.dvdrental.usecase.members;
 
 import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.domain.interfaces.ImageRepository;
-import com.urassh.dvdrental.infrastructure.dummy.ImageDummyRepository;
+import com.urassh.dvdrental.repository.dummy.ImageDummyRepository;
 import javafx.scene.image.Image;
 import java.io.ByteArrayInputStream;
 

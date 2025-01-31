@@ -1,4 +1,4 @@
-package com.urassh.dvdrental.infrastructure.serializer;
+package com.urassh.dvdrental.repository.serializer;
 
 import com.urassh.dvdrental.domain.Goods;
 import org.jetbrains.annotations.NotNull;

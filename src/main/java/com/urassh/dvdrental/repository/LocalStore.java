@@ -1,7 +1,7 @@
-package com.urassh.dvdrental.infrastructure;
+package com.urassh.dvdrental.repository;
 
 import com.urassh.dvdrental.domain.Goods;
-import com.urassh.dvdrental.infrastructure.serializer.GoodsSerializer;
+import com.urassh.dvdrental.repository.serializer.GoodsSerializer;
 import org.mapdb.DB;
 import org.mapdb.DBMaker;
 import org.mapdb.HTreeMap;

@@ -1,4 +1,4 @@
-package com.urassh.dvdrental.infrastructure.dummy;
+package com.urassh.dvdrental.repository.dummy;
 
 import com.urassh.dvdrental.domain.Member;
 import com.urassh.dvdrental.domain.interfaces.MemberRepository;

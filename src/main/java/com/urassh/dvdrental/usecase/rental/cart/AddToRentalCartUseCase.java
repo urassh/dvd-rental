@@ -1,7 +1,7 @@
 package com.urassh.dvdrental.usecase.rental.cart;
 
 import com.urassh.dvdrental.domain.Goods;
-import com.urassh.dvdrental.infrastructure.LocalStore;
+import com.urassh.dvdrental.repository.LocalStore;
 
 public class AddToRentalCartUseCase {
     private final LocalStore localStore = LocalStore.shared;
