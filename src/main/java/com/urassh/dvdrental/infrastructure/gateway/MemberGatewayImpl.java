@@ -12,6 +12,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 public class MemberGatewayImpl implements MemberGateway {
@@ -39,6 +40,26 @@ public class MemberGatewayImpl implements MemberGateway {
             try {
                 final HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
                 return gson.fromJson(response.body(), new TypeToken<List<MemberRecord>>() {}.getType());
+            } catch (IOException | InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+    @Override
+    public CompletableFuture<MemberRecord> getById(UUID id) {
+        final String idStr = id.toString();
+
+        return CompletableFuture.supplyAsync(() -> {
+            final HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(MEMBERS_URL + "/" + idStr))
+                    .header("X-Api-Key", API_KEY)
+                    .GET()
+                    .build();
+
+            try {
+                final HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+                return gson.fromJson(response.body(), MemberRecord.class);
             } catch (IOException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
