@@ -40,3 +40,6 @@ build/
 
 ### MapDB ###
 app-local-store
+
+### env file ###
+.env

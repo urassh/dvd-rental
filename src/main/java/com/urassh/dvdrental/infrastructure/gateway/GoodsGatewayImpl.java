@@ -28,14 +28,14 @@ public class GoodsGatewayImpl implements GoodsGateway {
     @Override
     public CompletableFuture<List<GoodsRecord>> getAll() {
         return CompletableFuture.supplyAsync(() -> {
-            HttpRequest request = HttpRequest.newBuilder()
+            final HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(GOODS_URL))
                     .header("X-Api-Key", API_KEY)
                     .GET()
                     .build();
 
             try {
-                HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+                final HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
                 return gson.fromJson(response.body(), new TypeToken<List<GoodsRecord>>() {
                 }.getType());
             } catch (IOException | InterruptedException e) {
@@ -48,7 +48,7 @@ public class GoodsGatewayImpl implements GoodsGateway {
     @Override
     public CompletableFuture<Void> add(GoodsRecord goods) {
         return CompletableFuture.supplyAsync(() -> {
-            HttpRequest request = HttpRequest.newBuilder()
+            final HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(GOODS_URL))
                     .header("Content-Type", "application/json")
                     .header("X-Api-Key", API_KEY)
@@ -56,7 +56,7 @@ public class GoodsGatewayImpl implements GoodsGateway {
                     .build();
 
             try {
-                HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+                final HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
                 if (response.statusCode() != 201) {
                     throw new RuntimeException("Failed to add goods");
                 }
@@ -71,7 +71,7 @@ public class GoodsGatewayImpl implements GoodsGateway {
     @Override
     public CompletableFuture<Void> update(GoodsRecord goods) {
         return CompletableFuture.supplyAsync(() -> {
-            HttpRequest request = HttpRequest.newBuilder()
+            final HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(GOODS_URL + "/" + goods.id()))
                     .header("Content-Type", "application/json")
                     .header("X-Api-Key", API_KEY)
@@ -79,7 +79,7 @@ public class GoodsGatewayImpl implements GoodsGateway {
                     .build();
 
             try {
-                HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+                final HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
                 if (response.statusCode() != 200) {
                     throw new RuntimeException("Failed to update goods");
                 }
@@ -94,14 +94,14 @@ public class GoodsGatewayImpl implements GoodsGateway {
     @Override
     public CompletableFuture<Void> delete(GoodsRecord goods) {
         return CompletableFuture.supplyAsync(() -> {
-            HttpRequest request = HttpRequest.newBuilder()
+            final HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(GOODS_URL + "/" + goods.id()))
                     .header("X-Api-Key", API_KEY)
                     .DELETE()
                     .build();
 
             try {
-                HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+                final HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
                 if (response.statusCode() != 204) {
                     throw new RuntimeException("Failed to delete goods");
                 }
