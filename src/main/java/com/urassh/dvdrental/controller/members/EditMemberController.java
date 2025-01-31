@@ -64,12 +64,12 @@ public class EditMemberController {
 
         ErrorControlHighlight(nameField, inputName.isBlank());
         ErrorControlHighlight(addressField, inputAddress.isBlank());
-        ErrorControlHighlight(phoneNumberField, inputPhoneNumber.isBlank());
+        ErrorControlHighlight(phoneNumberField, !inputPhoneNumber.matches("\\d{3}-\\d{4}-\\d{4}"));
         ErrorControlHighlight(birthDateField, inputBirthDate == null);
 
         if (inputName.isBlank()) return;
         if (inputAddress.isBlank()) return;
-        if (inputPhoneNumber.isBlank()) return;
+        if (!inputPhoneNumber.matches("\\d{3}-\\d{4}-\\d{4}")) return;
         if (inputBirthDate == null) return;
 
         editedMember = editedMember.setName(inputName);
