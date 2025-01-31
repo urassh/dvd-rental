@@ -19,7 +19,7 @@ import java.util.concurrent.CompletableFuture;
 public class MemberGatewayImpl implements MemberGateway {
     private static final String BASE_URL = EnvConfig.get("BASE_URL");
     private static final String API_KEY = EnvConfig.get("API_KEY");
-    private static final String MEMBERS_URL = BASE_URL + "/members";
+    private static final String MEMBERS_URL = BASE_URL + "/member";
 
     private final HttpClient client;
     private final Gson gson;
@@ -40,6 +40,7 @@ public class MemberGatewayImpl implements MemberGateway {
 
             try {
                 final HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
                 return gson.fromJson(response.body(), new TypeToken<List<MemberRecord>>() {}.getType());
             } catch (IOException | InterruptedException e) {
                 throw new RuntimeException(e);
