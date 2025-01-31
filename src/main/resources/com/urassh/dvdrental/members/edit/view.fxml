@@ -38,7 +38,7 @@
                         <TextField fx:id="addressField" promptText="住所を入力" styleClass="input-field" />
                     </VBox>
                     <VBox>
-                        <Label text="電話番号" styleClass="label-direction" />
+                        <Label text="電話番号 (XXX-XXXX-XXXX)" styleClass="label-direction" />
                         <TextField fx:id="phoneNumberField" promptText="電話番号を入力" styleClass="input-field" />
                     </VBox>
                     <VBox>
