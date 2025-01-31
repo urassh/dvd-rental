@@ -1,8 +1,12 @@
 package com.urassh.dvdrental.infrastructure.gateway;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.urassh.dvdrental.infrastructure.records.GoodsRecord;
+import com.urassh.dvdrental.infrastructure.records.GsonProvider;
 import com.urassh.dvdrental.repository.interfaces.GoodsGateway;
 import com.urassh.dvdrental.util.EnvConfig;
 
@@ -12,6 +16,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 public class GoodsGatewayImpl implements GoodsGateway {
@@ -23,7 +28,7 @@ public class GoodsGatewayImpl implements GoodsGateway {
 
     public GoodsGatewayImpl() {
         this.client = HttpClient.newHttpClient();
-        this.gson = new Gson();
+        this.gson = GsonProvider.getGsonForRecord();
     }
 
     @Override
@@ -53,11 +58,14 @@ public class GoodsGatewayImpl implements GoodsGateway {
                     .uri(URI.create(GOODS_URL))
                     .header("Content-Type", "application/json")
                     .header("X-Api-Key", API_KEY)
-                    .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(goods)))
+                    .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(Map.of("goods", goods))))
                     .build();
 
             try {
                 final HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+
+
                 if (response.statusCode() != 201) {
                     throw new RuntimeException("Failed to add goods");
                 }
@@ -76,7 +84,7 @@ public class GoodsGatewayImpl implements GoodsGateway {
                     .uri(URI.create(GOODS_URL + "/" + goods.getId()))
                     .header("Content-Type", "application/json")
                     .header("X-Api-Key", API_KEY)
-                    .PUT(HttpRequest.BodyPublishers.ofString(gson.toJson(goods)))
+                    .PUT(HttpRequest.BodyPublishers.ofString(gson.toJson(Map.of("goods", goods))))
                     .build();
 
             try {
@@ -112,5 +120,14 @@ public class GoodsGatewayImpl implements GoodsGateway {
 
             return null;
         });
+    }
+
+    private String prettyPrintJson(String json) {
+        try {
+            JsonElement jsonElement = JsonParser.parseString(json);
+            return gson.toJson(jsonElement);
+        } catch (JsonSyntaxException e) {
+            return json; // JSONがパースできない場合はそのまま返す
+        }
     }
 }
