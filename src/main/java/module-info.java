@@ -6,6 +6,7 @@ module com.urassh.dvdrental {
     requires com.google.guice;
     requires java.net.http;
     requires com.google.gson;
+    requires com.google.common;
 
     exports com.urassh.dvdrental;
     exports com.urassh.dvdrental.controller.goods;
@@ -17,7 +18,7 @@ module com.urassh.dvdrental {
     exports com.urassh.dvdrental.controller.returns.detail;
     exports com.urassh.dvdrental.module to com.google.guice;
     exports com.urassh.dvdrental.util to com.google.guice;
-    exports com.urassh.dvdrental.infrastructure to com.google.guice;
+    exports com.urassh.dvdrental.repository to com.google.guice;
     exports com.urassh.dvdrental.usecase.goods to com.google.guice;
     exports com.urassh.dvdrental.usecase.members to com.google.guice;
     exports com.urassh.dvdrental.usecase.rental to com.google.guice;
@@ -29,6 +30,6 @@ module com.urassh.dvdrental {
     opens com.urassh.dvdrental.controller.sidebar to javafx.fxml;
     opens com.urassh.dvdrental.controller.returns to javafx.fxml;
     opens com.urassh.dvdrental.controller.returns.detail to javafx.fxml;
-    exports com.urassh.dvdrental.infrastructure.dummy to com.google.guice;
+    exports com.urassh.dvdrental.repository.dummy to com.google.guice;
     exports com.urassh.dvdrental.usecase.returns to com.google.guice;
 }

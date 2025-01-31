@@ -1,6 +1,6 @@
 package com.urassh.dvdrental.usecase.rental.cart;
 
-import com.urassh.dvdrental.infrastructure.LocalStore;
+import com.urassh.dvdrental.repository.LocalStore;
 
 public class ClearRentalCartUseCase {
     private final LocalStore localStore = LocalStore.shared;

@@ -10,7 +10,7 @@ import com.urassh.dvdrental.domain.Goods;
 import com.urassh.dvdrental.domain.Rental;
 import com.urassh.dvdrental.domain.interfaces.GoodsRepository;
 import com.urassh.dvdrental.domain.interfaces.RentalRepository;
-import com.urassh.dvdrental.infrastructure.LocalStore;
+import com.urassh.dvdrental.repository.LocalStore;
 
 public class GetUnRentingGoodsUseCase {
     private final GoodsRepository goodsRepository;
