@@ -73,7 +73,7 @@ public class GoodsGatewayImpl implements GoodsGateway {
     public CompletableFuture<Void> update(GoodsRecord goods) {
         return CompletableFuture.supplyAsync(() -> {
             final HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(GOODS_URL + "/" + goods.id()))
+                    .uri(URI.create(GOODS_URL + "/" + goods.getId()))
                     .header("Content-Type", "application/json")
                     .header("X-Api-Key", API_KEY)
                     .PUT(HttpRequest.BodyPublishers.ofString(gson.toJson(goods)))
@@ -96,7 +96,7 @@ public class GoodsGatewayImpl implements GoodsGateway {
     public CompletableFuture<Void> delete(GoodsRecord goods) {
         return CompletableFuture.supplyAsync(() -> {
             final HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(GOODS_URL + "/" + goods.id()))
+                    .uri(URI.create(GOODS_URL + "/" + goods.getId()))
                     .header("X-Api-Key", API_KEY)
                     .DELETE()
                     .build();

@@ -5,6 +5,7 @@ import com.google.inject.Singleton;
 import com.urassh.dvdrental.domain.interfaces.GoodsRepository;
 import com.urassh.dvdrental.infrastructure.gateway.GoodsGatewayImpl;
 import com.urassh.dvdrental.repository.dummy.GoodsDummyRepository;
+import com.urassh.dvdrental.repository.impl.GoodsRepositoryImpl;
 import com.urassh.dvdrental.repository.interfaces.GoodsGateway;
 import com.urassh.dvdrental.usecase.goods.*;
 
