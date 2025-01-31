@@ -7,6 +7,7 @@ module com.urassh.dvdrental {
     requires java.net.http;
     requires com.google.gson;
     requires com.google.common;
+    requires io.github.cdimascio.dotenv.java;
 
     exports com.urassh.dvdrental;
     exports com.urassh.dvdrental.controller.goods;
