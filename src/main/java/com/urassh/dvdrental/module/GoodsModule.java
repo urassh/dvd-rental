@@ -16,7 +16,7 @@ public class GoodsModule extends AbstractModule {
         bind(GoodsGateway.class).to(GoodsGatewayImpl.class).in(Singleton.class);
 
         // Repository
-        bind(GoodsRepository.class).to(GoodsRepositoryImpl.class).in(Singleton.class);
+        bind(GoodsRepository.class).to(GoodsDummyRepository.class).in(Singleton.class);
 
         // UseCase
         bind(AddGoodsUseCase.class).in(Singleton.class);

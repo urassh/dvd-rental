@@ -16,7 +16,7 @@ public class MemberModule extends AbstractModule {
         bind(MemberGateway.class).to(MemberGatewayImpl.class).in(Singleton.class);
 
         // Repository
-        bind(MemberRepository.class).to(MemberRepositoryImpl.class).in(Singleton.class);
+        bind(MemberRepository.class).to(MemberDummyRepository.class).in(Singleton.class);
 
         // UseCase
         bind(AddMemberUseCase.class).in(Singleton.class);
