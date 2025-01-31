@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.urassh.dvdrental.infrastructure.records.MemberRecord;
 import com.urassh.dvdrental.repository.interfaces.MemberGateway;
+import com.urassh.dvdrental.util.EnvConfig;
 
 import java.io.IOException;
 import java.net.URI;
@@ -14,9 +15,9 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class MemberGatewayImpl implements MemberGateway {
-    private static final String BASE_URL = "https://dvd-rental-api.shop";
+    private static final String BASE_URL = EnvConfig.get("BASE_URL");
+    private static final String API_KEY = EnvConfig.get("API_KEY");
     private static final String MEMBERS_URL = BASE_URL + "/members";
-    private static final String API_KEY = "";
 
     private final HttpClient client;
     private final Gson gson;
