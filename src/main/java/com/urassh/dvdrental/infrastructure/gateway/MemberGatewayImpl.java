@@ -2,6 +2,7 @@ package com.urassh.dvdrental.infrastructure.gateway;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.urassh.dvdrental.infrastructure.records.GsonProvider;
 import com.urassh.dvdrental.infrastructure.records.MemberRecord;
 import com.urassh.dvdrental.repository.interfaces.MemberGateway;
 import com.urassh.dvdrental.util.EnvConfig;
@@ -25,7 +26,7 @@ public class MemberGatewayImpl implements MemberGateway {
 
     public MemberGatewayImpl() {
         this.client = HttpClient.newHttpClient();
-        this.gson = new Gson();
+        this.gson = GsonProvider.getGsonForRecord();
     }
 
     @Override
@@ -93,7 +94,7 @@ public class MemberGatewayImpl implements MemberGateway {
     public CompletableFuture<Void> update(MemberRecord member) {
         return CompletableFuture.supplyAsync(() -> {
             final HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(MEMBERS_URL + "/" + member.id()))
+                    .uri(URI.create(MEMBERS_URL + "/" + member.getId()))
                     .header("Content-Type", "application/json")
                     .header("X-Api-Key", API_KEY)
                     .PUT(HttpRequest.BodyPublishers.ofString(gson.toJson(member)))
@@ -116,7 +117,7 @@ public class MemberGatewayImpl implements MemberGateway {
     public CompletableFuture<Void> delete(MemberRecord member) {
         return CompletableFuture.supplyAsync(() -> {
             final HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(MEMBERS_URL + "/" + member.id()))
+                    .uri(URI.create(MEMBERS_URL + "/" + member.getId()))
                     .header("X-Api-Key", API_KEY)
                     .DELETE()
                     .build();
